@@ -1,19 +1,27 @@
-/**
- * Project Untitled
+#pragma once
+
+#include "Peca.h"
+
+class Rainha : virtual public Peca
+{
+public:
+ Rainha(string estilo, Posicao *posicao, Tabuleiro *tabuleiro);
+ ~Rainha();
+
+ /**
+ * @return Retorna lista de posições validas para a Rainha, de acordo com sua regra de movimentação.
  */
+ vector<Posicao *> getPosicoesValidas();
 
+ /**
+ * @param novaPosicao Nova posição para a Rainha
+ * @return Retorna 'true' quando a Rainha foi movimentada com sucesso
+ */
+ bool movimentar(Posicao *novaPosicao);
 
-#ifndef _RAINHA_H
-#define _RAINHA_H
-
-#include "../PecaRealeza.h"
-#include "../PecaRealeza.h"
-
-
-class Rainha: public PecaRealeza, public PecaRealeza {
-public: 
-    
-vector<*Posicao> getPosicoesValidas();
+ /**
+ * @param posicaoReiAdversario Posição do Rei adversario
+ * @return Retorna 'true' quando a Rainha coloca o Rei adversario em xeque
+ */
+ bool verificaXequeAdversario(Posicao *posicaoReiAdversario);
 };
-
-#endif //_RAINHA_H

@@ -1,18 +1,16 @@
-/**
- * Project Untitled
- */
-
-
 #include "Bispo.h"
 
-/**
- * Bispo implementation
- */
+Bispo::Bispo(string estilo, Posicao *posicao = nullptr, Tabuleiro *tabuleiro) : Peca(estilo)
+{
+    this->simbolo = this->estilo == "black" ? "♝" : "♗";
+    this->posicao = posicao;
+    this->tabuleiro = tabuleiro;
+}
+Bispo::~Bispo() {}
 
+vector<Posicao *> Bispo::getPosicoesValidas()
+{
+    vector<Posicao *> posicoesValidas;
 
-/**
- * @return vector<*Posicao>
- */
-vector<*Posicao> Bispo::getPosicoesValidas() {
-    return null;
+    return posicoesValidas;
 }

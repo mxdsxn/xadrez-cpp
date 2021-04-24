@@ -1,32 +1,40 @@
-/**
- * Project Untitled
- */
+#pragma once
 
+#include <string>
+#include "../tabuleiro/Posicao.h"
+#include "../tabuleiro/Tabuleiro.h"
 
-#ifndef _PECA_H
-#define _PECA_H
+using namespace std;
 
-class Peca {
-public: 
-    string tipo;
-    *Posicao posicao;
-    string estilo;
-    *Tabuleiro tabuleiro;
-    
-/**
- * @param nova_posicao
- */
-boolean movimentar(*Posicao nova_posicao);
-    
-vector<*Posicao> getPosicoesValidas();
-    
-/**
- * @param posicao_rei
- */
-boolean verificaXeque(*Posicao posicao_rei);
-private: 
-    int codigo;
-    string simbolo;
+class Peca
+{
+public:
+  string tipo;
+  Posicao *posicao;
+  string estilo;
+  Tabuleiro *tabuleiro;
+  string simbolo;
+
+  Peca(string estilo);
+  ~Peca();
+
+  /**
+   * @param novaPosicao Posição de destino para a peça.
+   * @return Retorna 'true' se movimentou, false caso de algo errado.
+   */
+  virtual bool movimentar(Posicao *novaPosicao) = 0;
+
+  /**
+   * @return Retorna lista de posições validas para a peça, de acordo com sua regra de movimentação.
+   */
+  virtual vector<Posicao *> getPosicoesValidas() = 0;
+
+  /**
+   * @param posicaoReiAdversario Posição de destino para a peça.
+   * @return Retorna 'true' se movimentou, false caso de algo errado.
+   */
+  virtual bool verificaXequeAdversario(Posicao *posicaoReiAdversario) = 0;
+
+protected:
+  int codigo;
 };
-
-#endif //_PECA_H

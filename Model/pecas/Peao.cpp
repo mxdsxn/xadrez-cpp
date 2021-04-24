@@ -1,18 +1,16 @@
-/**
- * Project Untitled
- */
-
-
 #include "Peao.h"
 
-/**
- * Peao implementation
- */
+Peao::Peao(string estilo, Posicao *posicao = nullptr, Tabuleiro *tabuleiro) : Peca(estilo)
+{
+    this->simbolo = this->estilo == "black" ? "♟" : "♙";
+    this->posicao = posicao;
+    this->tabuleiro = tabuleiro;
+}
+Peao::~Peao() {}
 
+vector<Posicao *> Peao::getPosicoesValidas()
+{
+    vector<Posicao *> posicoesValidas;
 
-/**
- * @return vector<*Posicao>
- */
-vector<*Posicao> Peao::getPosicoesValidas() {
-    return null;
+    return posicoesValidas;
 }

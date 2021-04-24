@@ -1,27 +1,21 @@
-/**
- * Project Untitled
- */
-
-
 #include "Rei.h"
 
-/**
- * Rei implementation
- */
+Rei::Rei(string estilo, Posicao *posicao = nullptr, Tabuleiro *tabuleiro) : Peca(estilo)
+{
+    this->simbolo = this->estilo == "black" ? "♚" : "♔";
+    this->posicao = posicao;
+    this->tabuleiro = tabuleiro;
+}
+Rei::~Rei() {}
 
+vector<Posicao *> Rei::getPosicoesValidas()
+{
+    vector<Posicao *> posicoesValidas;
 
-/**
- * @return vector<*Posicao>
- */
-vector<*Posicao> Rei::getPosicoesValidas() {
-    return null;
+    return posicoesValidas;
 }
 
-/**
- * @param posicao_origem
- * @param posicao_destino
- * @return boolean
- */
-boolean Rei::getXeque(*Posicao posicao_origem, *Posicao posicao_destino) {
+bool Rei::verificaXeque(Posicao *posicao_destino)
+{
     return false;
 }

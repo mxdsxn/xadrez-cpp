@@ -1,18 +1,16 @@
-/**
- * Project Untitled
- */
-
-
 #include "Torre.h"
 
-/**
- * Torre implementation
- */
+Torre::Torre(string estilo, Posicao *posicao = nullptr, Tabuleiro *tabuleiro) : Peca(estilo)
+{
+  this->simbolo = this->estilo == "black" ? "♜" : "♖";
+  this->posicao = posicao;
+  this->tabuleiro = tabuleiro;
+}
+Torre::~Torre() {}
 
+vector<Posicao *> Torre::getPosicoesValidas()
+{
+  vector<Posicao *> posicoesValidas;
 
-/**
- * @return vector<*Posicao>
- */
-vector<*Posicao> Torre::getPosicoesValidas() {
-    return null;
+  return posicoesValidas;
 }
