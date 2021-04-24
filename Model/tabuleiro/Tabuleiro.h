@@ -1,24 +1,23 @@
-/**
- * Project Untitled
- */
+#pragma once
 
-
-#ifndef _TABULEIRO_H
-#define _TABULEIRO_H
-
-#include "../pecas/PecasPack.h"
+//#include "../pecas/PecasPack.h"
 #include "Posicao.h"
+#include <vector>
 
+using namespace std;
 
-class Tabuleiro {
-public: 
-    vector<*PecasPack> pacote_pecas;
-    PecasPack 2;
-    Posicao 64;
-    
-vector<*Posicao> getPosicoes();
-private: 
-    vector<*Posicao> posicoes;
+class Tabuleiro
+{
+public:
+    //PecasPack *pecasJogador1 = nullptr;
+    //PecasPack *pecasJogador2 = nullptr;
+
+    Tabuleiro();
+    ~Tabuleiro();
+
+    vector<Posicao *> getPosicoes();
+    void show();
+
+private:
+    vector<Posicao *> posicoes;
 };
-
-#endif //_TABULEIRO_H
