@@ -12,21 +12,21 @@ PecasPack::PecasPack(string estilo, Tabuleiro *tabuleiro)
     // instancia os torres
     for (int i = 1; i <= 2; i++)
     {
-        Peao *novaTorre = new Torre(estilo, tabuleiro, nullptr);
+        Torre *novaTorre = new Torre(estilo, tabuleiro, nullptr);
         this->torres.push_back(novaTorre);
     }
 
     // instancia os bispos
     for (int i = 1; i <= 2; i++)
     {
-        Peao *novoBispo = new Bispo(estilo, tabuleiro, nullptr);
+        Bispo *novoBispo = new Bispo(estilo, tabuleiro, nullptr);
         this->bispos.push_back(novoBispo);
     }
 
     // instancia os cavalos
     for (int i = 1; i <= 2; i++)
     {
-        Peao *novoCavalo = new Cavalo(estilo, tabuleiro, nullptr);
+        Cavalo *novoCavalo = new Cavalo(estilo, tabuleiro, nullptr);
         this->cavalos.push_back(novoCavalo);
     }
 
