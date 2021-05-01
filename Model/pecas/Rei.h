@@ -1,11 +1,15 @@
-#pragma once
+#ifndef _REI_H
+#define _REI_H
 
-#include "Peca.h"
+#include "./Peca.h"
 
-class Rei : virtual public Peca
+class Posicao;
+class Tabuleiro;
+
+class Rei : public Peca
 {
 public:
- Rei(string estilo, Posicao *posicao, Tabuleiro *tabuleiro);
+ Rei(string estilo, Tabuleiro *tabuleiro, Posicao *posicao);
  ~Rei();
 
  /**
@@ -31,3 +35,5 @@ public:
  */
  bool verificaXeque(Posicao *posicao_destino);
 };
+
+#endif //_REI_H

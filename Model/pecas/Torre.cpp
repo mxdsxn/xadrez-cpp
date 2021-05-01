@@ -1,6 +1,6 @@
 #include "Torre.h"
 
-Torre::Torre(string estilo, Posicao *posicao = nullptr, Tabuleiro *tabuleiro) : Peca(estilo)
+Torre::Torre(string estilo, Tabuleiro *tabuleiro, Posicao *posicao = nullptr) : Peca(estilo)
 {
   this->simbolo = this->estilo == "black" ? "♜" : "♖";
   this->posicao = posicao;

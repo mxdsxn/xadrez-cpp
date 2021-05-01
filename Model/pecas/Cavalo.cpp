@@ -1,6 +1,6 @@
 #include "Cavalo.h"
 
-Cavalo::Cavalo(string estilo, Posicao *posicao = nullptr, Tabuleiro *tabuleiro) : Peca(estilo)
+Cavalo::Cavalo(string estilo, Tabuleiro *tabuleiro, Posicao *posicao = nullptr) : Peca(estilo)
 {
     this->simbolo = this->estilo == "black" ? "♞" : "♘";
     this->posicao = posicao;

@@ -1,11 +1,15 @@
-#pragma once
+#ifndef _RAINHA_H
+#define _RAINHA_H
 
-#include "Peca.h"
+#include "./Peca.h"
 
-class Rainha : virtual public Peca
+class Posicao;
+class Tabuleiro;
+
+class Rainha : public Peca
 {
 public:
- Rainha(string estilo, Posicao *posicao, Tabuleiro *tabuleiro);
+ Rainha(string estilo, Tabuleiro *tabuleiro, Posicao *posicao);
  ~Rainha();
 
  /**
@@ -25,3 +29,5 @@ public:
  */
  bool verificaXequeAdversario(Posicao *posicaoReiAdversario);
 };
+
+#endif //_RAINHA_H

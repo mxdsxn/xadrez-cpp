@@ -1,10 +1,14 @@
-#pragma once
+#ifndef _PECA_H
+#define _PECA_H
 
 #include <string>
+#include <vector>
 #include "../tabuleiro/Posicao.h"
 #include "../tabuleiro/Tabuleiro.h"
 
 using namespace std;
+
+class Tabuleiro;
 
 class Peca
 {
@@ -38,3 +42,5 @@ public:
 protected:
   int codigo;
 };
+
+#endif //_PECA_H

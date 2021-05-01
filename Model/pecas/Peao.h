@@ -1,11 +1,16 @@
-#pragma once
+#ifndef _PEAO_H
+#define _PEAO_H
 
-#include "Peca.h"
+#include "./Peca.h"
+using namespace std;
 
-class Peao : virtual public Peca
+class Posicao;
+class Tabuleiro;
+
+class Peao : public Peca
 {
 public:
- Peao(string estilo, Posicao *posicao, Tabuleiro *tabuleiro);
+ Peao(string estilo, Tabuleiro *tabuleiro, Posicao *posicao);
  ~Peao();
 
  /**
@@ -25,3 +30,5 @@ public:
  */
  bool verificaXequeAdversario(Posicao *posicaoReiAdversario);
 };
+
+#endif //_PEAO_H

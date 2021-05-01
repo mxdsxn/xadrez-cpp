@@ -1,11 +1,15 @@
-#pragma once
+#ifndef _CAVALO_H
+#define _CAVALO_H
 
-#include "Peca.h"
+#include "./Peca.h"
 
-class Cavalo : virtual public Peca
+class Posicao;
+class Tabuleiro;
+
+class Cavalo : public Peca
 {
 public:
- Cavalo(string estilo, Posicao *posicao, Tabuleiro *tabuleiro);
+ Cavalo(string estilo, Tabuleiro *tabuleiro, Posicao *posicao);
  ~Cavalo();
 
  /**
@@ -25,3 +29,5 @@ public:
  */
  bool verificaXequeAdversario(Posicao *posicaoReiAdversario);
 };
+
+#endif //_CAVALO_H

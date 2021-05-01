@@ -1,4 +1,4 @@
-#include "Peca.h"
+#include "./Peca.h"
 
 Peca::Peca(string estilo)
 {

@@ -1,11 +1,15 @@
-#pragma once
+#ifndef _TORRE_H
+#define _TORRE_H
 
-#include "Peca.h"
+#include "./Peca.h"
 
-class Torre : virtual public Peca
+class Posicao;
+class Tabuleiro;
+
+class Torre : public Peca
 {
 public:
- Torre(string estilo, Posicao *posicao, Tabuleiro *tabuleiro);
+ Torre(string estilo, Tabuleiro *tabuleiro, Posicao *posicao);
  ~Torre();
 
  /**
@@ -25,3 +29,5 @@ public:
  */
  bool verificaXequeAdversario(Posicao *posicaoReiAdversario);
 };
+
+#endif //_TORRE_H

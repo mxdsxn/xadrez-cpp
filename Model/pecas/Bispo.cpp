@@ -1,6 +1,6 @@
 #include "Bispo.h"
 
-Bispo::Bispo(string estilo, Posicao *posicao = nullptr, Tabuleiro *tabuleiro) : Peca(estilo)
+Bispo::Bispo(string estilo, Tabuleiro *tabuleiro, Posicao *posicao = nullptr) : Peca(estilo)
 {
     this->simbolo = this->estilo == "black" ? "♝" : "♗";
     this->posicao = posicao;

@@ -1,11 +1,15 @@
-#pragma once
+#ifndef _BISPO_H
+#define _BISPO_H
 
-#include "Peca.h"
+#include "./Peca.h"
 
-class Bispo : virtual public Peca
+class Posicao;
+class Tabuleiro;
+
+class Bispo : public Peca
 {
 public:
- Bispo(string estilo, Posicao *posicao, Tabuleiro *tabuleiro);
+ Bispo(string estilo, Tabuleiro *tabuleiro, Posicao *posicao);
  ~Bispo();
 
  /**
@@ -25,3 +29,5 @@ public:
  */
  bool verificaXequeAdversario(Posicao *posicaoReiAdversario);
 };
+
+#endif //_BISPO_H

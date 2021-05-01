@@ -4,7 +4,11 @@
 
 using namespace std;
 
-Tabuleiro::Tabuleiro() {}
+Tabuleiro::Tabuleiro()
+{
+    this->pecasJogador1 = new PecasPack("white", this);
+    this->pecasJogador1 = new PecasPack("black", this);
+}
 
 Tabuleiro ::~Tabuleiro() {}
 

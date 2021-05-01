@@ -1,6 +1,6 @@
 #include "Rei.h"
 
-Rei::Rei(string estilo, Posicao *posicao = nullptr, Tabuleiro *tabuleiro) : Peca(estilo)
+Rei::Rei(string estilo, Tabuleiro *tabuleiro, Posicao *posicao = nullptr) : Peca(estilo)
 {
     this->simbolo = this->estilo == "black" ? "♚" : "♔";
     this->posicao = posicao;
