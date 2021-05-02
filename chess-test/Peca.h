@@ -18,7 +18,7 @@ public:
   string estilo;
   Posicao *posicao;
 
-  Peca(string estilo);
+  Peca(string estilo, bool sentidoJogador1);
   ~Peca();
 
   /**
@@ -30,7 +30,7 @@ public:
   /**
    * @return Retorna lista de posições validas para a peça, de acordo com sua regra de movimentação.
    */
-  //virtual vector<Posicao *> getPosicoesValidas() = 0;
+  virtual vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> &posicoesTabuleiro) = 0;
 
   /**
    * @param posicaoReiAdversario Posição de destino para a peça.
@@ -45,7 +45,7 @@ public:
   virtual bool setPosicao(Posicao *novaPosicao) = 0;
 
 protected:
-  int codigo;
+  bool sentidoJogador1;
 };
 
 #endif //_PECA_H

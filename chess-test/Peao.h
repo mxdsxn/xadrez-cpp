@@ -3,18 +3,16 @@
 #include "./Peca.h"
 using namespace std;
 
-class Peca;
-
 class Peao : public Peca
 {
 public:
-  Peao(string estilo);
+  Peao(string estilo, bool sentidoJogador1);
   ~Peao();
 
   /**
    * @return Retorna lista de posições validas para o Peão, de acordo com sua regra de movimentação.
    */
-  //vector<Posicao *> getPosicoesValidas();
+  vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> &posicoesTabuleiro);
 
   /**
    * @param novaPosicao Nova posição para o Peão
@@ -33,4 +31,7 @@ public:
    * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
    */
   virtual bool setPosicao(Posicao *novaPosicao);
+
+private:
+  bool primeiraJogada;
 };

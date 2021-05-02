@@ -42,10 +42,10 @@ int main()
 {
   Tabuleiro *tabuleiro = new Tabuleiro();
 
-  tabuleiro->show(2);
+  tabuleiro->show(1);
 
   // procura peças disponiveis de um jogador
-  vector<Posicao *> posicoesPecasDisponiveisJogador2 = tabuleiro->getPosicaoPecasDisponiveis(2);
+  vector<Posicao *> posicoesPecasDisponiveisJogador2 = tabuleiro->getPosicaoPecasDisponiveis(1);
 
   // monstra no console as peças e suas coordenadas para o jogador escolher a peça
   cout << "Pecas disponiveis: " << endl
@@ -58,12 +58,22 @@ int main()
     cout << " - " << posicaoAtual->showSimbolo() << " | " << formataCoordenadas(coordenadas) << endl;
   }
 
-  // envia comando de movimentação
   Posicao *posi = posicoesPecasDisponiveisJogador2[1];
-  Posicao *novaPosi = tabuleiro->posicoes[0][0];
-  posi->pecaAtual->movimentar(novaPosi);
+  Peca *peca = posi->pecaAtual;
+  vector<Posicao *> posicoesDisponiveisPeca = peca->getPosicoesValidas(tabuleiro->posicoes);
 
-  tabuleiro->show(2);
+  tabuleiro->show(1);
+
+  // monstra no console as peças e suas coordenadas para o jogador escolher a peça
+  cout << "Posicoes disponiveis: " << endl
+       << formataCoordenadas(posicaoToCoordStr(*(peca->posicao)))
+       << endl;
+  for (int i = 0; i < posicoesDisponiveisPeca.size(); i++)
+  {
+    Posicao *posicaoAtual = posicoesDisponiveisPeca[i];
+    CoordenadasStr coordenadas = posicaoToCoordStr(*posicaoAtual);
+    cout << " - " << posicaoAtual->showSimbolo() << " | " << formataCoordenadas(coordenadas) << endl;
+  }
 
   return 0;
 }

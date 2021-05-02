@@ -9,31 +9,31 @@ class Peca;
 class Posicao
 {
 public:
-    int x;
-    int y;
-    Peca *pecaAtual;
+  int x;
+  int y;
+  Peca *pecaAtual;
 
-    Posicao(int x, int y);
-    ~Posicao();
+  Posicao(int x, int y);
+  ~Posicao();
 
-    /**
+  /**
      * @return Retorna posição formatada para o formato do tabuleiro.
      */
-    string show();
+  string show();
 
-    /**
+  /**
      * @return Retorna valor do simbolo da peça que está na posição, ou vazio caso não haja peça.
      */
-    string showSimbolo();
+  string showSimbolo();
 
-    /**
+  /**
      * @param novaPeca Nova peça naquela posição.
      * @return Retorna 'true' quando a peça foi inserida corretamente.
      */
-    bool setPeca(Peca *novaPeca);
+  bool setPeca(Peca *novaPeca);
 
-    /**
+  /**
      * @return Retorna 'true' quando a peça foi removida com sucesso
      */
-    bool removePeca();
+  bool removePeca();
 };

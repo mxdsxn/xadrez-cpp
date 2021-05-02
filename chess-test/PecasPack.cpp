@@ -7,32 +7,32 @@
  */
 bool deletaPeca(Peca *pecaRemovida, vector<Peca *> *listaPecas)
 {
-    for (int index = 0; index < listaPecas->size(); index++)
+  for (int index = 0; index < listaPecas->size(); index++)
+  {
+    Peca *pecaAtual = (*listaPecas)[index];
+
+    if (pecaRemovida == pecaAtual)
     {
-        Peca *pecaAtual = (*listaPecas)[index];
-
-        if (pecaRemovida == pecaAtual)
-        {
-            listaPecas->erase(listaPecas->begin() + index);
-            return true;
-        }
+      listaPecas->erase(listaPecas->begin() + index);
+      return true;
     }
+  }
 
-    return false;
+  return false;
 }
 
-PecasPack::PecasPack(string estilo)
+PecasPack::PecasPack(string estilo, bool sentidoJogador1)
 {
-    this->estilo = estilo;
+  this->estilo = estilo;
 
-    // instancia os peoes
-    for (int i = 1; i <= 8; i++)
-    {
-        Peao *novoPeao = new Peao(estilo);
-        this->peoes.push_back(novoPeao);
-    }
+  // instancia os peoes
+  for (int i = 1; i <= 8; i++)
+  {
+    Peao *novoPeao = new Peao(estilo, sentidoJogador1);
+    this->peoes.push_back(novoPeao);
+  }
 
-    /*
+  /*
     // instancia os torres
     for (int i = 1; i <= 2; i++)
     {
@@ -152,12 +152,12 @@ bool PecasPack::deletaBispo(Peca *bispoRemovida)
  */
 bool PecasPack::deletaPeao(Peca *peaoRemovida)
 {
-    if (this)
-    {
-        vector<Peca *> *listaPeoes = (vector<Peca *> *)&this->peoes;
-        return deletaPeca(peaoRemovida, listaPeoes);
-    }
-    return false;
+  if (this)
+  {
+    vector<Peca *> *listaPeoes = (vector<Peca *> *)&this->peoes;
+    return deletaPeca(peaoRemovida, listaPeoes);
+  }
+  return false;
 }
 
 /**
@@ -165,15 +165,15 @@ bool PecasPack::deletaPeao(Peca *peaoRemovida)
  */
 void PecasPack::setPosicaoIncialPeoes(vector<Posicao *> *linhaInicialPeoes)
 {
-    vector<Peao *> *peoes = &(this->peoes);
-    for (int indice = 0; indice < 8; indice++)
-    {
-        Posicao *posicaoAtual = (*linhaInicialPeoes)[indice];
-        Peca *pecaAtual = (*peoes)[indice];
-        //setta peça na posicao
-        posicaoAtual->setPeca(pecaAtual);
+  vector<Peao *> *peoes = &(this->peoes);
+  for (int indice = 0; indice < 8; indice++)
+  {
+    Posicao *posicaoAtual = (*linhaInicialPeoes)[indice];
+    Peca *pecaAtual = (*peoes)[indice];
+    //setta peça na posicao
+    posicaoAtual->setPeca(pecaAtual);
 
-        //setta posicao na peça
-        pecaAtual->setPosicao(posicaoAtual);
-    }
+    //setta posicao na peça
+    pecaAtual->setPosicao(posicaoAtual);
+  }
 }

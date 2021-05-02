@@ -36,8 +36,8 @@ void legendaNumerica(int jogador)
 Tabuleiro::Tabuleiro()
 {
   // instancia pacote de peças para 2 jogadores
-  this->pecasJogador1 = new PecasPack("preto");
-  this->pecasJogador2 = new PecasPack("branco");
+  this->pecasJogador1 = new PecasPack("preto", true);
+  this->pecasJogador2 = new PecasPack("branco", false);
 
   // instancia os posicoes do tabuleiro numa matriz
   for (int y = 0; y < 8; y++)
