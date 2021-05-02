@@ -30,13 +30,13 @@ public:
   /**
    * @return Retorna lista de posições validas para a peça, de acordo com sua regra de movimentação.
    */
-  virtual vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> &posicoesTabuleiro) = 0;
+  virtual vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro) = 0;
 
   /**
    * @param posicaoReiAdversario Posição de destino para a peça.
    * @return Retorna 'true' se movimentou, false caso de algo errado.
    */
-  virtual bool verificaXequeAdversario(int xPos, int yPos) = 0;
+  bool verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro);
 
   /**
    * @param novaPosicao Posição de destino para a peça.

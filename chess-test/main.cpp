@@ -45,26 +45,26 @@ int main()
   tabuleiro->show(1);
 
   // procura peças disponiveis de um jogador
-  vector<Posicao *> posicoesPecasDisponiveisJogador2 = tabuleiro->getPosicaoPecasDisponiveis(1);
+  vector<Posicao *> posicoesPecasDisponiveisJogador1 = tabuleiro->getPosicaoPecasDisponiveis(1);
 
-  // monstra no console as peças e suas coordenadas para o jogador escolher a peça
+  // mostra no console as peças e suas coordenadas para o jogador escolher a peça
   cout << "Pecas disponiveis: " << endl
        << endl;
 
-  for (int i = 0; i < posicoesPecasDisponiveisJogador2.size(); i++)
+  for (int i = 0; i < posicoesPecasDisponiveisJogador1.size(); i++)
   {
-    Posicao *posicaoAtual = posicoesPecasDisponiveisJogador2[i];
+    Posicao *posicaoAtual = posicoesPecasDisponiveisJogador1[i];
     CoordenadasStr coordenadas = posicaoToCoordStr(*posicaoAtual);
     cout << " - " << posicaoAtual->showSimbolo() << " | " << formataCoordenadas(coordenadas) << endl;
   }
 
-  Posicao *posi = posicoesPecasDisponiveisJogador2[1];
+  Posicao *posi = posicoesPecasDisponiveisJogador1[1];
   Peca *peca = posi->pecaAtual;
-  vector<Posicao *> posicoesDisponiveisPeca = peca->getPosicoesValidas(tabuleiro->posicoes);
+  vector<Posicao *> posicoesDisponiveisPeca = peca->getPosicoesValidas(&tabuleiro->posicoes);
 
   tabuleiro->show(1);
 
-  // monstra no console as peças e suas coordenadas para o jogador escolher a peça
+  // mostra no console as peças e suas coordenadas para o jogador escolher a peça
   cout << "Posicoes disponiveis: " << endl
        << formataCoordenadas(posicaoToCoordStr(*(peca->posicao)))
        << endl;
@@ -74,6 +74,33 @@ int main()
     CoordenadasStr coordenadas = posicaoToCoordStr(*posicaoAtual);
     cout << " - " << posicaoAtual->showSimbolo() << " | " << formataCoordenadas(coordenadas) << endl;
   }
+
+  // move a peca para a posicao desejada
+  for (int i = 0; i < posicoesDisponiveisPeca.size(); i++)
+  {
+    Posicao *posicaoAtual = posicoesDisponiveisPeca[i];
+    if (posicaoAtual->x == 0 && posicaoAtual->y == 2)
+    {
+      peca->movimentar(posicaoAtual);
+    }
+  }
+
+  tabuleiro->show(1);
+
+  posicoesPecasDisponiveisJogador1 = tabuleiro->getPosicaoPecasDisponiveis(1);
+  posicoesDisponiveisPeca = peca->getPosicoesValidas(&tabuleiro->posicoes);
+  // mostra no console as peças e suas coordenadas para o jogador escolher a peça
+  cout << "Posicoes disponiveis: " << endl
+       << formataCoordenadas(posicaoToCoordStr(*(peca->posicao)))
+       << endl;
+  for (int i = 0; i < posicoesDisponiveisPeca.size(); i++)
+  {
+    Posicao *posicaoAtual = posicoesDisponiveisPeca[i];
+    CoordenadasStr coordenadas = posicaoToCoordStr(*posicaoAtual);
+    cout << " - " << posicaoAtual->showSimbolo() << " | " << formataCoordenadas(coordenadas) << endl;
+  }
+
+  cout << "Rei está em cheque: " << (peca->verificaXequeAdversario(posicoesDisponiveisPeca[0], &tabuleiro->posicoes) ? "sim" : "nao") << endl;
 
   return 0;
 }

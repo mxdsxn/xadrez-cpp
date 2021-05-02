@@ -10,7 +10,7 @@ Peao::Peao(string estilo, bool sentidoJogador1) : Peca(estilo, sentidoJogador1)
 }
 Peao::~Peao() {}
 
-vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> &posicoesTabuleiro)
+vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro)
 {
   vector<Posicao *> posicoesValidas;
   if (this)
@@ -23,7 +23,7 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> &posicoesTa
     // Posicao a frente - 1 casa pra frente se estiver vazia
     xPosicao = posicaoAtualPeca->x;
     yPosicao = posicaoAtualPeca->y + (sentidoJogador1 ? 1 : -1);
-    Posicao *posicaoFrente = posicoesTabuleiro[yPosicao][xPosicao];
+    Posicao *posicaoFrente = (*posicoesTabuleiro)[yPosicao][xPosicao];
 
     if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (posicaoFrente->pecaAtual == nullptr))
     {
@@ -34,7 +34,7 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> &posicoesTa
       {
         xPosicao = posicaoAtualPeca->x;
         yPosicao = posicaoAtualPeca->y + (sentidoJogador1 ? 2 : -2);
-        Posicao *posicaoFrentePrimeiraJogada = posicoesTabuleiro[yPosicao][xPosicao];
+        Posicao *posicaoFrentePrimeiraJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
 
         if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (posicaoFrentePrimeiraJogada->pecaAtual == nullptr))
         {
@@ -46,7 +46,7 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> &posicoesTa
     // Posicao a diagonal esquerda - 1 casa pra frente se estiver vazia
     xPosicao = posicaoAtualPeca->x + (sentidoJogador1 ? -1 : 1);
     yPosicao = posicaoAtualPeca->y + (sentidoJogador1 ? 1 : -1);
-    Posicao *posicaoDiagonalEsquerda = posicoesTabuleiro[yPosicao][xPosicao];
+    Posicao *posicaoDiagonalEsquerda = (*posicoesTabuleiro)[yPosicao][xPosicao];
 
     if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro) && (posicaoDiagonalEsquerda->pecaAtual != nullptr))
     {
@@ -56,7 +56,7 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> &posicoesTa
     // Posicao a diagonal direita - 1 casa pra frente se estiver vazia
     xPosicao = posicaoAtualPeca->x + (sentidoJogador1 ? 1 : -1);
     yPosicao = posicaoAtualPeca->y + (sentidoJogador1 ? 1 : -1);
-    Posicao *posicaoDiagonalDireita = posicoesTabuleiro[yPosicao][xPosicao];
+    Posicao *posicaoDiagonalDireita = (*posicoesTabuleiro)[yPosicao][xPosicao];
 
     if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro) && (posicaoDiagonalDireita->pecaAtual != nullptr))
     {
@@ -73,26 +73,15 @@ bool Peao::movimentar(Posicao *novaPosicao)
   {
     Posicao *antigaPosicao = this->posicao;
 
-    /*
-    * ainda é necessario fazer a remocao da peça que está na novaPosicao
-    * essa remocao precisa acessar Tabuleiro>PackAdversario e remover a peça do jogo
-    * [SERA QUE É NECESSARIO???] ao apenas substituir as peças, a peça capturada ja some do tabuleiro, fica apenas alocada porem nao em uso.
-    * faz mais sentido, levando em consideração que no mundo real, apenas removemos do tabuleiro, e nao destruimos a peça
-    */
-
     novaPosicao->pecaAtual->setPosicao(nullptr); // desvincula nova posicao da peca capturada
     antigaPosicao->setPeca(nullptr);             // desvincula peça movimentada da antiga posicao
     novaPosicao->setPeca(this);                  // vincula peca movimentada à nova posicao
     this->setPosicao(novaPosicao);               // vincula nova posicao à peca movimentada
     this->primeiraJogada = false;                // remove a flag de primeiraJogada do peao
 
-    /*
-    * ainda é necessario fazer a verificacao se o rei adversario está em cheque
-    */
-
     return true;
   }
-  cout << "[PEAO] - Metodo `movimentar()" << endl;
+
   return false;
 }
 
@@ -103,12 +92,6 @@ bool Peao::setPosicao(Posicao *novaPosicao)
     this->posicao = novaPosicao;
     return true;
   }
-  cout << "[PEAO] - Metodo `movimentar()" << endl;
-  return false;
-}
 
-bool Peao::verificaXequeAdversario(int xPosReiAdversario, int yPosReiAdversario)
-{
-  cout << "[PEAO] - Metodo `verificaXequeAdversario()" << endl;
   return false;
 }
