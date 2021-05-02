@@ -39,7 +39,6 @@ bool Posicao::setPeca(Peca *novaPeca)
   if (this)
   {
     this->pecaAtual = novaPeca;
-    //novaPeca->posicao = this;
     return true;
   }
 
@@ -48,10 +47,8 @@ bool Posicao::setPeca(Peca *novaPeca)
 
 bool Posicao::removePeca()
 {
-  cout << "[POSICAO] - Metodo `removePeca()" << endl;
   if (this)
   {
-    //this->pecaAtual->posicao = nullptr;
     this->pecaAtual = nullptr;
     return true;
   }

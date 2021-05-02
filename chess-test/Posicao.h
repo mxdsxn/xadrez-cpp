@@ -33,6 +33,7 @@ public:
   bool setPeca(Peca *novaPeca);
 
   /**
+     * Setta como `nullptr` a peça da posição
      * @return Retorna 'true' quando a peça foi removida com sucesso
      */
   bool removePeca();

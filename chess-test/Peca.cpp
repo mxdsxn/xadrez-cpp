@@ -4,11 +4,30 @@ Peca::Peca(string estilo, bool sentidoJogador1)
 {
   this->estilo = estilo;
   this->posicao = nullptr;
+  this->primeiraJogada = true;
   this->sentidoJogador1 = sentidoJogador1;
 }
 
 Peca::~Peca()
 {
+}
+
+bool Peca::movimentar(Posicao *novaPosicao)
+{
+  if (this)
+  {
+    Posicao *antigaPosicao = this->posicao;
+
+    novaPosicao->pecaAtual->removePosicao(); // desvincula nova posicao da peca capturada
+    antigaPosicao->removePeca();             // desvincula peça movimentada da antiga posicao
+    novaPosicao->setPeca(this);              // vincula peca movimentada à nova posicao
+    this->setPosicao(novaPosicao);           // vincula nova posicao à peca movimentada
+    this->primeiraJogada = false;            // remove a flag de primeiraJogada do peao
+
+    return true;
+  }
+
+  return false;
 }
 
 bool Peca::verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro)
@@ -26,5 +45,27 @@ bool Peca::verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<
       }
     }
   }
+  return false;
+}
+
+bool Peca::setPosicao(Posicao *novaPosicao)
+{
+  if (this)
+  {
+    this->posicao = novaPosicao;
+    return true;
+  }
+
+  return false;
+}
+
+bool Peca::removePosicao()
+{
+  if (this)
+  {
+    this->posicao = nullptr;
+    return true;
+  }
+
   return false;
 }

@@ -66,32 +66,3 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTa
 
   return posicoesValidas;
 }
-
-bool Peao::movimentar(Posicao *novaPosicao)
-{
-  if (this)
-  {
-    Posicao *antigaPosicao = this->posicao;
-
-    novaPosicao->pecaAtual->setPosicao(nullptr); // desvincula nova posicao da peca capturada
-    antigaPosicao->setPeca(nullptr);             // desvincula peça movimentada da antiga posicao
-    novaPosicao->setPeca(this);                  // vincula peca movimentada à nova posicao
-    this->setPosicao(novaPosicao);               // vincula nova posicao à peca movimentada
-    this->primeiraJogada = false;                // remove a flag de primeiraJogada do peao
-
-    return true;
-  }
-
-  return false;
-}
-
-bool Peao::setPosicao(Posicao *novaPosicao)
-{
-  if (this)
-  {
-    this->posicao = novaPosicao;
-    return true;
-  }
-
-  return false;
-}

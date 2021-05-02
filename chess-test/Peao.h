@@ -13,19 +13,4 @@ public:
    * @return Retorna lista de posições validas para o Peão, de acordo com sua regra de movimentação.
    */
   vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro);
-
-  /**
-   * @param novaPosicao Nova posição para o Peão
-   * @return Retorna 'true' quando o Peão foi movimentado com sucesso
-   */
-  bool movimentar(Posicao *novaPosicao);
-
-  /**
-   * @param novaPosicao Posição de destino para Peao.
-   * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
-   */
-  virtual bool setPosicao(Posicao *novaPosicao);
-
-private:
-  bool primeiraJogada;
 };

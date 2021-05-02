@@ -22,30 +22,37 @@ public:
   ~Peca();
 
   /**
-   * @param novaPosicao Posição de destino para a peça.
-   * @return Retorna 'true' se movimentou, false caso de algo errado.
-   */
-  virtual bool movimentar(Posicao *novaPosicao) = 0;
-
-  /**
    * @return Retorna lista de posições validas para a peça, de acordo com sua regra de movimentação.
    */
   virtual vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro) = 0;
 
   /**
+   * @param novaPosicao Posição de destino para a peça.
+   * @return Retorna 'true' se movimentou, false caso de algo errado.
+   */
+  virtual bool movimentar(Posicao *novaPosicao);
+
+  /**
    * @param posicaoReiAdversario Posição de destino para a peça.
    * @return Retorna 'true' se movimentou, false caso de algo errado.
    */
-  bool verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro);
+  virtual bool verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro);
 
   /**
    * @param novaPosicao Posição de destino para a peça.
    * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
    */
-  virtual bool setPosicao(Posicao *novaPosicao) = 0;
+  virtual bool setPosicao(Posicao *novaPosicao);
+
+  /**
+   * @param novaPosicao Posição de destino para a peça.
+   * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
+   */
+  virtual bool removePosicao();
 
 protected:
   bool sentidoJogador1;
+  bool primeiraJogada;
 };
 
 #endif //_PECA_H
