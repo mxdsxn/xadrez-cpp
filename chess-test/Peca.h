@@ -30,25 +30,25 @@ public:
    * @param novaPosicao Posição de destino para a peça.
    * @return Retorna 'true' se movimentou, false caso de algo errado.
    */
-  virtual bool movimentar(Posicao *novaPosicao);
+  bool movimentar(Posicao *novaPosicao);
 
   /**
    * @param posicaoReiAdversario Posição de destino para a peça.
    * @return Retorna 'true' se movimentou, false caso de algo errado.
    */
-  virtual bool verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro);
+  bool verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro);
 
   /**
    * @param novaPosicao Posição de destino para a peça.
    * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
    */
-  virtual bool setPosicao(Posicao *novaPosicao);
+  bool setPosicao(Posicao *novaPosicao);
 
   /**
    * @param novaPosicao Posição de destino para a peça.
    * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
    */
-  virtual bool removePosicao();
+  bool removePosicao();
 
 protected:
   bool sentidoJogador1;
