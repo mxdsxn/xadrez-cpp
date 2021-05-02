@@ -3,15 +3,20 @@
 
 #include <string>
 #include <vector>
+#include "./Posicao.h"
 
 using namespace std;
+
+class Posicao;
 
 class Peca
 {
 public:
-  string tipo;
-  string estilo;
+  //string tipo;
+
   string simbolo;
+  string estilo;
+  Posicao *posicao;
 
   Peca(string estilo);
   ~Peca();
@@ -20,7 +25,7 @@ public:
    * @param novaPosicao Posição de destino para a peça.
    * @return Retorna 'true' se movimentou, false caso de algo errado.
    */
-  virtual bool movimentar(int xPos, int yPos) = 0;
+  virtual bool movimentar(Posicao *novaPosicao) = 0;
 
   /**
    * @return Retorna lista de posições validas para a peça, de acordo com sua regra de movimentação.
@@ -32,6 +37,12 @@ public:
    * @return Retorna 'true' se movimentou, false caso de algo errado.
    */
   virtual bool verificaXequeAdversario(int xPos, int yPos) = 0;
+
+  /**
+   * @param novaPosicao Posição de destino para a peça.
+   * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
+   */
+  virtual bool setPosicao(Posicao *novaPosicao) = 0;
 
 protected:
   int codigo;

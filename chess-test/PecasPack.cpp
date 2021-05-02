@@ -145,6 +145,11 @@ bool PecasPack::deletaBispo(Peca *bispoRemovida)
     return false;
 }
 */
+
+/**
+ * @param peaoRemovida Peao para ser removida.
+ * @return Retorna 'true' quando o Peao for deletado da lista.
+ */
 bool PecasPack::deletaPeao(Peca *peaoRemovida)
 {
     if (this)
@@ -155,11 +160,20 @@ bool PecasPack::deletaPeao(Peca *peaoRemovida)
     return false;
 }
 
+/**
+ * @param linhaInicialPeoes Linha inicial dos Peoes.
+ */
 void PecasPack::setPosicaoIncialPeoes(vector<Posicao *> *linhaInicialPeoes)
 {
     vector<Peao *> *peoes = &(this->peoes);
     for (int indice = 0; indice < 8; indice++)
     {
-        (*linhaInicialPeoes)[indice]->setPeca((*peoes)[indice]);
+        Posicao *posicaoAtual = (*linhaInicialPeoes)[indice];
+        Peca *pecaAtual = (*peoes)[indice];
+        //setta peça na posicao
+        posicaoAtual->setPeca(pecaAtual);
+
+        //setta posicao na peça
+        pecaAtual->setPosicao(posicaoAtual);
     }
 }

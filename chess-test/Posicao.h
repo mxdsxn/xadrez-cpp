@@ -4,6 +4,8 @@
 
 using namespace std;
 
+class Peca;
+
 class Posicao
 {
 public:

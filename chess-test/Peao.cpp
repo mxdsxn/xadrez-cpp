@@ -18,8 +18,19 @@ vector<Posicao *> Peao::getPosicoesValidas()
     return posicoesValidas;
 }*/
 
-bool Peao::movimentar(int xPosNova, int yPosNova)
+bool Peao::movimentar(Posicao *novaPosicao)
 {
+    cout << "[PEAO] - Metodo `movimentar()" << endl;
+    return false;
+}
+
+bool Peao::setPosicao(Posicao *novaPosicao)
+{
+    if (this)
+    {
+        this->posicao = novaPosicao;
+        return true;
+    }
     cout << "[PEAO] - Metodo `movimentar()" << endl;
     return false;
 }
