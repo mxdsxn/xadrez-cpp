@@ -76,17 +76,20 @@ bool Peao::movimentar(Posicao *novaPosicao)
     /*
     * ainda é necessario fazer a remocao da peça que está na novaPosicao
     * essa remocao precisa acessar Tabuleiro>PackAdversario e remover a peça do jogo
+    * [SERA QUE É NECESSARIO???] ao apenas substituir as peças, a peça capturada ja some do tabuleiro, fica apenas alocada porem nao em uso.
+    * faz mais sentido, levando em consideração que no mundo real, apenas removemos do tabuleiro, e nao destruimos a peça
     */
 
-    antigaPosicao->setPeca(nullptr);
-    novaPosicao->setPeca(this);
-    this->setPosicao(novaPosicao);
-
-    this->primeiraJogada = false;
+    novaPosicao->pecaAtual->setPosicao(nullptr); // desvincula nova posicao da peca capturada
+    antigaPosicao->setPeca(nullptr);             // desvincula peça movimentada da antiga posicao
+    novaPosicao->setPeca(this);                  // vincula peca movimentada à nova posicao
+    this->setPosicao(novaPosicao);               // vincula nova posicao à peca movimentada
+    this->primeiraJogada = false;                // remove a flag de primeiraJogada do peao
 
     /*
     * ainda é necessario fazer a verificacao se o rei adversario está em cheque
     */
+
     return true;
   }
   cout << "[PEAO] - Metodo `movimentar()" << endl;
