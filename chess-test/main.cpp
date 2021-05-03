@@ -26,13 +26,18 @@ CoordenadasStr posicaoToCoordStr(Posicao &posicao)
 
   if ((x >= 0 && x < 8) && (y >= 0 && y < 8))
   {
-    coordenadasFormatadas.x = to_string(x + 1);
-    coordenadasFormatadas.y = (char)(y + 65);
+    coordenadasFormatadas.y = to_string(y + 1);
+    coordenadasFormatadas.x = (char)(x + 65);
   }
 
   return coordenadasFormatadas;
 }
 
+/**
+ * Formata coordenadas para o formato [A, 1]
+ * @param coordenadas Coordenadas para serem formatadas.
+ * @return Retorna uma string no formato [A, 1].
+ */
 string formataCoordenadas(CoordenadasStr coordenadas)
 {
   return "[" + coordenadas.x + ", " + coordenadas.y + "]";

@@ -21,14 +21,14 @@ void clear()
 /**
  * Mostra no console a regua numerica que legenda o tabuleiro
  */
-void legendaNumerica(int jogador)
+void legendaLetras(int jogador)
 {
   cout << " ";
-  for (int i = jogador == 1 ? 1 : 8;
-       jogador == 1 ? i <= 8 : i >= 1;
+  for (int i = jogador == 1 ? 0 : 7;
+       jogador == 1 ? i <= 7 : i >= 0;
        jogador == 1 ? i++ : i--)
   {
-    cout << "  " << i << " ";
+    cout << "  " << (char)(i + 65) << " ";
   }
   cout << endl;
 }
@@ -73,10 +73,10 @@ void Tabuleiro::show(int jogador)
 
   clear();
 
-  legendaNumerica(jogador);
+  legendaLetras(jogador);
 
   // Letra da legenda - ASCII
-  int legendaLinhaInt = jogador == 1 ? 72 : 65;
+  int legendaNumerica = jogador == 1 ? 8 : 1;
 
   int linhaInicial = jogador == 1 ? this->matrizPosicoes.size() - 1 : 0;
   int linhaFinal = jogador == 1 ? 0 : this->matrizPosicoes.size() - 1;
@@ -88,7 +88,7 @@ void Tabuleiro::show(int jogador)
   {
     vector<Posicao *> linhaAtual = this->matrizPosicoes[y];
 
-    cout << (char)legendaLinhaInt;
+    cout << legendaNumerica;
 
     int inicioLinha = jogador == 1 ? 0 : linhaAtual.size() - 1;
     int finalLinha = jogador == 1 ? linhaAtual.size() - 1 : 0;
@@ -102,15 +102,15 @@ void Tabuleiro::show(int jogador)
     }
 
     cout << " "
-         << (char)legendaLinhaInt
+         << legendaNumerica
          << endl;
 
     jogador == 1
-        ? legendaLinhaInt--
-        : legendaLinhaInt++;
+        ? legendaNumerica--
+        : legendaNumerica++;
   }
 
-  legendaNumerica(jogador);
+  legendaLetras(jogador);
 }
 
 vector<Posicao *> Tabuleiro::getPosicaoPecasDisponiveis(int jogador)
