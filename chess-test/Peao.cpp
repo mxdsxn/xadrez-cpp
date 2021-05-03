@@ -23,24 +23,31 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTa
     // Posicao a frente - 1 casa pra frente se estiver vazia
     xPosicao = posicaoAtualPeca->getX();
     yPosicao = posicaoAtualPeca->getY() + (sentidoPraFrente ? 1 : -1);
-    Posicao *posicaoFrente = (*posicoesTabuleiro)[yPosicao][xPosicao];
-
-    Peca *pecaPosicaoFrente = posicaoFrente->getPecaAtual();
-    if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (pecaPosicaoFrente == nullptr))
+    if ((yPosicao >= 0 && yPosicao < limiteTabuleiro))
     {
-      posicoesValidas.push_back(posicaoFrente);
+      Posicao *posicaoFrente = (*posicoesTabuleiro)[yPosicao][xPosicao];
+      Peca *pecaPosicaoFrente = posicaoFrente->getPecaAtual();
 
-      // Posicao a frente(primeira jogada) - 2 casa pra frente se estiver vazia
-      if (this->primeiraJogada)
+      if (pecaPosicaoFrente == nullptr)
       {
-        xPosicao = posicaoAtualPeca->getX();
-        yPosicao = posicaoAtualPeca->getY() + (sentidoPraFrente ? 2 : -2);
-        Posicao *posicaoFrentePrimeiraJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
+        posicoesValidas.push_back(posicaoFrente);
 
-        Peca *pecaPosicaoFrentePrimeiraJogada = posicaoFrentePrimeiraJogada->getPecaAtual();
-        if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (pecaPosicaoFrentePrimeiraJogada == nullptr))
+        // Posicao a frente(primeira jogada) - 2 casa pra frente se estiver vazia
+        if (this->primeiraJogada)
         {
-          posicoesValidas.push_back(posicaoFrentePrimeiraJogada);
+          xPosicao = posicaoAtualPeca->getX();
+          yPosicao = posicaoAtualPeca->getY() + (sentidoPraFrente ? 2 : -2);
+
+          if ((yPosicao >= 0 && yPosicao < limiteTabuleiro))
+          {
+            Posicao *posicaoFrentePrimeiraJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
+            Peca *pecaPosicaoFrentePrimeiraJogada = posicaoFrentePrimeiraJogada->getPecaAtual();
+
+            if ((pecaPosicaoFrentePrimeiraJogada == nullptr))
+            {
+              posicoesValidas.push_back(posicaoFrentePrimeiraJogada);
+            }
+          }
         }
       }
     }
@@ -48,23 +55,29 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTa
     // Posicao a diagonal esquerda - 1 casa pra frente e a esquerda se estiver com uma peça de oponente
     xPosicao = posicaoAtualPeca->getX() + (sentidoPraFrente ? -1 : 1);
     yPosicao = posicaoAtualPeca->getY() + (sentidoPraFrente ? 1 : -1);
-    Posicao *posicaoDiagonalEsquerda = (*posicoesTabuleiro)[yPosicao][xPosicao];
-
-    Peca *pecaPosicaoDiagonalEsquerda = posicaoDiagonalEsquerda->getPecaAtual();
-    if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro) && (pecaPosicaoDiagonalEsquerda->getEstilo() != this->estilo) && (pecaPosicaoDiagonalEsquerda != nullptr))
+    if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro))
     {
-      posicoesValidas.push_back(posicaoDiagonalEsquerda);
+      Posicao *posicaoDiagonalEsquerda = (*posicoesTabuleiro)[yPosicao][xPosicao];
+      Peca *pecaPosicaoDiagonalEsquerda = posicaoDiagonalEsquerda->getPecaAtual();
+
+      if ((pecaPosicaoDiagonalEsquerda->getEstilo() != this->estilo) && (pecaPosicaoDiagonalEsquerda != nullptr))
+      {
+        posicoesValidas.push_back(posicaoDiagonalEsquerda);
+      }
     }
 
     // Posicao a diagonal direita - 1 casa pra frente e a direita se estiver com uma peça de oponente
     xPosicao = posicaoAtualPeca->getX() + (sentidoPraFrente ? 1 : -1);
     yPosicao = posicaoAtualPeca->getY() + (sentidoPraFrente ? 1 : -1);
-    Posicao *posicaoDiagonalDireita = (*posicoesTabuleiro)[yPosicao][xPosicao];
-
-    Peca *pecaPosicaoDiagonalDireita = posicaoDiagonalDireita->getPecaAtual();
-    if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro) && (pecaPosicaoDiagonalDireita->getEstilo() != this->estilo) && (pecaPosicaoDiagonalDireita != nullptr))
+    if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro))
     {
-      posicoesValidas.push_back(posicaoDiagonalDireita);
+      Posicao *posicaoDiagonalDireita = (*posicoesTabuleiro)[yPosicao][xPosicao];
+      Peca *pecaPosicaoDiagonalDireita = posicaoDiagonalDireita->getPecaAtual();
+
+      if ((pecaPosicaoDiagonalDireita->getEstilo() != this->estilo) && (pecaPosicaoDiagonalDireita != nullptr))
+      {
+        posicoesValidas.push_back(posicaoDiagonalDireita);
+      }
     }
   }
 

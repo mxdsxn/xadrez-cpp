@@ -83,14 +83,13 @@ int main()
     Posicao *posicaoAtual = posicoesDisponiveisPeca[i];
     if (posicaoAtual->getX() == 1 && posicaoAtual->getY() == 2)
     {
-      cout << "teste";
       peca->movimentar(posicaoAtual);
     }
   }
 
   tabuleiro->show(jogadorSelecionado);
 
-  /*
+  peca = posicoesPecasDisponiveisJogador1[0]->getPecaAtual();
   posicoesPecasDisponiveisJogador1 = tabuleiro->getPosicaoPecasDisponiveis(1);
   posicoesDisponiveisPeca = peca->getPosicoesValidas(tabuleiro->getTodasPosicoes());
   // mostra no console as peças e suas coordenadas para o jogador escolher a peça
@@ -105,7 +104,6 @@ int main()
   }
 
   cout << "Rei está em cheque: " << (peca->verificaXequeAdversario(posicoesDisponiveisPeca[0], tabuleiro->getTodasPosicoes()) ? "sim" : "nao") << endl;
-  */
 
   return 0;
 }
