@@ -98,7 +98,7 @@ void Tabuleiro::show(int jogador)
          jogador == 1 ? x++ : x--)
     {
       Posicao *posicaoAtual = linhaAtual[x];
-      cout << " " << posicaoAtual->show();
+      cout << " " << posicaoAtual->showPosicao();
     }
 
     cout << " "
@@ -128,9 +128,9 @@ vector<Posicao *> Tabuleiro::getPosicaoPecasDisponiveis(int jogador)
       for (int y = 0; y < 8; y++)
       {
         Posicao *posicaoAtual = this->matrizPosicoes[x][y];
-        if (posicaoAtual->pecaAtual != nullptr)
+        if (posicaoAtual->getPecaAtual() != nullptr)
         {
-          if (posicaoAtual->pecaAtual->getEstilo() == estiloJogadorSelecionado)
+          if (posicaoAtual->getPecaAtual()->getEstilo() == estiloJogadorSelecionado)
           {
             pecasDisponiveis.push_back(posicaoAtual);
           }

@@ -18,11 +18,11 @@ bool Peca::movimentar(Posicao *novaPosicao)
   {
     Posicao *antigaPosicao = this->posicao;
 
-    novaPosicao->pecaAtual->removePosicao(); // desvincula nova posicao da peca capturada
-    antigaPosicao->removePeca();             // desvincula peça movimentada da antiga posicao
-    novaPosicao->setPeca(this);              // vincula peca movimentada à nova posicao
-    this->setPosicao(novaPosicao);           // vincula nova posicao à peca movimentada
-    this->primeiraJogada = false;            // remove a flag de primeiraJogada do peao
+    novaPosicao->getPecaAtual()->removePosicao(); // desvincula nova posicao da peca capturada
+    antigaPosicao->removePeca();                  // desvincula peça movimentada da antiga posicao
+    novaPosicao->setPeca(this);                   // vincula peca movimentada à nova posicao
+    this->setPosicao(novaPosicao);                // vincula nova posicao à peca movimentada
+    this->primeiraJogada = false;                 // remove a flag de primeiraJogada do peao
 
     return true;
   }
@@ -70,11 +70,30 @@ bool Peca::removePosicao()
   return false;
 }
 
+Posicao *Peca::getPosicaoAtual()
+{
+  if (this)
+  {
+    return this->posicao;
+  }
+
+  return nullptr;
+}
+
 string Peca::getEstilo()
 {
   if (this)
   {
     return this->estilo;
+  }
+  return "";
+}
+
+string Peca::getSimbolo()
+{
+  if (this)
+  {
+    return this->simbolo;
   }
   return "";
 }

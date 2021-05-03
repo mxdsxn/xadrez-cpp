@@ -8,18 +8,19 @@ class Peca;
 
 class Posicao
 {
-public:
+private:
   int x;
   int y;
   Peca *pecaAtual;
 
+public:
   Posicao(int x, int y);
   ~Posicao();
 
   /**
      * @return Retorna posição formatada para o formato do tabuleiro.
      */
-  string show();
+  string showPosicao();
 
   /**
      * @return Retorna valor do simbolo da peça que está na posição, ou vazio caso não haja peça.
@@ -33,8 +34,23 @@ public:
   bool setPeca(Peca *novaPeca);
 
   /**
+     * @return Ponteiro da peça atual na peça.
+     */
+  Peca *getPecaAtual();
+
+  /**
      * Setta como `nullptr` a peça da posição
      * @return Retorna 'true' quando a peça foi removida com sucesso
      */
   bool removePeca();
+
+  /**
+     * @return Retorna coordenada X.
+     */
+  int getX();
+
+  /**
+     * @return Retorna coordenada Y.
+     */
+  int getY();
 };

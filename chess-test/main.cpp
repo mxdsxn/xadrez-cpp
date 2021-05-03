@@ -21,8 +21,8 @@ CoordenadasStr posicaoToCoordStr(Posicao &posicao)
 {
   CoordenadasStr coordenadasFormatadas;
 
-  int x = posicao.x;
-  int y = posicao.y;
+  int x = posicao.getX();
+  int y = posicao.getY();
 
   if ((x >= 0 && x < 8) && (y >= 0 && y < 8))
   {
@@ -61,14 +61,14 @@ int main()
   }
 
   Posicao *posi = posicoesPecasDisponiveisJogador1[1];
-  Peca *peca = posi->pecaAtual;
+  Peca *peca = posi->getPecaAtual();
   vector<Posicao *> posicoesDisponiveisPeca = peca->getPosicoesValidas(tabuleiro->getTodasPosicoes());
 
   tabuleiro->show(jogadorSelecionado);
 
   // mostra no console as peças e suas coordenadas para o jogador escolher a peça
   cout << "Posicoes disponiveis: " << endl
-       << formataCoordenadas(posicaoToCoordStr(*(peca->posicao)))
+       << formataCoordenadas(posicaoToCoordStr(*(peca->getPosicaoAtual())))
        << endl;
   for (int i = 0; i < posicoesDisponiveisPeca.size(); i++)
   {
@@ -81,7 +81,7 @@ int main()
   for (int i = 0; i < posicoesDisponiveisPeca.size(); i++)
   {
     Posicao *posicaoAtual = posicoesDisponiveisPeca[i];
-    if (posicaoAtual->x == 1 && posicaoAtual->y == 2)
+    if (posicaoAtual->getX() == 1 && posicaoAtual->getY() == 2)
     {
       cout << "teste";
       peca->movimentar(posicaoAtual);
@@ -95,7 +95,7 @@ int main()
   posicoesDisponiveisPeca = peca->getPosicoesValidas(tabuleiro->getTodasPosicoes());
   // mostra no console as peças e suas coordenadas para o jogador escolher a peça
   cout << "Posicoes disponiveis: " << endl
-       << formataCoordenadas(posicaoToCoordStr(*(peca->posicao)))
+       << formataCoordenadas(posicaoToCoordStr(*(peca->getPosicaoAtual())))
        << endl;
   for (int i = 0; i < posicoesDisponiveisPeca.size(); i++)
   {

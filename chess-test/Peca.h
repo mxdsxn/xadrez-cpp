@@ -15,9 +15,9 @@ protected:
   bool sentidoPraFrente;
   bool primeiraJogada;
   string estilo;
+  string simbolo;
 
 public:
-  string simbolo;
   Posicao *posicao;
 
   Peca(string estilo, bool sentidoPraFrente);
@@ -53,9 +53,19 @@ public:
   bool removePosicao();
 
   /**
+   * @return Poteiro da posicao atual da peca.
+   */
+  Posicao *getPosicaoAtual();
+
+  /**
      * @return Retorna `branco` ou `preto`.
      */
   string getEstilo();
+
+  /**
+     * @return Retorna simbolo da peça.
+     */
+  string getSimbolo();
 
   /**
      * @return Retorna `true` quando as peças desse pacote andam pra frente.

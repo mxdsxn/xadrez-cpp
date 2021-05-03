@@ -12,13 +12,13 @@ Posicao::Posicao(int x, int y)
 
 Posicao::~Posicao() {}
 
-string Posicao::show()
+string Posicao::showPosicao()
 {
   string simbolo = "X";
 
   if (this)
   {
-    simbolo = this->pecaAtual != nullptr ? this->pecaAtual->simbolo : " ";
+    simbolo = this->getPecaAtual() != nullptr ? this->showSimbolo() : " ";
   }
 
   return "[" + simbolo + "]";
@@ -28,7 +28,7 @@ string Posicao::showSimbolo()
 {
   if (this)
   {
-    return this->pecaAtual != nullptr ? this->pecaAtual->simbolo : "X";
+    return this->getPecaAtual() != nullptr ? this->getPecaAtual()->getSimbolo() : "X";
   }
 
   return "";
@@ -54,4 +54,31 @@ bool Posicao::removePeca()
   }
 
   return false;
+}
+
+Peca *Posicao::getPecaAtual()
+{
+  if (this)
+  {
+    return this->pecaAtual;
+  }
+  return nullptr;
+}
+
+int Posicao::getX()
+{
+  if (this)
+  {
+    return this->x;
+  }
+  return -1;
+}
+
+int Posicao::getY()
+{
+  if (this)
+  {
+    return this->y;
+  }
+  return -1;
 }
