@@ -69,3 +69,12 @@ bool Peca::removePosicao()
 
   return false;
 }
+
+string Peca::getEstilo()
+{
+  if (this)
+  {
+    return this->estilo;
+  }
+  return "";
+}

@@ -40,12 +40,14 @@ string formataCoordenadas(CoordenadasStr coordenadas)
 
 int main()
 {
+  int jogadorSelecionado = 1;
+
   Tabuleiro *tabuleiro = new Tabuleiro();
 
   tabuleiro->show(1);
 
   // procura peças disponiveis de um jogador
-  vector<Posicao *> posicoesPecasDisponiveisJogador1 = tabuleiro->getPosicaoPecasDisponiveis(1);
+  vector<Posicao *> posicoesPecasDisponiveisJogador1 = tabuleiro->getPosicaoPecasDisponiveis(jogadorSelecionado);
 
   // mostra no console as peças e suas coordenadas para o jogador escolher a peça
   cout << "Pecas disponiveis: " << endl
@@ -60,9 +62,9 @@ int main()
 
   Posicao *posi = posicoesPecasDisponiveisJogador1[1];
   Peca *peca = posi->pecaAtual;
-  vector<Posicao *> posicoesDisponiveisPeca = peca->getPosicoesValidas(&tabuleiro->posicoes);
+  vector<Posicao *> posicoesDisponiveisPeca = peca->getPosicoesValidas(tabuleiro->getTodasPosicoes());
 
-  tabuleiro->show(1);
+  tabuleiro->show(jogadorSelecionado);
 
   // mostra no console as peças e suas coordenadas para o jogador escolher a peça
   cout << "Posicoes disponiveis: " << endl
@@ -79,16 +81,18 @@ int main()
   for (int i = 0; i < posicoesDisponiveisPeca.size(); i++)
   {
     Posicao *posicaoAtual = posicoesDisponiveisPeca[i];
-    if (posicaoAtual->x == 0 && posicaoAtual->y == 2)
+    if (posicaoAtual->x == 1 && posicaoAtual->y == 2)
     {
+      cout << "teste";
       peca->movimentar(posicaoAtual);
     }
   }
 
-  tabuleiro->show(1);
+  tabuleiro->show(jogadorSelecionado);
 
+  /*
   posicoesPecasDisponiveisJogador1 = tabuleiro->getPosicaoPecasDisponiveis(1);
-  posicoesDisponiveisPeca = peca->getPosicoesValidas(&tabuleiro->posicoes);
+  posicoesDisponiveisPeca = peca->getPosicoesValidas(tabuleiro->getTodasPosicoes());
   // mostra no console as peças e suas coordenadas para o jogador escolher a peça
   cout << "Posicoes disponiveis: " << endl
        << formataCoordenadas(posicaoToCoordStr(*(peca->posicao)))
@@ -100,7 +104,8 @@ int main()
     cout << " - " << posicaoAtual->showSimbolo() << " | " << formataCoordenadas(coordenadas) << endl;
   }
 
-  cout << "Rei está em cheque: " << (peca->verificaXequeAdversario(posicoesDisponiveisPeca[0], &tabuleiro->posicoes) ? "sim" : "nao") << endl;
+  cout << "Rei está em cheque: " << (peca->verificaXequeAdversario(posicoesDisponiveisPeca[0], tabuleiro->getTodasPosicoes()) ? "sim" : "nao") << endl;
+  */
 
   return 0;
 }

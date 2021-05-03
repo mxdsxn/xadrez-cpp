@@ -11,11 +11,13 @@ class Posicao;
 
 class Peca
 {
-public:
-  //string tipo;
-
-  string simbolo;
+protected:
+  bool sentidoJogador1;
+  bool primeiraJogada;
   string estilo;
+
+public:
+  string simbolo;
   Posicao *posicao;
 
   Peca(string estilo, bool sentidoJogador1);
@@ -50,9 +52,10 @@ public:
    */
   bool removePosicao();
 
-protected:
-  bool sentidoJogador1;
-  bool primeiraJogada;
+  /**
+     * @return Retorna `branco` ou `preto`.
+     */
+  string getEstilo();
 };
 
 #endif //_PECA_H

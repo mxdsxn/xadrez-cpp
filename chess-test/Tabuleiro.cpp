@@ -122,7 +122,7 @@ vector<Posicao *> Tabuleiro::getPosicaoPecasDisponiveis(int jogador)
     string estiloJogadorSelecionado = (jogador == 1
                                            ? this->pecasBrancas
                                            : this->pecasPretas)
-                                          ->estilo;
+                                          ->getEstilo();
 
     for (int x = 0; x < 8; x++)
       for (int y = 0; y < 8; y++)
@@ -130,7 +130,7 @@ vector<Posicao *> Tabuleiro::getPosicaoPecasDisponiveis(int jogador)
         Posicao *posicaoAtual = this->matrizPosicoes[x][y];
         if (posicaoAtual->pecaAtual != nullptr)
         {
-          if (posicaoAtual->pecaAtual->estilo == estiloJogadorSelecionado)
+          if (posicaoAtual->pecaAtual->getEstilo() == estiloJogadorSelecionado)
           {
             pecasDisponiveis.push_back(posicaoAtual);
           }
