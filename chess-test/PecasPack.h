@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./Peao.h"
+#include "./Peca.h"
 #include "./Posicao.h"
 
 class Peca;
@@ -9,12 +9,12 @@ class PecasPack
 {
 
 private:
-  bool sentidoJogador1;
   string estilo;
-  vector<Peao *> peoes;
+
+  vector<Peca *> peoes;
 
 public:
-  PecasPack(string estilo, bool sentidoJogador1);
+  PecasPack(string estilo, bool sentidoPraFrente);
   ~PecasPack();
 
   //vector<Peca *> getPecasDisponiveis();

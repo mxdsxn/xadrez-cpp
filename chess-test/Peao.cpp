@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Peao::Peao(string estilo, bool sentidoJogador1) : Peca(estilo, sentidoJogador1)
+Peao::Peao(string estilo, bool sentidoPraFrente) : Peca(estilo, sentidoPraFrente)
 {
   this->simbolo = this->estilo == "preto" ? "♙" : "♟";
   this->primeiraJogada = true;
@@ -17,12 +17,12 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTa
   {
     int limiteTabuleiro = 8;
     int xPosicao, yPosicao;
-    bool sentidoJogador1 = this->sentidoJogador1;
+    bool sentidoPraFrente = this->sentidoPraFrente;
     Posicao *posicaoAtualPeca = this->posicao;
 
     // Posicao a frente - 1 casa pra frente se estiver vazia
     xPosicao = posicaoAtualPeca->x;
-    yPosicao = posicaoAtualPeca->y + (sentidoJogador1 ? 1 : -1);
+    yPosicao = posicaoAtualPeca->y + (sentidoPraFrente ? 1 : -1);
     Posicao *posicaoFrente = (*posicoesTabuleiro)[yPosicao][xPosicao];
 
     if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (posicaoFrente->pecaAtual == nullptr))
@@ -33,7 +33,7 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTa
       if (this->primeiraJogada)
       {
         xPosicao = posicaoAtualPeca->x;
-        yPosicao = posicaoAtualPeca->y + (sentidoJogador1 ? 2 : -2);
+        yPosicao = posicaoAtualPeca->y + (sentidoPraFrente ? 2 : -2);
         Posicao *posicaoFrentePrimeiraJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
 
         if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (posicaoFrentePrimeiraJogada->pecaAtual == nullptr))
@@ -44,8 +44,8 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTa
     }
 
     // Posicao a diagonal esquerda - 1 casa pra frente se estiver vazia
-    xPosicao = posicaoAtualPeca->x + (sentidoJogador1 ? -1 : 1);
-    yPosicao = posicaoAtualPeca->y + (sentidoJogador1 ? 1 : -1);
+    xPosicao = posicaoAtualPeca->x + (sentidoPraFrente ? -1 : 1);
+    yPosicao = posicaoAtualPeca->y + (sentidoPraFrente ? 1 : -1);
     Posicao *posicaoDiagonalEsquerda = (*posicoesTabuleiro)[yPosicao][xPosicao];
 
     if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro) && (posicaoDiagonalEsquerda->pecaAtual != nullptr))
@@ -54,8 +54,8 @@ vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTa
     }
 
     // Posicao a diagonal direita - 1 casa pra frente se estiver vazia
-    xPosicao = posicaoAtualPeca->x + (sentidoJogador1 ? 1 : -1);
-    yPosicao = posicaoAtualPeca->y + (sentidoJogador1 ? 1 : -1);
+    xPosicao = posicaoAtualPeca->x + (sentidoPraFrente ? 1 : -1);
+    yPosicao = posicaoAtualPeca->y + (sentidoPraFrente ? 1 : -1);
     Posicao *posicaoDiagonalDireita = (*posicoesTabuleiro)[yPosicao][xPosicao];
 
     if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro) && (posicaoDiagonalDireita->pecaAtual != nullptr))

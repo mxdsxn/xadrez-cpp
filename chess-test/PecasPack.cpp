@@ -1,13 +1,14 @@
 #include "PecasPack.h"
+#include "./Peao.h"
 
-PecasPack::PecasPack(string estilo, bool sentidoJogador1)
+PecasPack::PecasPack(string estilo, bool sentidoPraFrente)
 {
   this->estilo = estilo;
 
   // instancia os peoes
   for (int i = 1; i <= 8; i++)
   {
-    Peao *novoPeao = new Peao(estilo, sentidoJogador1);
+    Peao *novoPeao = new Peao(estilo, sentidoPraFrente);
     this->peoes.push_back(novoPeao);
   }
 
@@ -55,7 +56,7 @@ string PecasPack::getEstilo()
 
 void PecasPack::setPosicaoIncialPeoes(vector<Posicao *> *linhaInicialPeoes)
 {
-  vector<Peao *> *peoes = &(this->peoes);
+  vector<Peca *> *peoes = &(this->peoes);
   for (int indice = 0; indice < 8; indice++)
   {
     Posicao *posicaoAtual = (*linhaInicialPeoes)[indice];

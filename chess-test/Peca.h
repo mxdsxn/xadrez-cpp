@@ -12,7 +12,7 @@ class Posicao;
 class Peca
 {
 protected:
-  bool sentidoJogador1;
+  bool sentidoPraFrente;
   bool primeiraJogada;
   string estilo;
 
@@ -20,7 +20,7 @@ public:
   string simbolo;
   Posicao *posicao;
 
-  Peca(string estilo, bool sentidoJogador1);
+  Peca(string estilo, bool sentidoPraFrente);
   ~Peca();
 
   /**
@@ -56,6 +56,11 @@ public:
      * @return Retorna `branco` ou `preto`.
      */
   string getEstilo();
+
+  /**
+     * @return Retorna `true` quando as peças desse pacote andam pra frente.
+     */
+  bool getSentidoPraFrente();
 };
 
 #endif //_PECA_H

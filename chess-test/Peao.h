@@ -6,7 +6,7 @@ using namespace std;
 class Peao : public Peca
 {
 public:
-  Peao(string estilo, bool sentidoJogador1);
+  Peao(string estilo, bool sentidoPraFrente);
   ~Peao();
 
   /**

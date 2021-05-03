@@ -1,11 +1,11 @@
 #include "./Peca.h"
 
-Peca::Peca(string estilo, bool sentidoJogador1)
+Peca::Peca(string estilo, bool sentidoPraFrente)
 {
   this->estilo = estilo;
   this->posicao = nullptr;
   this->primeiraJogada = true;
-  this->sentidoJogador1 = sentidoJogador1;
+  this->sentidoPraFrente = sentidoPraFrente;
 }
 
 Peca::~Peca()
@@ -77,4 +77,13 @@ string Peca::getEstilo()
     return this->estilo;
   }
   return "";
+}
+
+bool Peca::getSentidoPraFrente()
+{
+  if (this)
+  {
+    this->sentidoPraFrente;
+  }
+  return false;
 }
