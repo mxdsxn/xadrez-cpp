@@ -10,24 +10,40 @@ class Peao;
 
 class Tabuleiro
 {
-public:
-  PecasPack *pecasJogador1 = nullptr;
-  PecasPack *pecasJogador2 = nullptr;
-  vector<vector<Posicao *>> posicoes;
 
+private:
+  vector<vector<Posicao *>> matrizPosicoes;
+  PecasPack *pecasBrancas = nullptr;
+  PecasPack *pecasPretas = nullptr;
+
+public:
   Tabuleiro();
   ~Tabuleiro();
 
   /**
+     * @param jogador Jogador atual no turno
      * @return Lista de Posições disponíveis.
      */
   vector<Posicao *> getPosicaoPecasDisponiveis(int jogador);
 
   /**
+     * @param jogador Jogador atual no turno
      * @return [VOID] Exibe o tabuleiro de xadrez e a disposição de peças.
      */
   void show(int jogador);
 
-private:
-  //vector<Posicao *> posicoes;
+  /**
+     * @return Ponteiro para a matriz de posicoes do tabuleiro.
+     */
+  vector<vector<Posicao *>> *getTodasPosicoes();
+
+  /**
+     * @return Ponteiro para pacote de pecas Brancas.
+     */
+  PecasPack *getPecasBrancas();
+
+  /**
+     * @return Ponteiro para pacote de pecas sPretas.
+     */
+  PecasPack *getPecasPretas();
 };
