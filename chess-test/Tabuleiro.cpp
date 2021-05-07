@@ -1,32 +1,19 @@
 #include <iostream>
 #include <string>
 #include "./Tabuleiro.h"
+#include "./clear.h"
 
 using namespace std;
 
 /**
- * Limpa o console
- */
-void clear()
-{
-#if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
-  system("clear");
-#endif
-
-#if defined(_WIN32) || defined(_WIN64)
-  system("cls");
-#endif
-}
-
-/**
  * Mostra no console a regua numerica que legenda o tabuleiro
  */
-void legendaLetras(int jogador)
+void legendaLetras(bool sentidoFrente)
 {
   cout << " ";
-  for (int i = jogador == 1 ? 0 : 7;
-       jogador == 1 ? i <= 7 : i >= 0;
-       jogador == 1 ? i++ : i--)
+  for (int i = sentidoFrente ? 0 : 7;
+       sentidoFrente ? i <= 7 : i >= 0;
+       sentidoFrente ? i++ : i--)
   {
     cout << "  " << (char)(i + 65) << " ";
   }
@@ -66,77 +53,75 @@ Tabuleiro::Tabuleiro()
 
 Tabuleiro ::~Tabuleiro() {}
 
-void Tabuleiro::show(int jogador)
+void Tabuleiro::show(bool sentidoFrente, bool mostrarLegenda)
 {
-  if (jogador != 1 && jogador != 2)
-    return;
-
-  clear();
-
-  legendaLetras(jogador);
+  if (mostrarLegenda)
+    legendaLetras(sentidoFrente);
 
   // Letra da legenda - ASCII
-  int legendaNumerica = jogador == 1 ? 8 : 1;
+  int legendaNumerica = sentidoFrente ? 8 : 1;
 
-  int linhaInicial = jogador == 1 ? this->matrizPosicoes.size() - 1 : 0;
-  int linhaFinal = jogador == 1 ? 0 : this->matrizPosicoes.size() - 1;
+  int linhaInicial = sentidoFrente ? this->matrizPosicoes.size() - 1 : 0;
+  int linhaFinal = sentidoFrente ? 0 : this->matrizPosicoes.size() - 1;
 
   // esse logica usando o paramentro 'jogador' define qual o lado do tabuleiro sera apresentado
   for (int y = linhaInicial;
-       jogador == 1 ? y >= linhaFinal : y <= linhaFinal;
-       jogador == 1 ? y-- : y++)
+       sentidoFrente ? y >= linhaFinal : y <= linhaFinal;
+       sentidoFrente ? y-- : y++)
   {
     vector<Posicao *> linhaAtual = this->matrizPosicoes[y];
 
-    cout << legendaNumerica;
+    if (mostrarLegenda)
+      cout << legendaNumerica;
 
-    int inicioLinha = jogador == 1 ? 0 : linhaAtual.size() - 1;
-    int finalLinha = jogador == 1 ? linhaAtual.size() - 1 : 0;
+    int inicioLinha = sentidoFrente ? 0 : linhaAtual.size() - 1;
+    int finalLinha = sentidoFrente ? linhaAtual.size() - 1 : 0;
 
     for (int x = inicioLinha;
-         jogador == 1 ? x <= finalLinha : x >= finalLinha;
-         jogador == 1 ? x++ : x--)
+         sentidoFrente ? x <= finalLinha : x >= finalLinha;
+         sentidoFrente ? x++ : x--)
     {
       Posicao *posicaoAtual = linhaAtual[x];
       cout << " " << posicaoAtual->showPosicao();
     }
 
-    cout << " "
-         << legendaNumerica
-         << endl;
+    if (mostrarLegenda)
+      cout << " "
+           << legendaNumerica;
 
-    jogador == 1
+    cout << endl;
+
+    sentidoFrente
         ? legendaNumerica--
         : legendaNumerica++;
   }
 
-  legendaLetras(jogador);
+  if (mostrarLegenda)
+    legendaLetras(sentidoFrente);
 }
 
-vector<Posicao *> Tabuleiro::getPosicaoPecasDisponiveis(int jogador)
+vector<Posicao *> Tabuleiro::getPosicaoPecasDisponiveis(bool sentidoFrente)
 {
   vector<Posicao *> pecasDisponiveis;
 
-  if (jogador == 1 || jogador == 2)
-  {
-    string estiloJogadorSelecionado = (jogador == 1
-                                           ? this->pecasBrancas
-                                           : this->pecasPretas)
-                                          ->getEstilo();
+  string estiloJogadorSelecionado = (sentidoFrente
+                                         ? this->pecasBrancas
+                                         : this->pecasPretas)
+                                        ->getEstilo();
 
-    for (int x = 0; x < 8; x++)
-      for (int y = 0; y < 8; y++)
+  for (int x = 0; x < 8; x++)
+    for (int y = 0; y < 8; y++)
+    {
+      Posicao *posicaoAtual = this->matrizPosicoes[x][y];
+      if (posicaoAtual->getPecaAtual() != nullptr)
       {
-        Posicao *posicaoAtual = this->matrizPosicoes[x][y];
-        if (posicaoAtual->getPecaAtual() != nullptr)
+        if (posicaoAtual->getPecaAtual()->getEstilo() == estiloJogadorSelecionado)
         {
-          if (posicaoAtual->getPecaAtual()->getEstilo() == estiloJogadorSelecionado)
-          {
-            pecasDisponiveis.push_back(posicaoAtual);
-          }
+          pecasDisponiveis.push_back(posicaoAtual);
         }
       }
-  }
+    }
+
   return pecasDisponiveis;
 }
 
