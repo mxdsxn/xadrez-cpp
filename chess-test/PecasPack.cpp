@@ -127,7 +127,7 @@ bool PecasPack::verificaXequeAdversario(Posicao *posicaoReiAdversario)
   if (this)
   {
     vector<Posicao *> jogadasDisponiveisTodasPecas;
-    vector<vector<Posicao *>> *matrizPosicoesTabuleiro;
+    vector<vector<Posicao *>> *matrizPosicoesTabuleiro = this->tabuleiro->getTodasPosicoes();
 
     // posicao todos os peoes
     for (int indice = 0; indice < this->peoes.size(); indice++)
