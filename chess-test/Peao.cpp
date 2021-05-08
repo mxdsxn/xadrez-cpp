@@ -13,7 +13,7 @@ Peao::~Peao() {}
 vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro)
 {
   vector<Posicao *> posicoesValidas;
-  if (this)
+  if (this && this->posicao != nullptr)
   {
     int limiteTabuleiro = 8;
     int xPosicao, yPosicao;
