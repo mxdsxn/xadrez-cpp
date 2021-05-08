@@ -153,14 +153,22 @@ void PartidaTradicional::iniciarPartida()
   {
     bool jogoEncerrado = false;
     bool turnoPrimeiroJogador = this->turnoPrimeiroJogador;
+
     Jogador *jogadorAtual = nullptr;
+    Jogador *jogadorAdversario = nullptr;
+
     Peca *pecaSelecionada = nullptr;
     bool resultadoJogada = false;
+
+    bool reiJogadorAtualEmXeque = false;
+    bool reiJogadorAdversarioEmXeque = false;
+    Posicao *posicaoReiJogadorAdversario = nullptr;
 
     do
     {
       turnoPrimeiroJogador = this->turnoPrimeiroJogador;
       jogadorAtual = turnoPrimeiroJogador ? this->primeiroJogador : this->segundoJogador;
+      jogadorAdversario = turnoPrimeiroJogador ? this->segundoJogador : this->primeiroJogador;
 
       mostrarJogadorRodadaAtual(jogadorAtual);
       this->mostrarTabuleiro(turnoPrimeiroJogador);
@@ -172,6 +180,17 @@ void PartidaTradicional::iniciarPartida()
 
       mostrarJogadorRodadaAtual(jogadorAtual);
       this->mostrarTabuleiro(turnoPrimeiroJogador);
+
+      if (resultadoJogada)
+      {
+        posicaoReiJogadorAdversario = jogadorAdversario->getPosicaoRei();
+        reiJogadorAdversarioEmXeque = jogadorAtual->verificaXequeAdversario(posicaoReiJogadorAdversario);
+        if (reiJogadorAdversarioEmXeque)
+        {
+          jogadorAdversario->setXeque(true);
+        }
+      }
+
       std::cout << "TECLE ENTER PARA ENCERRAR A JOGADA";
 
       cleanBuffer();
