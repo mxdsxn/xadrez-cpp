@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "./Tabuleiro.h"
-#include "./clear.h"
+#include "./utils.h"
 
 using namespace std;
 
@@ -100,11 +100,11 @@ void Tabuleiro::show(bool sentidoFrente, bool mostrarLegenda)
     legendaLetras(sentidoFrente);
 }
 
-vector<Posicao *> Tabuleiro::getPosicaoPecasDisponiveis(bool sentidoFrente)
+vector<Posicao *> Tabuleiro::getPosicaoPecasDisponiveis(bool primeiroJogador)
 {
   vector<Posicao *> pecasDisponiveis;
 
-  string estiloJogadorSelecionado = (sentidoFrente
+  string estiloJogadorSelecionado = (primeiroJogador
                                          ? this->pecasBrancas
                                          : this->pecasPretas)
                                         ->getEstilo();
