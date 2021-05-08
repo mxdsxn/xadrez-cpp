@@ -14,4 +14,9 @@ public:
    * @return Retorna lista de posições validas para o Rei, de acordo com sua regra de movimentação.
    */
   vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro);
+
+  /**
+     * @param emXeque TRUE quando a peca estiver em xeque.
+     */
+  void setXeque(bool emXeque);
 };

@@ -76,7 +76,7 @@ public:
   /**
      * @param emXeque TRUE quando a peca estiver em xeque.
      */
-  void setXeque(bool emXeque);
+  virtual void setXeque(bool emXeque);
 
   /**
      * @return retorna TRUE caso a peca esteja em Xeque.

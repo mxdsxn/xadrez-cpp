@@ -51,10 +51,14 @@ vector<Peca *> PecasPack::getPecasDisponiveis()
 {
   vector<Peca *> pecasDisponiveis;
 
-  if (this->rei->getXeque())
+  // Caso o Rei esteja em Xeque, apenas ele é enviado como peça disponivel
+  if (this->rei->getPosicaoAtual() != nullptr)
   {
     pecasDisponiveis.push_back(this->rei);
-    return pecasDisponiveis;
+    if (this->rei->getXeque())
+    {
+      return pecasDisponiveis;
+    }
   }
 
   for (int indice = 0; indice < this->peoes.size(); indice++)
