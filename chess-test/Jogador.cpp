@@ -25,3 +25,12 @@ PecasPack *Jogador::getPecas()
   }
   return pecas;
 }
+
+Posicao *Jogador::getPosicaoRei()
+{
+  if (this)
+  {
+    return this->pecas->getPosicaoRei();
+  }
+  return nullptr;
+}

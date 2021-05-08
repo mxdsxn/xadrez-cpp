@@ -82,3 +82,12 @@ void PecasPack::setPosicaoIncialPeoes(vector<Posicao *> *linhaInicialPeoes)
     pecaAtual->setPosicao(posicaoAtual);
   }
 }
+
+Posicao *PecasPack::getPosicaoRei()
+{
+  if (this)
+  {
+    return this->rei->getPosicaoAtual();
+  }
+  return nullptr;
+}

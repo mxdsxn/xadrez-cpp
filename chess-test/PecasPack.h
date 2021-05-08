@@ -7,11 +7,10 @@ class Peca;
 
 class PecasPack
 {
-
 private:
   string estilo;
-
   vector<Peca *> peoes;
+  Peca *rei;
 
 public:
   PecasPack(string estilo, bool sentidoPraFrente);
@@ -26,6 +25,11 @@ public:
      * @return Retorna `branco` ou `preto`.
      */
   string getEstilo();
+
+  /**
+     * @return Retorna posição atual do rei.
+     */
+  Posicao *getPosicaoRei();
 
   /**
      * Setta posicoes inciais para os peoes.
