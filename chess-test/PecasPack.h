@@ -14,6 +14,7 @@ private:
   vector<Peca *> peoes;
   Peca *rei;
   Tabuleiro *tabuleiro;
+  bool emXeque;
 
 public:
   PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro);
@@ -50,4 +51,9 @@ public:
      * @param linhaInicialRealeza Linha inicial dos Peoes no tabuleiro .
      */
   void setPosicaoInicialRealeza(vector<Posicao *> *linhaInicialRealeza);
+
+  /**
+     * @param emXeque TRUE quando o rei estiver em xeque.
+     */
+  void setXeque(bool emXeque);
 };

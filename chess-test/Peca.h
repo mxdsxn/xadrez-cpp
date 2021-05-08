@@ -16,6 +16,7 @@ protected:
   bool primeiraJogada;
   string estilo;
   string simbolo;
+  bool emXeque;
 
 public:
   Posicao *posicao;
@@ -71,6 +72,16 @@ public:
      * @return Retorna `true` quando as peças desse pacote andam pra frente.
      */
   bool getSentidoPraFrente();
+
+  /**
+     * @param emXeque TRUE quando a peca estiver em xeque.
+     */
+  void setXeque(bool emXeque);
+
+  /**
+     * @return retorna TRUE caso a peca esteja em Xeque.
+     */
+  bool getXeque();
 };
 
 #endif //_PECA_H

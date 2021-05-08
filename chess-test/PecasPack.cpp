@@ -1,5 +1,7 @@
 #include "./PecasPack.h"
 #include "./Peao.h"
+#include <iostream>
+#include "./utils.h"
 
 PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
 {
@@ -47,6 +49,15 @@ PecasPack::~PecasPack()
 vector<Peca *> PecasPack::getPecasDisponiveis()
 {
   vector<Peca *> pecasDisponiveis;
+
+  std::cout << "Rei " << this->rei->getXeque() << std::endl;
+  cleanBuffer();
+
+  if (this->rei->getXeque())
+  {
+    pecasDisponiveis.push_back(this->rei);
+    return pecasDisponiveis;
+  }
 
   for (int indice = 0; indice < this->peoes.size(); indice++)
   {
@@ -129,33 +140,27 @@ bool PecasPack::verificaXequeAdversario(Posicao *posicaoReiAdversario)
     vector<Posicao *> jogadasDisponiveisTodasPecas;
     vector<vector<Posicao *>> *matrizPosicoesTabuleiro = this->tabuleiro->getTodasPosicoes();
 
-    // posicao todos os peoes
+    // verifica se algum peao coloca o rei em xeque
     for (int indice = 0; indice < this->peoes.size(); indice++)
     {
       Peca *peaoAtual = this->peoes[indice];
-      vector<Posicao *> jogadasDisponiveisPeao;
+      bool pecaAtualColocaEmXeque = peaoAtual->verificaXequeAdversario(posicaoReiAdversario, matrizPosicoesTabuleiro);
 
-      jogadasDisponiveisPeao = peaoAtual->getPosicoesValidas(matrizPosicoesTabuleiro);
-
-      // caso o peao tenha jogadas disponiveis, insera as na lista de jogadas disponiveis do pacote de pecas
-      if (!jogadasDisponiveisPeao.empty())
+      // caso peao coloque o rei em xeque, returna TRUE
+      if (pecaAtualColocaEmXeque)
       {
-        jogadasDisponiveisTodasPecas.insert(
-            jogadasDisponiveisTodasPecas.end(),
-            jogadasDisponiveisPeao.begin(),
-            jogadasDisponiveisPeao.end());
-      }
-    }
-
-    // checa se a posicao do rei adversario está inserida nas jogadas disponiveis do jogador
-    for (int indice = 0; indice < jogadasDisponiveisTodasPecas.size(); indice++)
-    {
-      Posicao *jogadaAtual = jogadasDisponiveisTodasPecas[indice];
-      if (jogadaAtual == posicaoReiAdversario)
-      {
-        return true;
+        return pecaAtualColocaEmXeque;
       }
     }
   }
   return false;
+}
+
+void PecasPack::setXeque(bool emXeque)
+{
+  if (this)
+  {
+    this->emXeque = emXeque;
+    this->rei->setXeque(emXeque);
+  }
 }

@@ -49,5 +49,6 @@ void Jogador::setXeque(bool emXeque)
   if (this)
   {
     this->emXeque = emXeque;
+    this->pecas->setXeque(emXeque);
   }
 }

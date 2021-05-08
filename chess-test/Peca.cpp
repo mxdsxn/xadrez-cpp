@@ -6,6 +6,7 @@ Peca::Peca(string estilo, bool sentidoPraFrente)
   this->posicao = nullptr;
   this->primeiraJogada = true;
   this->sentidoPraFrente = sentidoPraFrente;
+  this->emXeque = false;
 }
 
 Peca::~Peca()
@@ -103,6 +104,23 @@ bool Peca::getSentidoPraFrente()
   if (this)
   {
     this->sentidoPraFrente;
+  }
+  return false;
+}
+
+void Peca::setXeque(bool emXeque)
+{
+  if (this)
+  {
+    this->emXeque = false;
+  }
+}
+
+bool Peca::getXeque()
+{
+  if (this)
+  {
+    return this->emXeque;
   }
   return false;
 }
