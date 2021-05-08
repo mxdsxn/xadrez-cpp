@@ -24,12 +24,6 @@ public:
 
   /**
      * @param jogador Jogador atual no turno
-     * @return Lista de Posições disponíveis.
-     */
-  vector<Posicao *> getPosicaoPecasDisponiveis(bool primeiroJogador);
-
-  /**
-     * @param jogador Jogador atual no turno
      * @return [VOID] Exibe o tabuleiro de xadrez e a disposição de peças.
      */
   void show(bool sentidoFrente, bool mostrarLegenda = true);

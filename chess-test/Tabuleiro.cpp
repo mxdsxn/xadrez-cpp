@@ -106,31 +106,6 @@ void Tabuleiro::show(bool sentidoFrente, bool mostrarLegenda)
     legendaLetras(sentidoFrente);
 }
 
-vector<Posicao *> Tabuleiro::getPosicaoPecasDisponiveis(bool primeiroJogador)
-{
-  vector<Posicao *> pecasDisponiveis;
-
-  string estiloJogadorSelecionado = (primeiroJogador
-                                         ? this->pecasBrancas
-                                         : this->pecasPretas)
-                                        ->getEstilo();
-
-  for (int x = 0; x < 8; x++)
-    for (int y = 0; y < 8; y++)
-    {
-      Posicao *posicaoAtual = this->matrizPosicoes[x][y];
-      if (posicaoAtual->getPecaAtual() != nullptr)
-      {
-        if (posicaoAtual->getPecaAtual()->getEstilo() == estiloJogadorSelecionado)
-        {
-          pecasDisponiveis.push_back(posicaoAtual);
-        }
-      }
-    }
-
-  return pecasDisponiveis;
-}
-
 vector<vector<Posicao *>> *Tabuleiro::getTodasPosicoes()
 {
   vector<vector<Posicao *>> *matrizPosicoes;
