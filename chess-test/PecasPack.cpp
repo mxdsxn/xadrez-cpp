@@ -1,5 +1,6 @@
 #include "./PecasPack.h"
 #include "./Peao.h"
+#include "./Rei.h"
 #include <iostream>
 #include "./utils.h"
 
@@ -39,7 +40,7 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
 
     // instancia rei e rainha
     this->rainha = new Rainha(estilo);*/
-  this->rei = new Peao(estilo, sentidoPraFrente);
+  this->rei = new Rei(estilo, sentidoPraFrente);
 }
 
 PecasPack::~PecasPack()
@@ -49,9 +50,6 @@ PecasPack::~PecasPack()
 vector<Peca *> PecasPack::getPecasDisponiveis()
 {
   vector<Peca *> pecasDisponiveis;
-
-  std::cout << "Rei " << this->rei->getXeque() << std::endl;
-  cleanBuffer();
 
   if (this->rei->getXeque())
   {
