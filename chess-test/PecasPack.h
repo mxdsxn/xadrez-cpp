@@ -40,5 +40,11 @@ public:
      * Setta posicoes inciais para os peoes.
      * @param linhaInicialPeoes Linha inicial dos Peoes no tabuleiro .
      */
-  void setPosicaoIncialPeoes(vector<Posicao *> *linhaInicialPeoes);
+  void setPosicaoInicialPeoes(vector<Posicao *> *linhaInicialPeoes);
+
+  /**
+     * Setta posicoes inciais para as peças da realeza.
+     * @param linhaInicialRealeza Linha inicial dos Peoes no tabuleiro .
+     */
+  void setPosicaoInicialRealeza(vector<Posicao *> *linhaInicialRealeza);
 };

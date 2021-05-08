@@ -40,15 +40,21 @@ Tabuleiro::Tabuleiro()
     this->matrizPosicoes.push_back(novaLinha);
   }
 
-  // coloca as peoes do Jogador1 nas posicoes iniciais
-  vector<Posicao *> *linhaPeoesJogador1 = &(this->matrizPosicoes[1]);
-  this->pecasBrancas->setPosicaoIncialPeoes(linhaPeoesJogador1);
-  //this->pecasBrancas->setPosicaoIncialRealeza(linhaRealezaJogador1);
+  // coloca as pecas da realeza do primeiroJogador nas posicoes iniciais
+  vector<Posicao *> *posicaoInicialRealezaPrimeiroJogador = &(this->matrizPosicoes[0]);
+  this->pecasBrancas->setPosicaoInicialRealeza(posicaoInicialRealezaPrimeiroJogador);
 
-  // coloca as peoes do Jogador2 nas posicoes iniciais
-  vector<Posicao *> *linhaPeoesJogador2 = &(this->matrizPosicoes[6]);
-  this->pecasPretas->setPosicaoIncialPeoes(linhaPeoesJogador2);
-  //this->pecasPretas->setPosicaoIncialRealeza(linhaRealezaJogador2);
+  // coloca as peoes do primeiroJogador nas posicoes iniciais
+  vector<Posicao *> *posicaoInicialPeoesPrimeiroJogador = &(this->matrizPosicoes[1]);
+  this->pecasBrancas->setPosicaoInicialPeoes(posicaoInicialPeoesPrimeiroJogador);
+
+  // coloca as pecas da realeza do segundoJogador nas posicoes iniciais
+  vector<Posicao *> *posicaoInicialRealezaSegundoJogador = &(this->matrizPosicoes[7]);
+  this->pecasPretas->setPosicaoInicialRealeza(posicaoInicialRealezaSegundoJogador);
+
+  // coloca as peoes do segundoJogador nas posicoes iniciais
+  vector<Posicao *> *posicaoInicialPeoesSegundoJogador = &(this->matrizPosicoes[6]);
+  this->pecasPretas->setPosicaoInicialPeoes(posicaoInicialPeoesSegundoJogador);
 }
 
 Tabuleiro ::~Tabuleiro() {}

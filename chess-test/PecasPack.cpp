@@ -1,4 +1,4 @@
-#include "PecasPack.h"
+#include "./PecasPack.h"
 #include "./Peao.h"
 
 PecasPack::PecasPack(string estilo, bool sentidoPraFrente)
@@ -35,8 +35,8 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente)
     }
 
     // instancia rei e rainha
-    this->rainha = new Rainha(estilo);
-    this->rei = new Rei(estilo);*/
+    this->rainha = new Rainha(estilo);*/
+  this->rei = new Peao(estilo, sentidoPraFrente);
 }
 
 PecasPack::~PecasPack()
@@ -68,7 +68,36 @@ string PecasPack::getEstilo()
   return "";
 }
 
-void PecasPack::setPosicaoIncialPeoes(vector<Posicao *> *linhaInicialPeoes)
+void PecasPack::setPosicaoInicialRealeza(vector<Posicao *> *linhaInicialRealeza)
+{
+  vector<Peca *> pecasRealeza;
+
+  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(this->rei);
+  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(nullptr);
+
+  for (int indice = 0; indice < 8; indice++)
+  {
+    Posicao *posicaoAtual = (*linhaInicialRealeza)[indice];
+    Peca *pecaAtual = pecasRealeza[indice];
+
+    if (pecaAtual != nullptr)
+    {
+      //setta peça na posicao
+      posicaoAtual->setPeca(pecaAtual);
+
+      //setta posicao na peça
+      pecaAtual->setPosicao(posicaoAtual);
+    }
+  }
+}
+
+void PecasPack::setPosicaoInicialPeoes(vector<Posicao *> *linhaInicialPeoes)
 {
   vector<Peca *> *peoes = &(this->peoes);
   for (int indice = 0; indice < 8; indice++)
