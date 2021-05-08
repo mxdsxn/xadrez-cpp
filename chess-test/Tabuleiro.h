@@ -8,6 +8,7 @@
 using namespace std;
 
 class Peao;
+class PecasPack;
 
 class Tabuleiro
 {

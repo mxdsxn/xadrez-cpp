@@ -23,8 +23,8 @@ void legendaLetras(bool sentidoFrente)
 Tabuleiro::Tabuleiro()
 {
   // instancia pacote de peças para 2 jogadores
-  this->pecasBrancas = new PecasPack("branco", true);
-  this->pecasPretas = new PecasPack("preto", false);
+  this->pecasBrancas = new PecasPack("branco", true, this);
+  this->pecasPretas = new PecasPack("preto", false, this);
 
   // instancia os posicoes do tabuleiro numa matriz
   for (int y = 0; y < 8; y++)

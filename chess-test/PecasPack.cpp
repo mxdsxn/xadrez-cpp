@@ -1,7 +1,7 @@
 #include "./PecasPack.h"
 #include "./Peao.h"
 
-PecasPack::PecasPack(string estilo, bool sentidoPraFrente)
+PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
 {
   this->estilo = estilo;
 
@@ -10,6 +10,7 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente)
   {
     Peao *novoPeao = new Peao(estilo, sentidoPraFrente);
     this->peoes.push_back(novoPeao);
+    this->tabuleiro = tabuleiro;
   }
 
   /*
@@ -129,7 +130,7 @@ bool PecasPack::verificaXequeAdversario(Posicao *posicaoReiAdversario)
     vector<vector<Posicao *>> *matrizPosicoesTabuleiro;
 
     // posicao todos os peoes
-    for (int indice = 0; indice <= this->peoes.size(); indice++)
+    for (int indice = 0; indice < this->peoes.size(); indice++)
     {
       Peca *peaoAtual = this->peoes[indice];
       vector<Posicao *> jogadasDisponiveisPeao;

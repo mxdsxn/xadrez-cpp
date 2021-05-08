@@ -2,8 +2,10 @@
 
 #include "./Peca.h"
 #include "./Posicao.h"
+#include "./Tabuleiro.h"
 
 class Peca;
+class Tabuleiro;
 
 class PecasPack
 {
@@ -11,9 +13,10 @@ private:
   string estilo;
   vector<Peca *> peoes;
   Peca *rei;
+  Tabuleiro *tabuleiro;
 
 public:
-  PecasPack(string estilo, bool sentidoPraFrente);
+  PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro);
   ~PecasPack();
 
   /**
