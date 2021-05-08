@@ -4,19 +4,19 @@
 FabricaPartida::FabricaPartida() {}
 FabricaPartida::~FabricaPartida() {}
 
-Partida *FabricaPartida::novaPartida(int opcaoPartida)
+Partida *FabricaPartida::novaPartida(int opcaoPartida, string nomePrimeiroJogador, string nomeSegundoJogador)
 {
   Partida *novaPartida;
   switch (opcaoPartida)
   {
   case 1:
-    novaPartida = new PartidaTradicional();
+    novaPartida = new PartidaTradicional(nomePrimeiroJogador, nomeSegundoJogador);
     break;
   case 2:
-    novaPartida = new PartidaTradicional();
+    novaPartida = new PartidaTradicional(nomePrimeiroJogador, nomeSegundoJogador);
     break;
   case 3:
-    novaPartida = new PartidaTradicional();
+    novaPartida = new PartidaTradicional(nomePrimeiroJogador, nomeSegundoJogador);
     break;
   }
   return novaPartida;

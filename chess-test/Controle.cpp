@@ -1,5 +1,5 @@
 #include "./Controle.h"
-#include "./clear.h"
+#include "./utils.h"
 #include <iostream>
 
 Controle::Controle()
@@ -11,11 +11,16 @@ Controle::Controle()
 void Controle::novoJogo()
 {
   int opcaoJogo = 0;
+  string nomePrimeiroJogador, nomeSegundoJogador;
 
   opcaoJogo = this->mostrarMenuNovoJogo();
 
-  this->partidaAtual = this->fabricaPartida->novaPartida(opcaoJogo);
+  cout << "Nome do primeiro jogador: ";
+  getline(cin, nomePrimeiroJogador);
+  cout << "Nome do segundo jogador: ";
+  getline(cin, nomeSegundoJogador);
 
+  this->partidaAtual = this->fabricaPartida->novaPartida(opcaoJogo, nomePrimeiroJogador, nomeSegundoJogador);
   this->partidaAtual->iniciarPartida();
 }
 

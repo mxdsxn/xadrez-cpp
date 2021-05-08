@@ -7,5 +7,5 @@ public:
   FabricaPartida();
   ~FabricaPartida();
 
-  Partida *novaPartida(int opcaoPartida);
+  Partida *novaPartida(int opcaoPartida, string nomePrimeiroJogador, string nomeSegundoJogador);
 };
