@@ -50,6 +50,7 @@ int Principal::mostrarMenu()
        << "0 - Sair" << endl
        << endl;
   cin >> menuOption;
+  cleanBuffer();
 
   return menuOption;
 }

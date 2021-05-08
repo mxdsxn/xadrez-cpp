@@ -43,7 +43,21 @@ PecasPack::~PecasPack()
 {
 }
 
-//vector<Peca *> PecasPack::getPecasDisponiveis(){}
+vector<Peca *> PecasPack::getPecasDisponiveis()
+{
+  vector<Peca *> pecasDisponiveis;
+
+  for (int indice = 0; indice < this->peoes.size(); indice++)
+  {
+    Peca *peaoAtual = this->peoes[indice];
+    if (peaoAtual && peaoAtual->getPosicaoAtual() != nullptr)
+    {
+      pecasDisponiveis.push_back(peaoAtual);
+    }
+  }
+
+  return pecasDisponiveis;
+}
 
 string PecasPack::getEstilo()
 {

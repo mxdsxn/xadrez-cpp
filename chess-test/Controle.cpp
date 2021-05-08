@@ -17,6 +17,7 @@ void Controle::novoJogo()
 
   cout << "Nome do primeiro jogador: ";
   getline(cin, nomePrimeiroJogador);
+
   cout << "Nome do segundo jogador: ";
   getline(cin, nomeSegundoJogador);
 
@@ -35,11 +36,12 @@ int Controle::mostrarMenuNovoJogo()
          << endl;
 
     cout << "1 - Partida Tradicional" << endl
-         << "1 - Partida Tradicional" << endl
-         << "1 - Partida Tradicional" << endl
+         << "2 - Partida Turno temporizado" << endl
+         << "3 - Partida Por Pontos" << endl
          << endl;
 
     cin >> opcaoPartida;
+    cleanBuffer();
 
     clear();
   } while (opcaoPartida != 1 && opcaoPartida != 2 && opcaoPartida != 3);

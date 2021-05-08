@@ -17,7 +17,10 @@ public:
   PecasPack(string estilo, bool sentidoPraFrente);
   ~PecasPack();
 
-  //vector<Peca *> getPecasDisponiveis();
+  /**
+   * @return Lista de posicoes com as peças pecasDisponiveis
+   */
+  vector<Peca *> getPecasDisponiveis();
 
   /**
      * @return Retorna `branco` ou `preto`.
