@@ -33,6 +33,7 @@ int Controle::mostrarMenuNovoJogo()
          << "1 - Partida Tradicional" << endl
          << "1 - Partida Tradicional" << endl
          << endl;
+
     cin >> opcaoPartida;
 
     clear();

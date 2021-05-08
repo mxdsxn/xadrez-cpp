@@ -3,7 +3,6 @@
 
 int main()
 {
-
   clear();
 
   Principal *novoJogo = new Principal();
