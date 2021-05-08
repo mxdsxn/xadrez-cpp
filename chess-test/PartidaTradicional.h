@@ -23,6 +23,13 @@ private:
   */
   Peca *selecionarPecaDisponivel(bool primeiroJogador);
 
+  /**
+    * Mostra ao usuario as jogadas disponiveis para a peça selecionada
+    * @param pecaSelecionada Peca selecionada pelo jogador
+    * @return Booleano quando a jogada ocorre de maneira correta
+  */
+  bool selecionarJogadasDisponiveis(Peca *pecaSelecionada);
+
 public:
   PartidaTradicional(string nomePrimeiroJogador, string nomeSegundoJogador);
 
