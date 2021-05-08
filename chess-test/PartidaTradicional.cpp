@@ -54,6 +54,7 @@ void PartidaTradicional::mostrarTabuleiro(bool turnoPrimeiroJogador)
   if (this)
   {
     this->tabuleiro->show(turnoPrimeiroJogador);
+    std::cout << endl;
   }
 }
 
@@ -108,7 +109,10 @@ bool PartidaTradicional::selecionarJogadasDisponiveis(Peca *pecaSelecionada)
 
   do
   {
-    std::cout << "Selecione um das jogadas disponiveis: "
+    std::cout << "Selecione um das jogadas disponiveis para : "
+              << pecaSelecionada->getPosicaoAtual()->showSimbolo()
+              << " | "
+              << formataCoordenadas(posicaoToCoordStr(pecaSelecionada->getPosicaoAtual()))
               << endl
               << endl;
     for (int indice = 0; indice < jogadasDisponiveis.size(); indice++)
@@ -144,6 +148,7 @@ void mostrarJogadorRodadaAtual(Jogador *jogadorAtual)
 
 void PartidaTradicional::iniciarPartida()
 {
+  clear();
   if (this)
   {
     bool jogoEncerrado = false;
@@ -154,8 +159,8 @@ void PartidaTradicional::iniciarPartida()
 
     do
     {
-      jogadorAtual = turnoPrimeiroJogador ? this->primeiroJogador : this->segundoJogador;
       turnoPrimeiroJogador = this->turnoPrimeiroJogador;
+      jogadorAtual = turnoPrimeiroJogador ? this->primeiroJogador : this->segundoJogador;
 
       mostrarJogadorRodadaAtual(jogadorAtual);
       this->mostrarTabuleiro(turnoPrimeiroJogador);
@@ -165,9 +170,12 @@ void PartidaTradicional::iniciarPartida()
       this->mostrarTabuleiro(turnoPrimeiroJogador);
       resultadoJogada = this->selecionarJogadasDisponiveis(pecaSelecionada);
 
+      mostrarJogadorRodadaAtual(jogadorAtual);
       this->mostrarTabuleiro(turnoPrimeiroJogador);
       std::cout << "TECLE ENTER PARA ENCERRAR A JOGADA";
+
       cleanBuffer();
+
       this->turnoPrimeiroJogador = !turnoPrimeiroJogador;
 
       clear();

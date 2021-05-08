@@ -12,9 +12,12 @@ void Principal::iniciar()
 {
   int menuOption = 0;
 
-  this->tabuleiroExibicao->show(true, false);
   cout << "  >>> Bem vindo ao MXadrez <<<"
        << endl
+       << endl;
+
+  this->tabuleiroExibicao->show(true, false);
+  cout << endl
        << endl;
 
   do

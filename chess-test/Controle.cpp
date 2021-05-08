@@ -13,10 +13,13 @@ void Controle::novoJogo()
   int opcaoJogo = 0;
   string nomePrimeiroJogador, nomeSegundoJogador;
 
+  clear();
   opcaoJogo = this->mostrarMenuNovoJogo();
 
   cout << "Nome do primeiro jogador: ";
   getline(cin, nomePrimeiroJogador);
+
+  cout << endl;
 
   cout << "Nome do segundo jogador: ";
   getline(cin, nomeSegundoJogador);
