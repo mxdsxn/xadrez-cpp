@@ -32,6 +32,11 @@ public:
   Posicao *getPosicaoRei();
 
   /**
+     * @return Retorna TRUE quando alguma das peças do pacote coloca o Rei adversario em Xeque.
+     */
+  bool verificaXequeAdversario(Posicao *posicaoReiAdversario);
+
+  /**
      * Setta posicoes inciais para os peoes.
      * @param linhaInicialPeoes Linha inicial dos Peoes no tabuleiro .
      */

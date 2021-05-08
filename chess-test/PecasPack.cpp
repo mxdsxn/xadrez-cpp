@@ -91,3 +91,41 @@ Posicao *PecasPack::getPosicaoRei()
   }
   return nullptr;
 }
+
+bool PecasPack::verificaXequeAdversario(Posicao *posicaoReiAdversario)
+{
+  if (this)
+  {
+    vector<Posicao *> jogadasDisponiveisTodasPecas;
+    vector<vector<Posicao *>> *matrizPosicoesTabuleiro;
+
+    // posicao todos os peoes
+    for (int indice = 0; indice <= this->peoes.size(); indice++)
+    {
+      Peca *peaoAtual = this->peoes[indice];
+      vector<Posicao *> jogadasDisponiveisPeao;
+
+      jogadasDisponiveisPeao = peaoAtual->getPosicoesValidas(matrizPosicoesTabuleiro);
+
+      // caso o peao tenha jogadas disponiveis, insera as na lista de jogadas disponiveis do pacote de pecas
+      if (!jogadasDisponiveisPeao.empty())
+      {
+        jogadasDisponiveisTodasPecas.insert(
+            jogadasDisponiveisTodasPecas.end(),
+            jogadasDisponiveisPeao.begin(),
+            jogadasDisponiveisPeao.end());
+      }
+    }
+
+    // checa se a posicao do rei adversario está inserida nas jogadas disponiveis do jogador
+    for (int indice = 0; indice < jogadasDisponiveisTodasPecas.size(); indice++)
+    {
+      Posicao *jogadaAtual = jogadasDisponiveisTodasPecas[indice];
+      if (jogadaAtual == posicaoReiAdversario)
+      {
+        return true;
+      }
+    }
+  }
+  return false;
+}
