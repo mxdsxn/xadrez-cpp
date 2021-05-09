@@ -117,7 +117,7 @@ bool Peca::verificaReiAdversarioXeque(Posicao *posicaoReiAdversario, vector<vect
 {
   if (this)
   {
-    vector<Posicao *> posicoesDisponiveisPeca = this->getPosicoesValidas(posicoesTabuleiro);
+    vector<Posicao *> posicoesDisponiveisPeca = this->getTodasJogadasDisponiveis(posicoesTabuleiro);
 
     for (int i = 0; i < posicoesDisponiveisPeca.size(); i++)
     {

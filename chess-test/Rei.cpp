@@ -12,35 +12,7 @@ Rei::Rei(string estilo, bool sentidoPraFrente) : Peca(estilo, sentidoPraFrente)
 }
 Rei::~Rei() {}
 
-bool Rei::validaJogadaXeque(vector<vector<Posicao *>> *posicoesTabuleiro, Posicao *jogadaPretendida)
-{
-  if (this)
-  {
-    vector<Posicao *> jogadasDisponiveisTodasPecas;
-
-    for (int y = 0; y < 8; y++)
-    {
-      for (int x = 0; x < 8; x++)
-      {
-        Posicao *posicaoAtual = (*posicoesTabuleiro)[y][x];
-        Peca *pecaAtual = posicaoAtual->getPecaAtual();
-
-        if (pecaAtual != nullptr && pecaAtual->getEstilo() != this->estilo && this->getCodigo() != pecaAtual->getCodigo())
-        {
-          bool possibilidadeXeque = pecaAtual->verificaXequeAdversario(jogadaPretendida, posicoesTabuleiro);
-
-          if (possibilidadeXeque)
-          {
-            return possibilidadeXeque;
-          }
-        }
-      }
-    }
-  }
-  return false;
-}
-
-vector<Posicao *> Rei::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro)
+vector<Posicao *> Rei::getTodasJogadasDisponiveis(vector<vector<Posicao *>> *posicoesTabuleiro)
 {
   vector<Posicao *> posicoesValidas;
   if (this && this->posicao != nullptr)

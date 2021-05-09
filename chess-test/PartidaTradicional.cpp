@@ -75,7 +75,7 @@ bool PartidaTradicional::selecionarJogadasDisponiveis(Peca *pecaSelecionada)
                                           ->getPecas();
 
   // Pede ao pacote de pecas adversario para verificar se algum movimentado da pecaSelecionada dará abertura para um Xeque
-  jogadasDisponiveis = pecasJogadorAdversario->validaRiscoXeque(pecaSelecionada);
+  jogadasDisponiveis = pecasJogadorAdversario->getJogadasDisponiveisFiltrandoRiscoXeque(pecaSelecionada);
 
   do
   {
@@ -154,7 +154,7 @@ void PartidaTradicional::iniciarPartida()
       if (resultadoJogada)
       {
         posicaoReiJogadorAdversario = jogadorAdversario->getPosicaoRei();
-        reiJogadorAdversarioEmXeque = jogadorAtual->verificaXequeAdversario(posicaoReiJogadorAdversario);
+        reiJogadorAdversarioEmXeque = jogadorAtual->verificaReiAdversarioXeque(posicaoReiJogadorAdversario);
         if (reiJogadorAdversarioEmXeque)
         {
           jogadorAdversario->setXeque(true);

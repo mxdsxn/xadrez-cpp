@@ -12,82 +12,82 @@ class Posicao;
 class Peca
 {
 protected:
-  bool sentidoPraFrente;
-  bool primeiraJogada;
-  string estilo;
-  string simbolo;
-  bool emXeque;
-  int codigo;
+   bool sentidoPraFrente;
+   bool primeiraJogada;
+   string estilo;
+   string simbolo;
+   bool emXeque;
+   int codigo;
 
 public:
-  Posicao *posicao;
+   Posicao *posicao;
 
-  Peca(string estilo, bool sentidoPraFrente);
-  ~Peca();
+   Peca(string estilo, bool sentidoPraFrente);
+   ~Peca();
 
-  /**
+   /**
      * @return retorna TRUE caso a peca esteja em Xeque.
      */
-  bool getXeque();
+   bool getXeque();
 
-  /**
+   /**
      * @return inteiro representante do seu tipo de peça
      */
-  int getCodigo();
+   int getCodigo();
 
-  /**
+   /**
      * @return Retorna `branco` ou `preto`.
      */
-  string getEstilo();
+   string getEstilo();
 
-  /**
+   /**
      * @return Retorna simbolo da peça.
      */
-  string getSimbolo();
+   string getSimbolo();
 
-  /**
+   /**
    * @return Poteiro da posicao atual da peca.
    */
-  Posicao *getPosicaoAtual();
+   Posicao *getPosicaoAtual();
 
-  /**
+   /**
    * @return Retorna lista de posições validas para a peça, de acordo com sua regra de movimentação.
    */
-  virtual vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro) = 0;
+   virtual vector<Posicao *> getTodasJogadasDisponiveis(vector<vector<Posicao *>> *posicoesTabuleiro) = 0;
 
-  /**
+   /**
      * @return Retorna `true` quando as peças desse pacote andam pra frente.
      */
-  bool getSentidoPraFrente();
+   bool getSentidoPraFrente();
 
-  /**
+   /**
      * @param emXeque boolean - nenhuma peça pode ser colocada em xeque por padrao.
      */
-  virtual void setXeque(bool emXeque);
+   virtual void setXeque(bool emXeque);
 
-  /**
+   /**
    * @param novaPosicao Posição de destino para a peça.
    * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
    */
-  bool setPosicao(Posicao *novaPosicao);
+   bool setPosicao(Posicao *novaPosicao);
 
-  /**
+   /**
    * @param novaPosicao Posição de destino para a peça.
    * @return Retorna 'true' se movimentou, false caso de algo errado.
    */
-  bool movimentar(Posicao *novaPosicao, bool simulacao = false);
+   bool movimentar(Posicao *novaPosicao, bool simulacao = false);
 
-  /**
+   /**
    * @param novaPosicao Posição de destino para a peça.
    * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
    */
-  bool removePosicao();
+   bool removePosicao();
 
-  /**
+   /**
    * @param posicaoReiAdversario Posição de destino para a peça.
    * @return Retorna 'true' se movimentou, false caso de algo errado.
    */
-  bool verificaReiAdversarioXeque(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro);
+   bool verificaReiAdversarioXeque(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro);
 };
 
 #endif //_PECA_H

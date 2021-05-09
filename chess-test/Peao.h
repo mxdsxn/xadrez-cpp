@@ -13,5 +13,5 @@ public:
    * @param posicoesTabuleiro Ponteiro para a matriz de posicoes do tabuleiro
    * @return Retorna lista de posições validas para o Peão, de acordo com sua regra de movimentação.
    */
-  vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro);
+  vector<Posicao *> getTodasJogadasDisponiveis(vector<vector<Posicao *>> *posicoesTabuleiro);
 };

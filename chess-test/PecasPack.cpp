@@ -117,7 +117,7 @@ vector<Peca *> PecasPack::getPecasDisponiveisJogadas()
 vector<Posicao *> PecasPack::getJogadasDisponiveisFiltrandoRiscoXeque(Peca *pecaSelecionadaAdversario)
 {
   vector<vector<Posicao *>> *matrizPosicoesTabuleiro = this->tabuleiro->getTodasPosicoes();
-  vector<Posicao *> jogadasDisponiveisAdversario = pecaSelecionadaAdversario->getPosicoesValidas(matrizPosicoesTabuleiro);
+  vector<Posicao *> jogadasDisponiveisAdversario = pecaSelecionadaAdversario->getTodasJogadasDisponiveis(matrizPosicoesTabuleiro);
   vector<Posicao *> jogadasFiltradasAdversario;
 
   Tabuleiro *tabuleiro = this->tabuleiro;
@@ -166,6 +166,7 @@ vector<Posicao *> PecasPack::getJogadasDisponiveisFiltrandoRiscoXeque(Peca *peca
     cout << "jogada em analise: " << formataCoordenadas(posicaoToCoordStr(possivelJogadaAdversario)) << endl;
     */
 
+    // Rei da do Adversario
     bool reiEmXeque = this->verificaReiAdversarioXeque(posicaoReiAdversario);
     if (!reiEmXeque)
     {

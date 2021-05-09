@@ -11,7 +11,7 @@ Peao::Peao(string estilo, bool sentidoPraFrente) : Peca(estilo, sentidoPraFrente
 }
 Peao::~Peao() {}
 
-vector<Posicao *> Peao::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro)
+vector<Posicao *> Peao::getTodasJogadasDisponiveis(vector<vector<Posicao *>> *posicoesTabuleiro)
 {
   vector<Posicao *> posicoesValidas;
   if (this && this->posicao != nullptr)

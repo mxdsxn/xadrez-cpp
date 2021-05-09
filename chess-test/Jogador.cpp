@@ -35,11 +35,11 @@ Posicao *Jogador::getPosicaoRei()
   return nullptr;
 }
 
-bool Jogador::verificaXequeAdversario(Posicao *posicaoReiAdversario)
+bool Jogador::verificaReiAdversarioXeque(Posicao *posicaoReiAdversario)
 {
   if (this)
   {
-    return this->pecas->verificaXequeAdversario(posicaoReiAdversario);
+    return this->pecas->verificaReiAdversarioXeque(posicaoReiAdversario);
   }
   return false;
 }
