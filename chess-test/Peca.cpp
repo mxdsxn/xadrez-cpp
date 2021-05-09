@@ -9,8 +9,76 @@ Peca::Peca(string estilo, bool sentidoPraFrente)
   this->emXeque = false;
 }
 
-Peca::~Peca()
+Peca::~Peca() {}
+
+bool Peca::getXeque()
 {
+  if (this)
+  {
+    return this->emXeque;
+  }
+  return false;
+}
+
+int Peca::getCodigo()
+{
+  return this->codigo;
+}
+
+string Peca::getEstilo()
+{
+  if (this)
+  {
+    return this->estilo;
+  }
+  return "";
+}
+
+string Peca::getSimbolo()
+{
+  if (this)
+  {
+    return this->simbolo;
+  }
+  return "";
+}
+
+Posicao *Peca::getPosicaoAtual()
+{
+  if (this)
+  {
+    return this->posicao;
+  }
+
+  return nullptr;
+}
+
+bool Peca::getSentidoPraFrente()
+{
+  if (this)
+  {
+    return this->sentidoPraFrente;
+  }
+  return false;
+}
+
+void Peca::setXeque(bool emXeque)
+{
+  if (this)
+  {
+    this->emXeque = false;
+  }
+}
+
+bool Peca::setPosicao(Posicao *novaPosicao)
+{
+  if (this)
+  {
+    this->posicao = novaPosicao;
+    return true;
+  }
+
+  return false;
 }
 
 bool Peca::movimentar(Posicao *novaPosicao, bool simulacao)
@@ -34,7 +102,18 @@ bool Peca::movimentar(Posicao *novaPosicao, bool simulacao)
   return false;
 }
 
-bool Peca::verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro)
+bool Peca::removePosicao()
+{
+  if (this)
+  {
+    this->posicao = nullptr;
+    return true;
+  }
+
+  return false;
+}
+
+bool Peca::verificaReiAdversarioXeque(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro)
 {
   if (this)
   {
@@ -50,85 +129,4 @@ bool Peca::verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<
     }
   }
   return false;
-}
-
-bool Peca::setPosicao(Posicao *novaPosicao)
-{
-  if (this)
-  {
-    this->posicao = novaPosicao;
-    return true;
-  }
-
-  return false;
-}
-
-bool Peca::removePosicao()
-{
-  if (this)
-  {
-    this->posicao = nullptr;
-    return true;
-  }
-
-  return false;
-}
-
-Posicao *Peca::getPosicaoAtual()
-{
-  if (this)
-  {
-    return this->posicao;
-  }
-
-  return nullptr;
-}
-
-string Peca::getEstilo()
-{
-  if (this)
-  {
-    return this->estilo;
-  }
-  return "";
-}
-
-string Peca::getSimbolo()
-{
-  if (this)
-  {
-    return this->simbolo;
-  }
-  return "";
-}
-
-bool Peca::getSentidoPraFrente()
-{
-  if (this)
-  {
-    return this->sentidoPraFrente;
-  }
-  return false;
-}
-
-void Peca::setXeque(bool emXeque)
-{
-  if (this)
-  {
-    this->emXeque = false;
-  }
-}
-
-bool Peca::getXeque()
-{
-  if (this)
-  {
-    return this->emXeque;
-  }
-  return false;
-}
-
-int Peca::getCodigo()
-{
-  return this->codigo;
 }

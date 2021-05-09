@@ -26,38 +26,14 @@ public:
   ~Peca();
 
   /**
-   * @return Retorna lista de posições validas para a peça, de acordo com sua regra de movimentação.
-   */
-  virtual vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro) = 0;
+     * @return retorna TRUE caso a peca esteja em Xeque.
+     */
+  bool getXeque();
 
   /**
-   * @param novaPosicao Posição de destino para a peça.
-   * @return Retorna 'true' se movimentou, false caso de algo errado.
-   */
-  bool movimentar(Posicao *novaPosicao, bool simulacao = false);
-
-  /**
-   * @param posicaoReiAdversario Posição de destino para a peça.
-   * @return Retorna 'true' se movimentou, false caso de algo errado.
-   */
-  bool verificaXequeAdversario(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro);
-
-  /**
-   * @param novaPosicao Posição de destino para a peça.
-   * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
-   */
-  bool setPosicao(Posicao *novaPosicao);
-
-  /**
-   * @param novaPosicao Posição de destino para a peça.
-   * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
-   */
-  bool removePosicao();
-
-  /**
-   * @return Poteiro da posicao atual da peca.
-   */
-  Posicao *getPosicaoAtual();
+     * @return inteiro representante do seu tipo de peça
+     */
+  int getCodigo();
 
   /**
      * @return Retorna `branco` ou `preto`.
@@ -70,24 +46,48 @@ public:
   string getSimbolo();
 
   /**
+   * @return Poteiro da posicao atual da peca.
+   */
+  Posicao *getPosicaoAtual();
+
+  /**
+   * @return Retorna lista de posições validas para a peça, de acordo com sua regra de movimentação.
+   */
+  virtual vector<Posicao *> getPosicoesValidas(vector<vector<Posicao *>> *posicoesTabuleiro) = 0;
+
+  /**
      * @return Retorna `true` quando as peças desse pacote andam pra frente.
      */
   bool getSentidoPraFrente();
 
   /**
-     * @param emXeque TRUE quando a peca estiver em xeque.
+     * @param emXeque boolean - nenhuma peça pode ser colocada em xeque por padrao.
      */
   virtual void setXeque(bool emXeque);
 
   /**
-     * @return retorna TRUE caso a peca esteja em Xeque.
-     */
-  bool getXeque();
+   * @param novaPosicao Posição de destino para a peça.
+   * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
+   */
+  bool setPosicao(Posicao *novaPosicao);
 
   /**
-     * @return inteiro representante do seu tipo de peça
-     */
-  int getCodigo();
+   * @param novaPosicao Posição de destino para a peça.
+   * @return Retorna 'true' se movimentou, false caso de algo errado.
+   */
+  bool movimentar(Posicao *novaPosicao, bool simulacao = false);
+
+  /**
+   * @param novaPosicao Posição de destino para a peça.
+   * @return Retorna 'true' se inseriu corretamente a posicao, false caso de algo errado.
+   */
+  bool removePosicao();
+
+  /**
+   * @param posicaoReiAdversario Posição de destino para a peça.
+   * @return Retorna 'true' se movimentou, false caso de algo errado.
+   */
+  bool verificaReiAdversarioXeque(Posicao *posicaoReiAdversario, vector<vector<Posicao *>> *posicoesTabuleiro);
 };
 
 #endif //_PECA_H
