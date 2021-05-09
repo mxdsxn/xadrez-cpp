@@ -2,43 +2,6 @@
 #include "./utils.h"
 #include <iostream>
 
-struct CoordenadasStr
-{
-  string x, y;
-};
-
-/**
- * Coverte coordenadas de uma posição para ser mostrada no console
- * @param posicao Posição que precisa ser formatada as coordenadas
- * @return Retorna uma lista de tamanho 2. Primeiro item X, segundo item, Y.
- * | Lista vazia caso as coordenadas não atendam a regra.
- */
-CoordenadasStr posicaoToCoordStr(Posicao *posicao)
-{
-  CoordenadasStr coordenadasFormatadas;
-
-  int x = posicao->getX();
-  int y = posicao->getY();
-
-  if ((x >= 0 && x < 8) && (y >= 0 && y < 8))
-  {
-    coordenadasFormatadas.y = to_string(y + 1);
-    coordenadasFormatadas.x = (char)(x + 65);
-  }
-
-  return coordenadasFormatadas;
-}
-
-/**
- * Formata coordenadas para o formato [A, 1]
- * @param coordenadas Coordenadas para serem formatadas.
- * @return Retorna uma string no formato [A, 1].
- */
-string formataCoordenadas(CoordenadasStr coordenadas)
-{
-  return "[" + coordenadas.x + ", " + coordenadas.y + "]";
-}
-
 PartidaTradicional::PartidaTradicional(string nomePrimeiroJogador, string nomeSegundoJogador) : Partida()
 {
   PecasPack *pecasBrancas = this->tabuleiro->getPecasBrancas();
@@ -105,7 +68,14 @@ bool PartidaTradicional::selecionarJogadasDisponiveis(Peca *pecaSelecionada)
   vector<vector<Posicao *>> *matrizPosicoesTabuleiro = this->tabuleiro->getTodasPosicoes();
   Posicao *jogadaSelecionada = nullptr;
 
-  jogadasDisponiveis = pecaSelecionada->getPosicoesValidas(matrizPosicoesTabuleiro);
+  // Envia para o pacote de pecas do adversario a peça selecionada, e assim, sao filtradas as jogadas que nao colocam o Rei em risco
+  PecasPack *pecasJogadorAdversario = ((!pecaSelecionada->getSentidoPraFrente())
+                                           ? this->primeiroJogador
+                                           : this->segundoJogador)
+                                          ->getPecas();
+
+  // Pede ao pacote de pecas adversario para verificar se algum movimentado da pecaSelecionada dará abertura para um Xeque
+  jogadasDisponiveis = pecasJogadorAdversario->validaRiscoXeque(pecaSelecionada);
 
   do
   {
@@ -115,6 +85,7 @@ bool PartidaTradicional::selecionarJogadasDisponiveis(Peca *pecaSelecionada)
               << formataCoordenadas(posicaoToCoordStr(pecaSelecionada->getPosicaoAtual()))
               << endl
               << endl;
+
     for (int indice = 0; indice < jogadasDisponiveis.size(); indice++)
     {
       Posicao *jogadaAtual = jogadasDisponiveis[indice];
@@ -128,7 +99,6 @@ bool PartidaTradicional::selecionarJogadasDisponiveis(Peca *pecaSelecionada)
     std::cout << endl;
     cin >> indiceJogadaSelecionada;
     cleanBuffer();
-
   } while (indiceJogadaSelecionada <= 0 || indiceJogadaSelecionada > jogadasDisponiveis.size());
 
   jogadaSelecionada = jogadasDisponiveis[indiceJogadaSelecionada - 1];
