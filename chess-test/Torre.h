@@ -11,7 +11,7 @@ public:
 
   /**
    * @param posicoesTabuleiro Ponteiro para a matriz de posicoes do tabuleiro
-   * @return Retorna lista de posições validas para o Torre, de acordo com sua regra de movimentação.
+   * @return Retorna lista de posições validas para a Torre, de acordo com sua regra de movimentação.
    */
   vector<Posicao *> getTodasJogadasDisponiveis(vector<vector<Posicao *>> *posicoesTabuleiro);
 };

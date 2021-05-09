@@ -22,17 +22,6 @@ vector<Posicao *> Torre::getTodasJogadasDisponiveis(vector<vector<Posicao *>> *p
     bool sentidoPraFrente = this->sentidoPraFrente;
     Posicao *posicaoAtualPeca = this->posicao;
 
-    /*cout << endl
-         << "Coordenada PecaAtual: " << this->getSimbolo() << endl
-         << " yPosicao: " << posicaoAtualPeca->getY() << endl
-         << " xPosicao: " << posicaoAtualPeca->getX() << endl;*/
-
-    /*cout << endl
-             << "Coordenada: " << endl
-             << " yPosicao: " << yPosicao << endl
-             << " xPosicao: " << xPosicao << endl;
-        cleanBuffer();*/
-
     yPosicao = posicaoAtualPeca->getY();
     // Percorre posicoes na mesma direçao horizontal - direita
     for (int indice = 1; indice < limiteTabuleiro; indice++)
