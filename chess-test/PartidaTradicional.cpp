@@ -26,7 +26,7 @@ Peca *PartidaTradicional::selecionarPecaDisponivel(bool primeiroJogador)
   int indicePecaSelecionada = 0;
 
   Jogador *jogadorAtual = primeiroJogador ? this->primeiroJogador : this->segundoJogador;
-  PecasPack *pecasJogadorAtual = jogadorAtual->getPecas();
+  PecasPack *pecasJogadorAtual = jogadorAtual->getPacotePecas();
   vector<Peca *> pecasDisponiveis = pecasJogadorAtual->getPecasDisponiveisJogadas();
   Peca *pecaSelecionada = nullptr;
 
@@ -72,7 +72,7 @@ bool PartidaTradicional::selecionarJogadasDisponiveis(Peca *pecaSelecionada)
   PecasPack *pecasJogadorAdversario = ((!pecaSelecionada->getSentidoPraFrente())
                                            ? this->primeiroJogador
                                            : this->segundoJogador)
-                                          ->getPecas();
+                                          ->getPacotePecas();
 
   // Pede ao pacote de pecas adversario para verificar se algum movimentado da pecaSelecionada dará abertura para um Xeque
   jogadasDisponiveis = pecasJogadorAdversario->getJogadasDisponiveisFiltrandoRiscoXeque(pecaSelecionada);

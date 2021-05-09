@@ -16,7 +16,7 @@ string Jogador::getNome()
   return nome;
 }
 
-PecasPack *Jogador::getPecas()
+PecasPack *Jogador::getPacotePecas()
 {
   PecasPack *pecas;
   if (this)
