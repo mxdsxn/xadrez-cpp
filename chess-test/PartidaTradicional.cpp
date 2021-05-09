@@ -27,7 +27,8 @@ Peca *PartidaTradicional::selecionarPecaDisponivel(bool primeiroJogador)
 
   Jogador *jogadorAtual = primeiroJogador ? this->primeiroJogador : this->segundoJogador;
   PecasPack *pecasJogadorAtual = jogadorAtual->getPacotePecas();
-  vector<Peca *> pecasDisponiveis = pecasJogadorAtual->getPecasDisponiveisJogadas();
+  vector<vector<Posicao *>> *matrizPosicoesTabuleiro = this->tabuleiro->getTodasPosicoes();
+  vector<Peca *> pecasDisponiveis = pecasJogadorAtual->getPecasDisponiveisJogadas(matrizPosicoesTabuleiro);
   Peca *pecaSelecionada = nullptr;
 
   do
@@ -158,6 +159,10 @@ void PartidaTradicional::iniciarPartida()
         if (reiJogadorAdversarioEmXeque)
         {
           jogadorAdversario->setXeque(true);
+        }
+        else
+        {
+          jogadorAdversario->setXeque(false);
         }
       }
 

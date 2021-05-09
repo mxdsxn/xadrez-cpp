@@ -130,3 +130,17 @@ bool Peca::verificaReiAdversarioXeque(Posicao *posicaoReiAdversario, vector<vect
   }
   return false;
 }
+
+bool Peca::verificaDisponibilidadeMovimentar(vector<vector<Posicao *>> *posicoesTabuleiro)
+{
+  if (this)
+  {
+    int numeroJogadasDisponiveis = this->getTodasJogadasDisponiveis(posicoesTabuleiro).size();
+    if (numeroJogadasDisponiveis > 0)
+    {
+      return true;
+    }
+  }
+
+  return false;
+}

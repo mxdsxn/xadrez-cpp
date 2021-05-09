@@ -31,14 +31,10 @@ public:
   Posicao *getPosicaoRei();
 
   /**
-     * @return Lista com todas as peças do pacote
-     */
-  vector<Peca *> getTodasPecas();
-
-  /**
+   * @param posicoesTabuleiro Matriz de posicoes do tabuleiro.
    * @return Lista de pecas disponiveis para executar jogada
    */
-  vector<Peca *> getPecasDisponiveisJogadas();
+  vector<Peca *> getPecasDisponiveisJogadas(vector<vector<Posicao *>> *posicoesTabuleiro);
 
   /**
      * Filtra jogadas possiveis para uma peça adversaria, para que a jogada nao coloque o rei adversario em xeque
@@ -70,4 +66,10 @@ public:
      * @return Retorna TRUE quando alguma das peças do pacote coloca o Rei adversario em Xeque.
      */
   bool verificaReiAdversarioXeque(Posicao *posicaoReiAdversario);
+
+private:
+  /**
+     * @return Lista com todas as peças do pacote
+     */
+  vector<Peca *> getTodasPecas();
 };

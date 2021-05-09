@@ -88,26 +88,28 @@ vector<Peca *> PecasPack::getTodasPecas()
   return todasPecas;
 }
 
-vector<Peca *> PecasPack::getPecasDisponiveisJogadas()
+vector<Peca *> PecasPack::getPecasDisponiveisJogadas(vector<vector<Posicao *>> *posicoesTabuleiro)
 {
   vector<Peca *> pecasDisponiveis;
+  vector<Peca *> todasPecas = this->getTodasPecas();
 
   // Caso o Rei esteja em Xeque, apenas ele é enviado como peça disponivel
   if (this->rei->getPosicaoAtual() != nullptr)
   {
-    pecasDisponiveis.push_back(this->rei);
     if (this->rei->getXeque())
     {
+      pecasDisponiveis.push_back(this->rei);
       return pecasDisponiveis;
     }
   }
 
-  for (int indice = 0; indice < this->peoes.size(); indice++)
+  // Caso contrario, todas as peças sao requisitadas e validadas, se estão disponiveis no tabuleiro ou foram capturadas
+  for (int indice = 0; indice < todasPecas.size(); indice++)
   {
-    Peca *peaoAtual = this->peoes[indice];
-    if (peaoAtual && peaoAtual->getPosicaoAtual() != nullptr)
+    Peca *pecaAtual = todasPecas[indice];
+    if (pecaAtual && pecaAtual->getPosicaoAtual() != nullptr && pecaAtual->verificaDisponibilidadeMovimentar(posicoesTabuleiro))
     {
-      pecasDisponiveis.push_back(peaoAtual);
+      pecasDisponiveis.push_back(pecaAtual);
     }
   }
 
@@ -247,12 +249,13 @@ bool PecasPack::verificaReiAdversarioXeque(Posicao *posicaoReiAdversario)
   {
     vector<Posicao *> jogadasDisponiveisTodasPecas;
     vector<vector<Posicao *>> *matrizPosicoesTabuleiro = this->tabuleiro->getTodasPosicoes();
+    vector<Peca *> todasPecas = this->getTodasPecas();
 
     // verifica se algum peao coloca o rei em xeque
-    for (int indice = 0; indice < this->peoes.size(); indice++)
+    for (int indice = 0; indice < todasPecas.size(); indice++)
     {
-      Peca *peaoAtual = this->peoes[indice];
-      bool pecaAtualColocaEmXeque = peaoAtual->verificaReiAdversarioXeque(posicaoReiAdversario, matrizPosicoesTabuleiro);
+      Peca *pecaAtual = todasPecas[indice];
+      bool pecaAtualColocaEmXeque = pecaAtual->verificaReiAdversarioXeque(posicaoReiAdversario, matrizPosicoesTabuleiro);
 
       // caso peao coloque o rei em xeque, returna TRUE
       if (pecaAtualColocaEmXeque)
