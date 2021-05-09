@@ -128,7 +128,7 @@ bool Peca::getXeque()
   return false;
 }
 
-bool Peca::getCodigo()
+int Peca::getCodigo()
 {
   return this->codigo;
 }

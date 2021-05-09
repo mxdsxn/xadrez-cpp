@@ -87,7 +87,7 @@ public:
   /**
      * @return inteiro representante do seu tipo de peça
      */
-  bool getCodigo();
+  int getCodigo();
 };
 
 #endif //_PECA_H
