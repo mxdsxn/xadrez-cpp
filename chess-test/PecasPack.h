@@ -12,6 +12,7 @@ class PecasPack
 private:
   string estilo;
   vector<Peca *> peoes;
+  vector<Peca *> torres;
   Peca *rei;
   Tabuleiro *tabuleiro;
   bool emXeque;

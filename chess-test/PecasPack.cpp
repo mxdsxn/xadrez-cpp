@@ -1,28 +1,29 @@
 #include "./PecasPack.h"
 #include "./Peao.h"
 #include "./Rei.h"
+#include "./Torre.h"
 #include <iostream>
 #include "./utils.h"
 
 PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
 {
   this->estilo = estilo;
+  this->tabuleiro = tabuleiro;
 
   // instancia os peoes
   for (int i = 1; i <= 8; i++)
   {
     Peao *novoPeao = new Peao(estilo, sentidoPraFrente);
     this->peoes.push_back(novoPeao);
-    this->tabuleiro = tabuleiro;
   }
 
+  // instancia os torres
+  for (int i = 1; i <= 2; i++)
+  {
+    Torre *novaTorre = new Torre(estilo, sentidoPraFrente);
+    this->torres.push_back(novaTorre);
+  }
   /*
-    // instancia os torres
-    for (int i = 1; i <= 2; i++)
-    {
-        Torre *novaTorre = new Torre(estilo);
-        this->torres.push_back(novaTorre);
-    }
 
     // instancia os bispos
     for (int i = 1; i <= 2; i++)
@@ -72,13 +73,14 @@ vector<Peca *> PecasPack::getTodasPecas()
     // peoes
     todasPecas.insert(todasPecas.end(), this->peoes.begin(), this->peoes.end());
 
+    // torres
+    todasPecas.insert(todasPecas.end(), this->torres.begin(), this->torres.end());
+
     // rei
     todasPecas.push_back(this->rei);
 
     // rainha
     //todasPecas.push_back(this->rainha);
-    // torres
-    //todasPecas.insert(todasPecas.end(),this->torres.begin(),this->torres.end());
     // cavalos
     //todasPecass.insert(todasPecas.end(),this->cavalos.begin(),this->cavalos.end());
     // bispos
@@ -218,14 +220,14 @@ void PecasPack::setPosicaoInicialRealeza(vector<Posicao *> *linhaInicialRealeza)
 {
   vector<Peca *> pecasRealeza;
 
-  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(this->torres[0]);
   pecasRealeza.push_back(nullptr);
   pecasRealeza.push_back(nullptr);
   pecasRealeza.push_back(nullptr);
   pecasRealeza.push_back(this->rei);
   pecasRealeza.push_back(nullptr);
   pecasRealeza.push_back(nullptr);
-  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(this->torres[1]);
 
   for (int indice = 0; indice < 8; indice++)
   {
