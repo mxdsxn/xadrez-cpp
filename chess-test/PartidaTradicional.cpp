@@ -27,7 +27,7 @@ Peca *PartidaTradicional::selecionarPecaDisponivel(bool primeiroJogador)
 
   Jogador *jogadorAtual = primeiroJogador ? this->primeiroJogador : this->segundoJogador;
   PecasPack *pecasJogadorAtual = jogadorAtual->getPecas();
-  vector<Peca *> pecasDisponiveis = pecasJogadorAtual->getPecasDisponiveis();
+  vector<Peca *> pecasDisponiveis = pecasJogadorAtual->getPecasDisponiveisJogadas();
   Peca *pecaSelecionada = nullptr;
 
   do

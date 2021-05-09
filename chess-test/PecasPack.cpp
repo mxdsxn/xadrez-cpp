@@ -143,7 +143,7 @@ vector<Posicao *> PecasPack::validaRiscoXeque(Peca *pecaSelecionadaAdversario)
   return jogadasFiltradasAdversario;
 }
 
-vector<Peca *> PecasPack::getPecasDisponiveis()
+vector<Peca *> PecasPack::getPecasDisponiveisJogadas()
 {
   vector<Peca *> pecasDisponiveis;
 

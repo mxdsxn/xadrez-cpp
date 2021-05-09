@@ -23,7 +23,7 @@ public:
   /**
    * @return Lista de pecas disponiveis para executar jogada
    */
-  vector<Peca *> getPecasDisponiveis();
+  vector<Peca *> getPecasDisponiveisJogadas();
 
   /**
      * @return Retorna `branco` ou `preto`.
