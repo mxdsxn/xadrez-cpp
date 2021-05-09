@@ -13,7 +13,7 @@ Peca::~Peca()
 {
 }
 
-bool Peca::movimentar(Posicao *novaPosicao)
+bool Peca::movimentar(Posicao *novaPosicao, bool simulacao)
 {
   if (this)
   {
@@ -23,7 +23,10 @@ bool Peca::movimentar(Posicao *novaPosicao)
     antigaPosicao->removePeca();                  // desvincula peça movimentada da antiga posicao
     novaPosicao->setPeca(this);                   // vincula peca movimentada à nova posicao
     this->setPosicao(novaPosicao);                // vincula nova posicao à peca movimentada
-    this->primeiraJogada = false;                 // remove a flag de primeiraJogada do peao
+
+    simulacao
+        ? this->primeiraJogada = this->primeiraJogada // nao altera primeiraJogada devido a demanda de movimentacoes reversiveis, usado para checar a possibilidades de xeque do jogo
+        : this->primeiraJogada = false;               // remove a flag de primeiraJogada da peca
 
     return true;
   }
@@ -103,7 +106,7 @@ bool Peca::getSentidoPraFrente()
 {
   if (this)
   {
-    this->sentidoPraFrente;
+    return this->sentidoPraFrente;
   }
   return false;
 }

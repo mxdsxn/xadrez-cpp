@@ -34,7 +34,7 @@ public:
    * @param novaPosicao Posição de destino para a peça.
    * @return Retorna 'true' se movimentou, false caso de algo errado.
    */
-  bool movimentar(Posicao *novaPosicao);
+  bool movimentar(Posicao *novaPosicao, bool simulacao = false);
 
   /**
    * @param posicaoReiAdversario Posição de destino para a peça.
