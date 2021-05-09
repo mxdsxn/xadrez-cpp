@@ -21,7 +21,7 @@ public:
   ~PecasPack();
 
   /**
-   * @return Lista de posicoes com as peças pecasDisponiveis
+   * @return Lista de pecas disponiveis para executar jogada
    */
   vector<Peca *> getPecasDisponiveis();
 
@@ -56,4 +56,14 @@ public:
      * @param emXeque TRUE quando o rei estiver em xeque.
      */
   void setXeque(bool emXeque);
+
+  /**
+     * Faz uma analise em uma lista de possiveis jogadas, filtrando por jogadas que não deixem o Rei em xeque.
+     */
+  vector<Posicao *> validaRiscoXeque(Peca *pecaMovimentar);
+
+  /**
+     * @return Lista com todas as peças disponiveis no tabuleiro
+     */
+  vector<Peca *> todasPecas();
 };

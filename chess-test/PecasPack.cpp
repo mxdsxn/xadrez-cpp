@@ -43,8 +43,110 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
   this->rei = new Rei(estilo, sentidoPraFrente);
 }
 
-PecasPack::~PecasPack()
+PecasPack::~PecasPack() {}
+
+vector<Peca *> PecasPack::todasPecas()
 {
+  vector<Peca *> todasPecas;
+
+  if (this)
+  {
+    //todos os peoes validos - ou seja, o que nao foram capturados
+    for (int indice; indice < this->peoes.size(); indice++)
+    {
+      Peca *peaoAtual = this->peoes[indice];
+      if (peaoAtual->getPosicaoAtual() != nullptr)
+      {
+        todasPecas.push_back(peaoAtual);
+      }
+    }
+
+    // rei
+    if (this->rei->getPosicaoAtual() != nullptr)
+    {
+      todasPecas.push_back(this->rei);
+    }
+
+    // rainha
+    // torres
+    // cavalos
+    // bispos
+  }
+
+  return todasPecas;
+}
+
+vector<Posicao *> PecasPack::validaRiscoXeque(Peca *pecaSelecionadaAdversario)
+{
+  vector<vector<Posicao *>> *matrizPosicoesTabuleiro = this->tabuleiro->getTodasPosicoes();
+  vector<Posicao *> jogadasDisponiveisAdversario = pecaSelecionadaAdversario->getPosicoesValidas(matrizPosicoesTabuleiro);
+  vector<Posicao *> jogadasFiltradasAdversario;
+
+  Tabuleiro *tabuleiro = this->tabuleiro;
+  PecasPack *pecasAdversario = (pecaSelecionadaAdversario->getSentidoPraFrente())
+                                   ? tabuleiro->getPecasBrancas()
+                                   : tabuleiro->getPecasPretas();
+
+  /*
+  cout << ">estilo pacote analisando: " << this->getEstilo() << endl;
+  cout << "*estilo pecaSelecionada: " << pecaSelecionadaAdversario->getEstilo() << endl;
+  cout << "*estilo pacote pecaSelecionada: " << pecasAdversario->getEstilo() << endl;
+  cout << "*sentido pecaSelecionada: " << ((pecaSelecionadaAdversario->getSentidoPraFrente()) ? "frente" : "tras") << endl;
+  */
+
+  // Posicao atual do rei adversario. Rei esse que PODE VIR correr risco de xeque, caso uma jogada nao permitida seja executada
+  Posicao *posicaoReiAdversario = nullptr;
+
+  for (int indice = 0; indice < jogadasDisponiveisAdversario.size(); indice++)
+  {
+
+    Posicao *possivelJogadaAdversario = jogadasDisponiveisAdversario[indice];
+
+    Peca *pecaPossivelJogadaTmp = possivelJogadaAdversario->getPecaAtual();
+    Posicao *antigaPosicaoPecaSelecionadaAdversarioTmp = pecaSelecionadaAdversario->getPosicaoAtual();
+
+    pecaSelecionadaAdversario->movimentar(possivelJogadaAdversario);
+    //this->tabuleiro->show(pecaSelecionadaAdversario->getSentidoPraFrente());
+
+    posicaoReiAdversario = pecasAdversario->getPosicaoRei();
+
+    /*
+    cout << "endereco pecaSelecionada "
+         << pecaSelecionadaAdversario << " "
+         << pecaSelecionadaAdversario->getCodigo() << " "
+         << pecaSelecionadaAdversario->getEstilo() << " "
+         << pecaSelecionadaAdversario->getSimbolo() << " "
+         << endl;
+
+    cout << "endereco rei adversario "
+         << posicaoReiAdversario->getPecaAtual() << " "
+         << posicaoReiAdversario->getPecaAtual()->getCodigo() << " "
+         << posicaoReiAdversario->getPecaAtual()->getEstilo() << " "
+         << posicaoReiAdversario->getPecaAtual()->getSimbolo() << " "
+         << endl;
+
+    cout << "jogada em analise: " << formataCoordenadas(posicaoToCoordStr(possivelJogadaAdversario)) << endl;
+    */
+
+    bool reiEmXeque = this->verificaXequeAdversario(posicaoReiAdversario);
+    if (!reiEmXeque)
+    {
+      jogadasFiltradasAdversario.push_back(possivelJogadaAdversario);
+    }
+
+    /*
+    cout << "Rei fica em xeque apos essa jogada: " << (reiEmXeque ? "sim" : "nao") << endl;
+    cleanBuffer();
+    */
+
+    // Restaura simulacao
+    pecaSelecionadaAdversario->movimentar(antigaPosicaoPecaSelecionadaAdversarioTmp);
+    pecaPossivelJogadaTmp->movimentar(possivelJogadaAdversario);
+    //this->tabuleiro->show(!pecaSelecionadaAdversario->getSentidoPraFrente());
+    //cleanBuffer();
+  }
+
+  return jogadasFiltradasAdversario;
 }
 
 vector<Peca *> PecasPack::getPecasDisponiveis()
