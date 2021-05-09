@@ -45,7 +45,25 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
 
 PecasPack::~PecasPack() {}
 
-vector<Peca *> PecasPack::todasPecas()
+string PecasPack::getEstilo()
+{
+  if (this)
+  {
+    return this->estilo;
+  }
+  return "";
+}
+
+Posicao *PecasPack::getPosicaoRei()
+{
+  if (this)
+  {
+    return this->rei->getPosicaoAtual();
+  }
+  return nullptr;
+}
+
+vector<Peca *> PecasPack::getTodasPecas()
 {
   vector<Peca *> todasPecas;
 
@@ -70,7 +88,33 @@ vector<Peca *> PecasPack::todasPecas()
   return todasPecas;
 }
 
-vector<Posicao *> PecasPack::validaRiscoXeque(Peca *pecaSelecionadaAdversario)
+vector<Peca *> PecasPack::getPecasDisponiveisJogadas()
+{
+  vector<Peca *> pecasDisponiveis;
+
+  // Caso o Rei esteja em Xeque, apenas ele é enviado como peça disponivel
+  if (this->rei->getPosicaoAtual() != nullptr)
+  {
+    pecasDisponiveis.push_back(this->rei);
+    if (this->rei->getXeque())
+    {
+      return pecasDisponiveis;
+    }
+  }
+
+  for (int indice = 0; indice < this->peoes.size(); indice++)
+  {
+    Peca *peaoAtual = this->peoes[indice];
+    if (peaoAtual && peaoAtual->getPosicaoAtual() != nullptr)
+    {
+      pecasDisponiveis.push_back(peaoAtual);
+    }
+  }
+
+  return pecasDisponiveis;
+}
+
+vector<Posicao *> PecasPack::getJogadasDisponiveisFiltrandoRiscoXeque(Peca *pecaSelecionadaAdversario)
 {
   vector<vector<Posicao *>> *matrizPosicoesTabuleiro = this->tabuleiro->getTodasPosicoes();
   vector<Posicao *> jogadasDisponiveisAdversario = pecaSelecionadaAdversario->getPosicoesValidas(matrizPosicoesTabuleiro);
@@ -122,7 +166,7 @@ vector<Posicao *> PecasPack::validaRiscoXeque(Peca *pecaSelecionadaAdversario)
     cout << "jogada em analise: " << formataCoordenadas(posicaoToCoordStr(possivelJogadaAdversario)) << endl;
     */
 
-    bool reiEmXeque = this->verificaXequeAdversario(posicaoReiAdversario);
+    bool reiEmXeque = this->verificaReiAdversarioXeque(posicaoReiAdversario);
     if (!reiEmXeque)
     {
       jogadasFiltradasAdversario.push_back(possivelJogadaAdversario);
@@ -143,39 +187,28 @@ vector<Posicao *> PecasPack::validaRiscoXeque(Peca *pecaSelecionadaAdversario)
   return jogadasFiltradasAdversario;
 }
 
-vector<Peca *> PecasPack::getPecasDisponiveisJogadas()
-{
-  vector<Peca *> pecasDisponiveis;
-
-  // Caso o Rei esteja em Xeque, apenas ele é enviado como peça disponivel
-  if (this->rei->getPosicaoAtual() != nullptr)
-  {
-    pecasDisponiveis.push_back(this->rei);
-    if (this->rei->getXeque())
-    {
-      return pecasDisponiveis;
-    }
-  }
-
-  for (int indice = 0; indice < this->peoes.size(); indice++)
-  {
-    Peca *peaoAtual = this->peoes[indice];
-    if (peaoAtual && peaoAtual->getPosicaoAtual() != nullptr)
-    {
-      pecasDisponiveis.push_back(peaoAtual);
-    }
-  }
-
-  return pecasDisponiveis;
-}
-
-string PecasPack::getEstilo()
+void PecasPack::setXeque(bool emXeque)
 {
   if (this)
   {
-    return this->estilo;
+    this->emXeque = emXeque;
+    this->rei->setXeque(emXeque);
   }
-  return "";
+}
+
+void PecasPack::setPosicaoInicialPeoes(vector<Posicao *> *linhaInicialPeoes)
+{
+  vector<Peca *> *peoes = &(this->peoes);
+  for (int indice = 0; indice < 8; indice++)
+  {
+    Posicao *posicaoAtual = (*linhaInicialPeoes)[indice];
+    Peca *pecaAtual = (*peoes)[indice];
+    //setta peça na posicao
+    posicaoAtual->setPeca(pecaAtual);
+
+    //setta posicao na peça
+    pecaAtual->setPosicao(posicaoAtual);
+  }
 }
 
 void PecasPack::setPosicaoInicialRealeza(vector<Posicao *> *linhaInicialRealeza)
@@ -207,31 +240,7 @@ void PecasPack::setPosicaoInicialRealeza(vector<Posicao *> *linhaInicialRealeza)
   }
 }
 
-void PecasPack::setPosicaoInicialPeoes(vector<Posicao *> *linhaInicialPeoes)
-{
-  vector<Peca *> *peoes = &(this->peoes);
-  for (int indice = 0; indice < 8; indice++)
-  {
-    Posicao *posicaoAtual = (*linhaInicialPeoes)[indice];
-    Peca *pecaAtual = (*peoes)[indice];
-    //setta peça na posicao
-    posicaoAtual->setPeca(pecaAtual);
-
-    //setta posicao na peça
-    pecaAtual->setPosicao(posicaoAtual);
-  }
-}
-
-Posicao *PecasPack::getPosicaoRei()
-{
-  if (this)
-  {
-    return this->rei->getPosicaoAtual();
-  }
-  return nullptr;
-}
-
-bool PecasPack::verificaXequeAdversario(Posicao *posicaoReiAdversario)
+bool PecasPack::verificaReiAdversarioXeque(Posicao *posicaoReiAdversario)
 {
   if (this)
   {
@@ -242,7 +251,7 @@ bool PecasPack::verificaXequeAdversario(Posicao *posicaoReiAdversario)
     for (int indice = 0; indice < this->peoes.size(); indice++)
     {
       Peca *peaoAtual = this->peoes[indice];
-      bool pecaAtualColocaEmXeque = peaoAtual->verificaXequeAdversario(posicaoReiAdversario, matrizPosicoesTabuleiro);
+      bool pecaAtualColocaEmXeque = peaoAtual->verificaReiAdversarioXeque(posicaoReiAdversario, matrizPosicoesTabuleiro);
 
       // caso peao coloque o rei em xeque, returna TRUE
       if (pecaAtualColocaEmXeque)
@@ -252,13 +261,4 @@ bool PecasPack::verificaXequeAdversario(Posicao *posicaoReiAdversario)
     }
   }
   return false;
-}
-
-void PecasPack::setXeque(bool emXeque)
-{
-  if (this)
-  {
-    this->emXeque = emXeque;
-    this->rei->setXeque(emXeque);
-  }
 }

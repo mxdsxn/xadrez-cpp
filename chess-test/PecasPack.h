@@ -21,11 +21,6 @@ public:
   ~PecasPack();
 
   /**
-   * @return Lista de pecas disponiveis para executar jogada
-   */
-  vector<Peca *> getPecasDisponiveisJogadas();
-
-  /**
      * @return Retorna `branco` ou `preto`.
      */
   string getEstilo();
@@ -36,9 +31,26 @@ public:
   Posicao *getPosicaoRei();
 
   /**
-     * @return Retorna TRUE quando alguma das peças do pacote coloca o Rei adversario em Xeque.
+     * @return Lista com todas as peças do pacote
      */
-  bool verificaXequeAdversario(Posicao *posicaoReiAdversario);
+  vector<Peca *> getTodasPecas();
+
+  /**
+   * @return Lista de pecas disponiveis para executar jogada
+   */
+  vector<Peca *> getPecasDisponiveisJogadas();
+
+  /**
+     * Filtra jogadas possiveis para uma peça adversaria, para que a jogada nao coloque o rei adversario em xeque
+     * @param pecaSelecionadaAdversario Peca em que o jogador ADVERSARIO selecionou para movimentar
+     * @return Lista de jogadas para a pecaSelecionadaAdversario, jogadas essas que nao coloquem o ReiAdversario em Xeque
+     */
+  vector<Posicao *> getJogadasDisponiveisFiltrandoRiscoXeque(Peca *pecaSelecionadaAdversario);
+
+  /**
+     * @param emXeque TRUE quando o rei estiver em xeque.
+     */
+  void setXeque(bool emXeque);
 
   /**
      * Setta posicoes inciais para os peoes.
@@ -53,17 +65,9 @@ public:
   void setPosicaoInicialRealeza(vector<Posicao *> *linhaInicialRealeza);
 
   /**
-     * @param emXeque TRUE quando o rei estiver em xeque.
+     * Verifica se o pacote adversario está com o rei em xeque
+     * @param posicaoReiAdversario posição do rei adversario
+     * @return Retorna TRUE quando alguma das peças do pacote coloca o Rei adversario em Xeque.
      */
-  void setXeque(bool emXeque);
-
-  /**
-     * Faz uma analise em uma lista de possiveis jogadas, filtrando por jogadas que não deixem o Rei em xeque.
-     */
-  vector<Posicao *> validaRiscoXeque(Peca *pecaMovimentar);
-
-  /**
-     * @return Lista com todas as peças do pacote
-     */
-  vector<Peca *> todasPecas();
+  bool verificaReiAdversarioXeque(Posicao *posicaoReiAdversario);
 };
