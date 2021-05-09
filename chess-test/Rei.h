@@ -19,4 +19,11 @@ public:
      * @param emXeque TRUE quando a peca estiver em xeque.
      */
   void setXeque(bool emXeque);
+
+private:
+  /**
+   * @param posicoesTabuleiro Ponteiro para a matriz de posicoes do tabuleiro
+   * @return Retorna TRUE quando a jogada irá colocar o Rei em Xeque.
+   */
+  bool validaJogadaXeque(vector<vector<Posicao *>> *posicoesTabuleiro, Posicao *jogadaPretendida);
 };

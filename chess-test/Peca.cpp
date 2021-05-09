@@ -124,3 +124,8 @@ bool Peca::getXeque()
   }
   return false;
 }
+
+bool Peca::getCodigo()
+{
+  return this->codigo;
+}

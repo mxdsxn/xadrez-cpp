@@ -17,6 +17,7 @@ protected:
   string estilo;
   string simbolo;
   bool emXeque;
+  int codigo;
 
 public:
   Posicao *posicao;
@@ -82,6 +83,11 @@ public:
      * @return retorna TRUE caso a peca esteja em Xeque.
      */
   bool getXeque();
+
+  /**
+     * @return inteiro representante do seu tipo de peça
+     */
+  bool getCodigo();
 };
 
 #endif //_PECA_H
