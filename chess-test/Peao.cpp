@@ -7,6 +7,7 @@ Peao::Peao(string estilo, bool sentidoPraFrente) : Peca(estilo, sentidoPraFrente
 {
   this->simbolo = this->estilo == "preto" ? "♙" : "♟";
   this->primeiraJogada = true;
+  this->codigo = 6;
 }
 Peao::~Peao() {}
 
