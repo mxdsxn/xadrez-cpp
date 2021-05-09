@@ -63,7 +63,7 @@ public:
   vector<Posicao *> validaRiscoXeque(Peca *pecaMovimentar);
 
   /**
-     * @return Lista com todas as peças disponiveis no tabuleiro
+     * @return Lista com todas as peças do pacote
      */
   vector<Peca *> todasPecas();
 };

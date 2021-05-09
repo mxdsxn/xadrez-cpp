@@ -51,26 +51,20 @@ vector<Peca *> PecasPack::todasPecas()
 
   if (this)
   {
-    //todos os peoes validos - ou seja, o que nao foram capturados
-    for (int indice; indice < this->peoes.size(); indice++)
-    {
-      Peca *peaoAtual = this->peoes[indice];
-      if (peaoAtual->getPosicaoAtual() != nullptr)
-      {
-        todasPecas.push_back(peaoAtual);
-      }
-    }
+    // peoes
+    todasPecas.insert(todasPecas.end(), this->peoes.begin(), this->peoes.end());
 
     // rei
-    if (this->rei->getPosicaoAtual() != nullptr)
-    {
-      todasPecas.push_back(this->rei);
-    }
+    todasPecas.push_back(this->rei);
 
     // rainha
+    //todasPecas.push_back(this->rainha);
     // torres
+    //todasPecas.insert(todasPecas.end(),this->torres.begin(),this->torres.end());
     // cavalos
+    //todasPecass.insert(todasPecas.end(),this->cavalos.begin(),this->cavalos.end());
     // bispos
+    //todasPecas.insert(todasPecas.end(),this->bispos.begin(),this->bispos.end());
   }
 
   return todasPecas;
