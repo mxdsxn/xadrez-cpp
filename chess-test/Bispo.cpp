@@ -22,64 +22,13 @@ vector<Posicao *> Bispo::getTodasJogadasDisponiveis(vector<vector<Posicao *>> *p
     bool sentidoPraFrente = this->sentidoPraFrente;
     Posicao *posicaoAtualPeca = this->posicao;
 
-    yPosicao = posicaoAtualPeca->getY();
-    // Percorre posicoes na mesma direçao horizontal - direita
-    for (int indice = 1; indice < limiteTabuleiro; indice++)
-    {
-      xPosicao = posicaoAtualPeca->getX() + indice;
-
-      if ((xPosicao >= 0 && xPosicao < limiteTabuleiro))
-      {
-        Posicao *posicaoPossivelJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
-        Peca *pecaPosicaoPossivelJogada = posicaoPossivelJogada->getPecaAtual();
-
-        if (pecaPosicaoPossivelJogada == nullptr)
-        {
-          posicoesValidas.push_back(posicaoPossivelJogada);
-        }
-        else
-        {
-          if (pecaPosicaoPossivelJogada->getEstilo() != this->estilo)
-          {
-            posicoesValidas.push_back(posicaoPossivelJogada);
-          }
-          break;
-        }
-      }
-    }
-
-    // Percorre posicoes na mesma direçao horizontal - esquerda
-    for (int indice = 1; indice < limiteTabuleiro; indice++)
-    {
-      xPosicao = posicaoAtualPeca->getX() - indice;
-
-      if ((xPosicao >= 0 && xPosicao < limiteTabuleiro))
-      {
-        Posicao *posicaoPossivelJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
-        Peca *pecaPosicaoPossivelJogada = posicaoPossivelJogada->getPecaAtual();
-
-        if (pecaPosicaoPossivelJogada == nullptr)
-        {
-          posicoesValidas.push_back(posicaoPossivelJogada);
-        }
-        else
-        {
-          if (pecaPosicaoPossivelJogada->getEstilo() != this->estilo)
-          {
-            posicoesValidas.push_back(posicaoPossivelJogada);
-          }
-          break;
-        }
-      }
-    }
-
-    xPosicao = posicaoAtualPeca->getX();
-    // Percorre posicoes na mesma direçao vertical - frente
+    // Percorre posicoes na mesma direçao diagonal - direita/frente
     for (int indice = 1; indice < limiteTabuleiro; indice++)
     {
       yPosicao = posicaoAtualPeca->getY() + indice;
+      xPosicao = posicaoAtualPeca->getX() + indice;
 
-      if ((yPosicao >= 0 && yPosicao < limiteTabuleiro))
+      if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro))
       {
         Posicao *posicaoPossivelJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
         Peca *pecaPosicaoPossivelJogada = posicaoPossivelJogada->getPecaAtual();
@@ -99,12 +48,65 @@ vector<Posicao *> Bispo::getTodasJogadasDisponiveis(vector<vector<Posicao *>> *p
       }
     }
 
-    // Percorre posicoes na mesma direçao vertical - atras
+    // Percorre posicoes na mesma direçao horizontal - esquerda/frente
+    for (int indice = 1; indice < limiteTabuleiro; indice++)
+    {
+      yPosicao = posicaoAtualPeca->getY() + indice;
+      xPosicao = posicaoAtualPeca->getX() - indice;
+
+      if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro))
+      {
+        Posicao *posicaoPossivelJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
+        Peca *pecaPosicaoPossivelJogada = posicaoPossivelJogada->getPecaAtual();
+
+        if (pecaPosicaoPossivelJogada == nullptr)
+        {
+          posicoesValidas.push_back(posicaoPossivelJogada);
+        }
+        else
+        {
+          if (pecaPosicaoPossivelJogada->getEstilo() != this->estilo)
+          {
+            posicoesValidas.push_back(posicaoPossivelJogada);
+          }
+          break;
+        }
+      }
+    }
+
+    // Percorre posicoes na mesma direçao diagonal - direita/atras
     for (int indice = 1; indice < limiteTabuleiro; indice++)
     {
       yPosicao = posicaoAtualPeca->getY() - indice;
+      xPosicao = posicaoAtualPeca->getX() + indice;
 
-      if ((yPosicao >= 0 && yPosicao < limiteTabuleiro))
+      if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro))
+      {
+        Posicao *posicaoPossivelJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
+        Peca *pecaPosicaoPossivelJogada = posicaoPossivelJogada->getPecaAtual();
+
+        if (pecaPosicaoPossivelJogada == nullptr)
+        {
+          posicoesValidas.push_back(posicaoPossivelJogada);
+        }
+        else
+        {
+          if (pecaPosicaoPossivelJogada->getEstilo() != this->estilo)
+          {
+            posicoesValidas.push_back(posicaoPossivelJogada);
+          }
+          break;
+        }
+      }
+    }
+
+    // Percorre posicoes na mesma direçao horizontal - esquerda/atras
+    for (int indice = 1; indice < limiteTabuleiro; indice++)
+    {
+      yPosicao = posicaoAtualPeca->getY() - indice;
+      xPosicao = posicaoAtualPeca->getX() - indice;
+
+      if ((yPosicao >= 0 && yPosicao < limiteTabuleiro) && (xPosicao >= 0 && xPosicao < limiteTabuleiro))
       {
         Posicao *posicaoPossivelJogada = (*posicoesTabuleiro)[yPosicao][xPosicao];
         Peca *pecaPosicaoPossivelJogada = posicaoPossivelJogada->getPecaAtual();
