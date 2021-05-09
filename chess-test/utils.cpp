@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "./Posicao.h"
 
 #include "./utils.h"
 
@@ -18,4 +19,25 @@ void cleanBuffer()
 {
   std::string buffer;
   getline(std::cin, buffer);
+}
+
+CoordenadasStr posicaoToCoordStr(Posicao *posicao)
+{
+  CoordenadasStr coordenadasFormatadas;
+
+  int x = posicao->getX();
+  int y = posicao->getY();
+
+  if ((x >= 0 && x < 8) && (y >= 0 && y < 8))
+  {
+    coordenadasFormatadas.y = to_string(y + 1);
+    coordenadasFormatadas.x = (char)(x + 65);
+  }
+
+  return coordenadasFormatadas;
+}
+
+string formataCoordenadas(CoordenadasStr coordenadas)
+{
+  return "[" + coordenadas.x + ", " + coordenadas.y + "]";
 }
