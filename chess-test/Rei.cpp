@@ -62,10 +62,7 @@ vector<Posicao *> Rei::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTab
 
         if ((pecaPosicaoPossivelJogada->getEstilo() != this->estilo) || (pecaPosicaoPossivelJogada == nullptr))
         {
-          if (!validaJogadaXeque(posicoesTabuleiro, posicaoPossivelJogada))
-          {
-            posicoesValidas.push_back(posicaoPossivelJogada);
-          }
+          posicoesValidas.push_back(posicaoPossivelJogada);
         }
       }
     }
@@ -82,10 +79,7 @@ vector<Posicao *> Rei::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTab
 
         if ((pecaPosicaoPossivelJogada->getEstilo() != this->estilo) || (pecaPosicaoPossivelJogada == nullptr))
         {
-          if (!validaJogadaXeque(posicoesTabuleiro, posicaoPossivelJogada))
-          {
-            posicoesValidas.push_back(posicaoPossivelJogada);
-          }
+          posicoesValidas.push_back(posicaoPossivelJogada);
         }
       }
     }
@@ -101,10 +95,7 @@ vector<Posicao *> Rei::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTab
 
       if ((pecaPosicaoPossivelJogada->getEstilo() != this->estilo) || (pecaPosicaoPossivelJogada == nullptr))
       {
-        if (!validaJogadaXeque(posicoesTabuleiro, posicaoPossivelJogada))
-        {
-          posicoesValidas.push_back(posicaoPossivelJogada);
-        }
+        posicoesValidas.push_back(posicaoPossivelJogada);
       }
     }
 
@@ -116,10 +107,7 @@ vector<Posicao *> Rei::getPosicoesValidas(vector<vector<Posicao *>> *posicoesTab
 
       if ((pecaPosicaoPossivelJogada->getEstilo() != this->estilo) || (pecaPosicaoPossivelJogada == nullptr))
       {
-        if (!validaJogadaXeque(posicoesTabuleiro, posicaoPossivelJogada))
-        {
-          posicoesValidas.push_back(posicaoPossivelJogada);
-        }
+        posicoesValidas.push_back(posicaoPossivelJogada);
       }
     }
   }
