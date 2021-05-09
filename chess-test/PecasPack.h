@@ -15,6 +15,7 @@ private:
   vector<Peca *> torres;
   vector<Peca *> bispos;
   Peca *rei;
+  Peca *rainha;
   Tabuleiro *tabuleiro;
   bool emXeque;
 

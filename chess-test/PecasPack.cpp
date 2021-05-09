@@ -1,6 +1,7 @@
 #include "./PecasPack.h"
 #include "./Peao.h"
 #include "./Rei.h"
+#include "./Rainha.h"
 #include "./Torre.h"
 #include "./Bispo.h"
 #include <iostream>
@@ -38,11 +39,11 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
     {
         Cavalo *novoCavalo = new Cavalo(estilo);
         this->cavalos.push_back(novoCavalo);
-    }
+    }*/
 
-    // instancia rei e rainha
-    this->rainha = new Rainha(estilo);*/
+  // instancia rei e rainha
   this->rei = new Rei(estilo, sentidoPraFrente);
+  this->rainha = new Rainha(estilo, sentidoPraFrente);
 }
 
 PecasPack::~PecasPack() {}
@@ -77,15 +78,16 @@ vector<Peca *> PecasPack::getTodasPecas()
     // torres
     todasPecas.insert(todasPecas.end(), this->torres.begin(), this->torres.end());
 
-    // rei
-    todasPecas.push_back(this->rei);
+    // bispos
+    todasPecas.insert(todasPecas.end(), this->bispos.begin(), this->bispos.end());
 
-    // rainha
-    //todasPecas.push_back(this->rainha);
     // cavalos
     //todasPecass.insert(todasPecas.end(),this->cavalos.begin(),this->cavalos.end());
-    // bispos
-    //todasPecas.insert(todasPecas.end(),this->bispos.begin(),this->bispos.end());
+
+    // rei
+    todasPecas.push_back(this->rei);
+    // rainha
+    todasPecas.push_back(this->rainha);
   }
 
   return todasPecas;
@@ -224,7 +226,7 @@ void PecasPack::setPosicaoInicialRealeza(vector<Posicao *> *linhaInicialRealeza)
   pecasRealeza.push_back(this->torres[0]);
   pecasRealeza.push_back(nullptr);
   pecasRealeza.push_back(this->bispos[0]);
-  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(this->rainha);
   pecasRealeza.push_back(this->rei);
   pecasRealeza.push_back(this->bispos[1]);
   pecasRealeza.push_back(nullptr);
