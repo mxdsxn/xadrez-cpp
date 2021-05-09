@@ -2,6 +2,7 @@
 #include "./Peao.h"
 #include "./Rei.h"
 #include "./Torre.h"
+#include "./Bispo.h"
 #include <iostream>
 #include "./utils.h"
 
@@ -23,15 +24,15 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
     Torre *novaTorre = new Torre(estilo, sentidoPraFrente);
     this->torres.push_back(novaTorre);
   }
+
+  // instancia os bispos
+  for (int i = 1; i <= 2; i++)
+  {
+    Bispo *novoBispo = new Bispo(estilo, sentidoPraFrente);
+    this->bispos.push_back(novoBispo);
+  }
+
   /*
-
-    // instancia os bispos
-    for (int i = 1; i <= 2; i++)
-    {
-        Bispo *novoBispo = new Bispo(estilo);
-        this->bispos.push_back(novoBispo);
-    }
-
     // instancia os cavalos
     for (int i = 1; i <= 2; i++)
     {
@@ -222,10 +223,10 @@ void PecasPack::setPosicaoInicialRealeza(vector<Posicao *> *linhaInicialRealeza)
 
   pecasRealeza.push_back(this->torres[0]);
   pecasRealeza.push_back(nullptr);
-  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(this->bispos[0]);
   pecasRealeza.push_back(nullptr);
   pecasRealeza.push_back(this->rei);
-  pecasRealeza.push_back(nullptr);
+  pecasRealeza.push_back(this->bispos[1]);
   pecasRealeza.push_back(nullptr);
   pecasRealeza.push_back(this->torres[1]);
 

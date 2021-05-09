@@ -13,6 +13,7 @@ private:
   string estilo;
   vector<Peca *> peoes;
   vector<Peca *> torres;
+  vector<Peca *> bispos;
   Peca *rei;
   Tabuleiro *tabuleiro;
   bool emXeque;
