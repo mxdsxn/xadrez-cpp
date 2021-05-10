@@ -49,13 +49,23 @@ Peca *PartidaTradicional::selecionarPecaDisponivel(bool primeiroJogador)
                 << formataCoordenadas(posicaoToCoordStr(posicaoAtual))
                 << endl;
     }
-    std::cout << endl;
+
+    std::cout << endl
+              << "0 - Pausar"
+              << endl;
     cin >> indicePecaSelecionada;
     cleanBuffer();
 
-  } while (indicePecaSelecionada <= 0 || indicePecaSelecionada > pecasDisponiveis.size());
+  } while (indicePecaSelecionada < 0 || indicePecaSelecionada > pecasDisponiveis.size());
 
-  pecaSelecionada = pecasDisponiveis[indicePecaSelecionada - 1];
+  if (indicePecaSelecionada != 0)
+  {
+    pecaSelecionada = pecasDisponiveis[indicePecaSelecionada - 1];
+  }
+  else
+  {
+    pecaSelecionada = nullptr;
+  }
 
   clear();
   return pecaSelecionada;
@@ -97,14 +107,23 @@ bool PartidaTradicional::selecionarJogadasDisponiveis(Peca *pecaSelecionada)
                 << endl;
     }
 
-    std::cout << endl;
+    std::cout << endl
+              << "0 - Voltar"
+              << endl;
     cin >> indiceJogadaSelecionada;
     cleanBuffer();
-  } while (indiceJogadaSelecionada <= 0 || indiceJogadaSelecionada > jogadasDisponiveis.size());
+  } while (indiceJogadaSelecionada < 0 || indiceJogadaSelecionada > jogadasDisponiveis.size());
 
-  jogadaSelecionada = jogadasDisponiveis[indiceJogadaSelecionada - 1];
+  if (indiceJogadaSelecionada != 0)
+  {
 
-  resultado = pecaSelecionada->movimentar(jogadaSelecionada);
+    jogadaSelecionada = jogadasDisponiveis[indiceJogadaSelecionada - 1];
+    resultado = pecaSelecionada->movimentar(jogadaSelecionada);
+  }
+  else
+  {
+    resultado = false;
+  }
 
   clear();
   return resultado;
@@ -123,6 +142,7 @@ void PartidaTradicional::iniciarPartida()
   if (this)
   {
     bool jogoEncerrado = false;
+    bool salvarJogo = false;
     bool turnoPrimeiroJogador = this->turnoPrimeiroJogador;
 
     Jogador *jogadorAtual = nullptr;
@@ -145,35 +165,70 @@ void PartidaTradicional::iniciarPartida()
       this->mostrarTabuleiro(turnoPrimeiroJogador);
       pecaSelecionada = this->selecionarPecaDisponivel(turnoPrimeiroJogador);
 
-      mostrarJogadorRodadaAtual(jogadorAtual);
-      this->mostrarTabuleiro(turnoPrimeiroJogador);
-      resultadoJogada = this->selecionarJogadasDisponiveis(pecaSelecionada);
-
-      mostrarJogadorRodadaAtual(jogadorAtual);
-      this->mostrarTabuleiro(turnoPrimeiroJogador);
-
-      if (resultadoJogada)
+      if (pecaSelecionada)
       {
-        posicaoReiJogadorAdversario = jogadorAdversario->getPosicaoRei();
-        reiJogadorAdversarioEmXeque = jogadorAtual->verificaReiAdversarioXeque(posicaoReiJogadorAdversario);
-        if (reiJogadorAdversarioEmXeque)
+        mostrarJogadorRodadaAtual(jogadorAtual);
+        this->mostrarTabuleiro(turnoPrimeiroJogador);
+        resultadoJogada = this->selecionarJogadasDisponiveis(pecaSelecionada);
+
+        if (resultadoJogada)
         {
-          jogadorAdversario->setXeque(true);
-        }
-        else
-        {
-          jogadorAdversario->setXeque(false);
+          mostrarJogadorRodadaAtual(jogadorAtual);
+          this->mostrarTabuleiro(turnoPrimeiroJogador);
+
+          if (resultadoJogada)
+          {
+            posicaoReiJogadorAdversario = jogadorAdversario->getPosicaoRei();
+            reiJogadorAdversarioEmXeque = jogadorAtual->verificaReiAdversarioXeque(posicaoReiJogadorAdversario);
+            if (reiJogadorAdversarioEmXeque)
+            {
+              jogadorAdversario->setXeque(true);
+            }
+            else
+            {
+              jogadorAdversario->setXeque(false);
+            }
+          }
+
+          std::cout << "TECLE ENTER PARA ENCERRAR A JOGADA";
+
+          cleanBuffer();
+
+          this->turnoPrimeiroJogador = !turnoPrimeiroJogador;
         }
       }
 
-      std::cout << "TECLE ENTER PARA ENCERRAR A JOGADA";
+      if (pecaSelecionada == nullptr)
+      {
+        int menuOption = 0;
+        do
+        {
+          this->mostrarTabuleiro(this->turnoPrimeiroJogador);
 
-      cleanBuffer();
+          mostrarJogadorRodadaAtual(jogadorAtual);
+          cout << "Selecione uma opção para a partida atual: " << endl
+               << " 1 - Continuar" << endl
+               << " 2 - Salvar" << endl
+               << endl;
 
-      this->turnoPrimeiroJogador = !turnoPrimeiroJogador;
+          cin >> menuOption;
+          cleanBuffer();
+
+          switch (menuOption)
+          {
+          case 1:
+            break;
+          case 2:
+            salvarJogo = true;
+            break;
+          default:
+            break;
+          }
+        } while (menuOption != 1 || menuOption != 2);
+      }
 
       clear();
-    } while (!jogoEncerrado);
+    } while (!jogoEncerrado && !salvarJogo);
   }
 }
 
