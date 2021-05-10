@@ -14,6 +14,7 @@ private:
   vector<Peca *> peoes;
   vector<Peca *> torres;
   vector<Peca *> bispos;
+  vector<Peca *> cavalos;
   Peca *rei;
   Peca *rainha;
   Tabuleiro *tabuleiro;
