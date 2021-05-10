@@ -12,9 +12,11 @@ private:
   int x;
   int y;
   Peca *pecaAtual;
+  bool posicaoPreta;
+  string simbolo;
 
 public:
-  Posicao(int x, int y);
+  Posicao(int x, int y, bool posicaoPreta);
   ~Posicao();
 
   /**

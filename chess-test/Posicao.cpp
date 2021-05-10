@@ -3,25 +3,27 @@
 
 using namespace std;
 
-Posicao::Posicao(int x, int y)
+Posicao::Posicao(int x, int y, bool posicaoPreta)
 {
   this->x = x;
   this->y = y;
   this->pecaAtual = nullptr;
+  this->posicaoPreta = posicaoPreta;
+  this->simbolo = posicaoPreta ? "◻" : "◼";
 }
 
 Posicao::~Posicao() {}
 
 string Posicao::showPosicao()
 {
-  string simbolo = "X";
+  string simbolo = " ";
 
   if (this)
   {
-    simbolo = this->getPecaAtual() != nullptr ? this->showSimbolo() : " ";
+    simbolo = this->getPecaAtual() != nullptr ? this->showSimbolo() : this->simbolo;
   }
 
-  return "[" + simbolo + "]";
+  return simbolo;
 }
 
 string Posicao::showSimbolo()

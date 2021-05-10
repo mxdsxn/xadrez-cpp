@@ -15,7 +15,7 @@ void legendaLetras(bool sentidoFrente)
        sentidoFrente ? i <= 7 : i >= 0;
        sentidoFrente ? i++ : i--)
   {
-    cout << "  " << (char)(i + 65) << " ";
+    cout << " " << (char)(i + 65);
   }
   cout << endl;
 }
@@ -26,6 +26,8 @@ Tabuleiro::Tabuleiro()
   this->pecasBrancas = new PecasPack("branco", true, this);
   this->pecasPretas = new PecasPack("preto", false, this);
 
+  bool posicaoPreta = false;
+
   // instancia os posicoes do tabuleiro numa matriz
   for (int y = 0; y < 8; y++)
   {
@@ -33,10 +35,12 @@ Tabuleiro::Tabuleiro()
 
     for (int x = 0; x < 8; x++)
     {
-      Posicao *novoPosicao = new Posicao(x, y);
+      Posicao *novoPosicao = new Posicao(x, y, posicaoPreta);
       novaLinha.push_back(novoPosicao);
-    }
 
+      posicaoPreta = !posicaoPreta;
+    }
+    posicaoPreta = !posicaoPreta;
     this->matrizPosicoes.push_back(novaLinha);
   }
 

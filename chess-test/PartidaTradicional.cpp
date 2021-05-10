@@ -81,7 +81,7 @@ bool PartidaTradicional::selecionarJogadasDisponiveis(Peca *pecaSelecionada)
   do
   {
     std::cout << "Selecione um das jogadas disponiveis para : "
-              << pecaSelecionada->getPosicaoAtual()->showSimbolo()
+              << pecaSelecionada->getSimbolo()
               << " | "
               << formataCoordenadas(posicaoToCoordStr(pecaSelecionada->getPosicaoAtual()))
               << endl
