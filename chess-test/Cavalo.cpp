@@ -7,7 +7,7 @@ Cavalo::Cavalo(string estilo, bool sentidoPraFrente) : Peca(estilo, sentidoPraFr
 {
   this->simbolo = this->estilo == "preto" ? "♘" : "♞";
   this->primeiraJogada = true;
-  this->codigo = 6;
+  this->codigo = 3;
 }
 Cavalo::~Cavalo() {}
 

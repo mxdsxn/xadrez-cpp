@@ -1,6 +1,5 @@
 #include "./Rainha.h"
 #include <iostream>
-#include "./utils.h"
 
 using namespace std;
 
@@ -8,7 +7,7 @@ Rainha::Rainha(string estilo, bool sentidoPraFrente) : Peca(estilo, sentidoPraFr
 {
   this->simbolo = this->estilo == "preto" ? "♕" : "♛";
   this->primeiraJogada = true;
-  this->codigo = 1;
+  this->codigo = 2;
 }
 Rainha::~Rainha() {}
 

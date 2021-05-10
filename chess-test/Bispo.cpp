@@ -1,6 +1,5 @@
 #include "./Bispo.h"
 #include <iostream>
-#include "./utils.h"
 
 using namespace std;
 
@@ -8,7 +7,7 @@ Bispo::Bispo(string estilo, bool sentidoPraFrente) : Peca(estilo, sentidoPraFren
 {
   this->simbolo = this->estilo == "preto" ? "♗" : "♝";
   this->primeiraJogada = true;
-  this->codigo = 1;
+  this->codigo = 4;
 }
 Bispo::~Bispo() {}
 
