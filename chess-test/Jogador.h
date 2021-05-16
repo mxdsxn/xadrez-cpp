@@ -38,4 +38,10 @@ public:
      * @return Retorna TRUE quando o jogador atual colocou o Rei do jogadorAdversario em Xeque.
      */
   bool verificaReiAdversarioXeque(Posicao *posicaoReiAdversario);
+
+  /**
+     * Essa funçao verifica se apos o adversario ser colocado em xeque, alguma peça do tabuleiro consegue ser movimentada para mudar essa situacao
+     * @return Retorna TRUE quando o jogador atual finaliza a partida.
+     */
+  bool verificaXequeMate(Jogador *adversario, vector<vector<Posicao *>> *posicoesTabuleiro);
 };

@@ -188,7 +188,15 @@ void PartidaTradicional::iniciarPartida()
                         << " colocou "
                         << jogadorAdversario->getNome()
                         << " em xeque!"
+                        << std::endl
                         << std::endl;
+
+              bool xequeMate = jogadorAtual->verificaXequeMate(jogadorAdversario, this->tabuleiro->getTodasPosicoes());
+              if (xequeMate)
+              {
+                std::cout << "XEQUE MATE!!" << std::endl;
+                jogoEncerrado = true;
+              }
             }
             else
             {

@@ -52,3 +52,23 @@ void Jogador::setXeque(bool emXeque)
     this->pecas->setXeque(emXeque);
   }
 }
+
+bool Jogador::verificaXequeMate(Jogador *adversario, vector<vector<Posicao *>> *posicoesTabuleiro)
+{
+  PecasPack *pecasAdversario = adversario->getPacotePecas();
+  PecasPack *pecasJogador = this->getPacotePecas();
+
+  vector<Peca *> listaPecasAdversario = pecasAdversario->getPecasDisponiveisJogadas(posicoesTabuleiro);
+
+  for (int indice = 1; indice < listaPecasAdversario.size(); indice++)
+  {
+    Peca *pecaAtual = listaPecasAdversario[indice];
+    // caso alguma peça consiga movimentar e tirar o rei adversario de xeque
+    if (pecasJogador->getJogadasDisponiveisFiltrandoRiscoXeque(pecaAtual).size() > 0)
+    {
+      return false;
+    }
+  }
+
+  return true;
+}

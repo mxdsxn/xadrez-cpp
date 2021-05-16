@@ -122,13 +122,6 @@ vector<Posicao *> PecasPack::getJogadasDisponiveisFiltrandoRiscoXeque(Peca *peca
                                    ? tabuleiro->getPecasBrancas()
                                    : tabuleiro->getPecasPretas();
 
-  /*
-  cout << ">estilo pacote analisando: " << this->getEstilo() << endl;
-  cout << "*estilo pecaSelecionada: " << pecaSelecionadaAdversario->getEstilo() << endl;
-  cout << "*estilo pacote pecaSelecionada: " << pecasAdversario->getEstilo() << endl;
-  cout << "*sentido pecaSelecionada: " << ((pecaSelecionadaAdversario->getSentidoPraFrente()) ? "frente" : "tras") << endl;
-  */
-
   // Posicao atual do rei adversario. Rei esse que PODE VIR correr risco de xeque, caso uma jogada nao permitida seja executada
   Posicao *posicaoReiAdversario = nullptr;
 
