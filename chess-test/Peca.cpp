@@ -92,9 +92,8 @@ bool Peca::movimentar(Posicao *novaPosicao, bool simulacao)
     novaPosicao->setPeca(this);                   // vincula peca movimentada à nova posicao
     this->setPosicao(novaPosicao);                // vincula nova posicao à peca movimentada
 
-    simulacao
-        ? this->primeiraJogada = this->primeiraJogada // nao altera primeiraJogada devido a demanda de movimentacoes reversiveis, usado para checar a possibilidades de xeque do jogo
-        : this->primeiraJogada = false;               // remove a flag de primeiraJogada da peca
+    if (!simulacao)
+      this->primeiraJogada = false; // remove a flag de primeiraJogada da peca caso nao seja uma simulacao de jogada
 
     return true;
   }

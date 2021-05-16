@@ -150,28 +150,9 @@ vector<Posicao *> PecasPack::getJogadasDisponiveisFiltrandoRiscoXeque(Peca *peca
     Peca *pecaPossivelJogadaTmp = possivelJogadaAdversario->getPecaAtual();
     Posicao *antigaPosicaoPecaSelecionadaAdversarioTmp = pecaSelecionadaAdversario->getPosicaoAtual();
 
-    pecaSelecionadaAdversario->movimentar(possivelJogadaAdversario);
-    //this->tabuleiro->show(pecaSelecionadaAdversario->getSentidoPraFrente());
+    pecaSelecionadaAdversario->movimentar(possivelJogadaAdversario, true);
 
     posicaoReiAdversario = pecasAdversario->getPosicaoRei();
-
-    /*
-    cout << "endereco pecaSelecionada "
-         << pecaSelecionadaAdversario << " "
-         << pecaSelecionadaAdversario->getCodigo() << " "
-         << pecaSelecionadaAdversario->getEstilo() << " "
-         << pecaSelecionadaAdversario->getSimbolo() << " "
-         << endl;
-
-    cout << "endereco rei adversario "
-         << posicaoReiAdversario->getPecaAtual() << " "
-         << posicaoReiAdversario->getPecaAtual()->getCodigo() << " "
-         << posicaoReiAdversario->getPecaAtual()->getEstilo() << " "
-         << posicaoReiAdversario->getPecaAtual()->getSimbolo() << " "
-         << endl;
-
-    cout << "jogada em analise: " << formataCoordenadas(posicaoToCoordStr(possivelJogadaAdversario)) << endl;
-    */
 
     // Rei da do Adversario
     bool reiEmXeque = this->verificaReiAdversarioXeque(posicaoReiAdversario);
@@ -180,16 +161,9 @@ vector<Posicao *> PecasPack::getJogadasDisponiveisFiltrandoRiscoXeque(Peca *peca
       jogadasFiltradasAdversario.push_back(possivelJogadaAdversario);
     }
 
-    /*
-    cout << "Rei fica em xeque apos essa jogada: " << (reiEmXeque ? "sim" : "nao") << endl;
-    cleanBuffer();
-    */
-
     // Restaura simulacao
-    pecaSelecionadaAdversario->movimentar(antigaPosicaoPecaSelecionadaAdversarioTmp);
-    pecaPossivelJogadaTmp->movimentar(possivelJogadaAdversario);
-    //this->tabuleiro->show(!pecaSelecionadaAdversario->getSentidoPraFrente());
-    //cleanBuffer();
+    pecaSelecionadaAdversario->movimentar(antigaPosicaoPecaSelecionadaAdversarioTmp, true);
+    pecaPossivelJogadaTmp->movimentar(possivelJogadaAdversario, true);
   }
 
   return jogadasFiltradasAdversario;

@@ -224,7 +224,7 @@ void PartidaTradicional::iniciarPartida()
           default:
             break;
           }
-        } while (menuOption != 1 || menuOption != 2);
+        } while (menuOption != 1 && menuOption != 2);
       }
 
       clear();
