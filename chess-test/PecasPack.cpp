@@ -98,17 +98,7 @@ vector<Peca *> PecasPack::getPecasDisponiveisJogadas(vector<vector<Posicao *>> *
   vector<Peca *> pecasDisponiveis;
   vector<Peca *> todasPecas = this->getTodasPecas();
 
-  // Caso o Rei esteja em Xeque, apenas ele é enviado como peça disponivel
-  if (this->rei->getPosicaoAtual() != nullptr)
-  {
-    if (this->rei->getXeque())
-    {
-      pecasDisponiveis.push_back(this->rei);
-      return pecasDisponiveis;
-    }
-  }
-
-  // Caso contrario, todas as peças sao requisitadas e validadas, se estão disponiveis no tabuleiro ou foram capturadas
+  // Todas as peças sao requisitadas e validadas, se estão disponiveis no tabuleiro ou foram capturadas
   for (int indice = 0; indice < todasPecas.size(); indice++)
   {
     Peca *pecaAtual = todasPecas[indice];

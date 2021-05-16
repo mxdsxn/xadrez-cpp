@@ -183,6 +183,12 @@ void PartidaTradicional::iniciarPartida()
             if (reiJogadorAdversarioEmXeque)
             {
               jogadorAdversario->setXeque(true);
+
+              std::cout << jogadorAtual->getNome()
+                        << " colocou "
+                        << jogadorAdversario->getNome()
+                        << " em xeque!"
+                        << std::endl;
             }
             else
             {
