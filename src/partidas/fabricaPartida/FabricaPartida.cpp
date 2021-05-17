@@ -1,4 +1,5 @@
 #include "./FabricaPartida.h"
+#include "../partidaBase/Partida.h"
 #include "../partidaTradicional/PartidaTradicional.h"
 
 FabricaPartida::FabricaPartida() {}
@@ -9,7 +10,7 @@ Partida *FabricaPartida::novaPartida(int opcaoPartida, string nomePrimeiroJogado
   Partida *novaPartida;
   switch (opcaoPartida)
   {
-  case 1:
+  case TipoPartida::Tradicional:
     novaPartida = new PartidaTradicional(nomePrimeiroJogador, nomeSegundoJogador);
     break;
   case 2:

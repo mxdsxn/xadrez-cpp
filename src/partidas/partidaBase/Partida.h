@@ -4,6 +4,11 @@
 #include "../../jogador/Jogador.h"
 #include "../partidaDTO/PartidaDTO.h"
 
+enum TipoPartida
+{
+  Tradicional = 1
+};
+
 class PartidaDTO;
 class Partida
 {
@@ -13,6 +18,7 @@ protected:
   PartidaDTO *partidaDTO;
   Jogador *primeiroJogador;
   Jogador *segundoJogador;
+  int codigoTipo;
 
 public:
   Partida();

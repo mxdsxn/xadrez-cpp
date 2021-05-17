@@ -10,6 +10,7 @@ PartidaTradicional::PartidaTradicional(string nomePrimeiroJogador, string nomeSe
   this->primeiroJogador = new Jogador(nomePrimeiroJogador, pecasBrancas);
   this->segundoJogador = new Jogador(nomeSegundoJogador, pecasPretas);
   this->turnoPrimeiroJogador = true;
+  this->codigoTipo = TipoPartida::Tradicional;
 }
 
 void PartidaTradicional::mostrarTabuleiro(bool turnoPrimeiroJogador)
