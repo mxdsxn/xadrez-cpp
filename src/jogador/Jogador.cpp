@@ -53,6 +53,15 @@ void Jogador::setXeque(bool emXeque)
   }
 }
 
+bool Jogador::getXeque()
+{
+  if (this)
+  {
+    return this->emXeque;
+  }
+  return false;
+}
+
 bool Jogador::verificaXequeMate(Jogador *adversario, vector<vector<Posicao *>> *posicoesTabuleiro)
 {
   PecasPack *pecasAdversario = adversario->getPacotePecas();

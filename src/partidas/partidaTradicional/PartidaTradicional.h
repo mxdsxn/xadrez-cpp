@@ -1,15 +1,10 @@
 #pragma once
 
 #include "../partidaBase/Partida.h"
-#include "../../jogador/Jogador.h"
 
 class PartidaTradicional : public Partida
 {
 private:
-  Jogador *primeiroJogador;
-  Jogador *segundoJogador;
-  bool turnoPrimeiroJogador;
-
   /**
     * Mostra ao usuario o tabuleiro
     * @param turnoPrimeiroJogador Booleano que quando TRUE, mostra o tabuleiro orientado para o primeiroJogador, FALSE, orientado ao segundoJogador

@@ -53,6 +53,11 @@ public:
   void setXeque(bool emXeque);
 
   /**
+     * @return Booleano com estado atual de xeque do pacote
+     */
+  bool getXeque();
+
+  /**
      * Setta posicoes inciais para os peoes.
      * @param linhaInicialPeoes Linha inicial dos Peoes no tabuleiro .
      */
@@ -71,7 +76,6 @@ public:
      */
   bool verificaReiAdversarioXeque(Posicao *posicaoReiAdversario);
 
-private:
   /**
      * @return Lista com todas as peças do pacote
      */

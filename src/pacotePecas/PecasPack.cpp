@@ -161,6 +161,15 @@ void PecasPack::setXeque(bool emXeque)
   }
 }
 
+bool PecasPack::getXeque()
+{
+  if (this)
+  {
+    return this->emXeque;
+  }
+  return false;
+}
+
 void PecasPack::setPosicaoInicialPeoes(vector<Posicao *> *linhaInicialPeoes)
 {
   vector<Peca *> *peoes = &(this->peoes);

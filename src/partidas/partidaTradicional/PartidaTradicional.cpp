@@ -1,6 +1,6 @@
+#include <iostream>
 #include "./PartidaTradicional.h"
 #include "../../utils/utils.h"
-#include <iostream>
 
 PartidaTradicional::PartidaTradicional(string nomePrimeiroJogador, string nomeSegundoJogador) : Partida()
 {
@@ -242,7 +242,13 @@ void PartidaTradicional::iniciarPartida()
       }
 
       clear();
+
     } while (!jogoEncerrado && !salvarJogo);
+
+    if (salvarJogo)
+    {
+      this->partidaDTO->salvarPartida(this);
+    }
   }
 }
 

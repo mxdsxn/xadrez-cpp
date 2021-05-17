@@ -35,6 +35,11 @@ public:
   void setXeque(bool emXeque);
 
   /**
+     * @return Booleano com o estado atual de xeque do jogador.
+     */
+  bool getXeque();
+
+  /**
      * @return Retorna TRUE quando o jogador atual colocou o Rei do jogadorAdversario em Xeque.
      */
   bool verificaReiAdversarioXeque(Posicao *posicaoReiAdversario);

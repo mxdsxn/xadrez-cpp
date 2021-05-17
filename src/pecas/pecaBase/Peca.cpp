@@ -20,6 +20,15 @@ bool Peca::getXeque()
   return false;
 }
 
+bool Peca::getPrimeiraJogada()
+{
+  if (this)
+  {
+    return this->primeiraJogada;
+  }
+  return false;
+}
+
 int Peca::getCodigo()
 {
   return this->codigo;

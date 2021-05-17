@@ -31,6 +31,11 @@ public:
   bool getXeque();
 
   /**
+     * @return Booleano com estado atual.
+     */
+  bool getPrimeiraJogada();
+
+  /**
      * @return inteiro representante do seu tipo de peça
      */
   int getCodigo();
