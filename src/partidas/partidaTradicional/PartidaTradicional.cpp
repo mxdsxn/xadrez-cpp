@@ -248,7 +248,7 @@ void PartidaTradicional::iniciarPartida()
 
     if (salvarJogo)
     {
-      this->partidaDTO->salvarPartida(this);
+      //this->partidaDAO->salvarPartida(this);
     }
   }
 }

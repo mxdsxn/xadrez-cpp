@@ -7,7 +7,7 @@ Projeto desenvolvido como avaliação para a disciplina `Tecnicas de programaç�
 Certifique-se de ter instalado na sua máquina o compilador `g++`
 
 ```
-  g++ ./src/**/*.cpp -o ./dist/main
+  g++ ./src/**/*.cpp -lsqlite3 -o ./dist/main && ./dist/main
 ```
 
 ## Executar

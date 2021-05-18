@@ -2,20 +2,19 @@
 
 #include "../../tabuleiro/Tabuleiro.h"
 #include "../../jogador/Jogador.h"
-#include "../partidaDTO/PartidaDTO.h"
 
 enum TipoPartida
 {
   Tradicional = 1
 };
 
-class PartidaDTO;
+class PartidaDAO;
 class Partida
 {
 protected:
   bool turnoPrimeiroJogador;
   Tabuleiro *tabuleiro;
-  PartidaDTO *partidaDTO;
+  PartidaDAO *partidaDAO;
   Jogador *primeiroJogador;
   Jogador *segundoJogador;
   int codigoTipo;
