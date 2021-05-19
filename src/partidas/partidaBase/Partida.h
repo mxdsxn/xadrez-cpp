@@ -2,6 +2,7 @@
 
 #include "../../tabuleiro/Tabuleiro.h"
 #include "../../jogador/Jogador.h"
+#include "../partidaDAO/PartidaDAO.h"
 
 enum TipoPartida
 {
@@ -28,4 +29,5 @@ public:
   Tabuleiro *getTabuleiro();
   Jogador *getPrimeiroJogador();
   Jogador *getSegundoJogador();
+  int getCodigoTipo();
 };

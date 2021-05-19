@@ -41,3 +41,12 @@ Jogador *Partida::getSegundoJogador()
   }
   return nullptr;
 }
+
+int Partida::getCodigoTipo()
+{
+  if (this)
+  {
+    return this->codigoTipo;
+  }
+  return 0;
+}
