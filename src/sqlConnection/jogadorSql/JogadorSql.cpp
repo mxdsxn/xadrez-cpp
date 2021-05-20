@@ -24,7 +24,7 @@ JogadorSql::JogadorSql() : SqlConnection()
                                                         emXeque integer not null,\
                                                         nome varchar(10) not null,\
                                                         partida_id integer not null,\
-                                                        FOREIGN KEY (partida_id) REFERENCES partida_tablr(id))";
+                                                        FOREIGN KEY (partida_id) REFERENCES partida_table(id))";
 
   rc = sqlite3_exec(this->database, createTableQuery.c_str(), callback, 0, &zErrMsg);
 
@@ -46,9 +46,6 @@ int JogadorSql::salvar(int idPartida, bool emXeque, string nome)
       values(" + to_string(emXeque ? 1 : 0) +
                     ", '" + nome + "'" +
                     ", " + to_string(idPartida) + ") ";
-
-  cout << addQuery << endl;
-  cleanBuffer();
 
   rc = sqlite3_exec(this->database, addQuery.c_str(), callback, 0, &zErrMsg);
 

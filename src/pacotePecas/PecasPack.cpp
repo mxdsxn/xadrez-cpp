@@ -12,6 +12,7 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
 {
   this->estilo = estilo;
   this->tabuleiro = tabuleiro;
+  this->pacotePecasDAO = new PacotePecasDAO();
 
   // instancia os peoes
   for (int i = 1; i <= 8; i++)
@@ -236,4 +237,14 @@ bool PecasPack::verificaReiAdversarioXeque(Posicao *posicaoReiAdversario)
     }
   }
   return false;
+}
+
+int PecasPack::salvar(int idJogador)
+{
+  if (this)
+  {
+    return this->pacotePecasDAO->salvar(idJogador, this);
+  }
+
+  return 0;
 }

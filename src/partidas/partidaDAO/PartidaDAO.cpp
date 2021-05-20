@@ -17,8 +17,11 @@ bool PartidaDAO::salvar(Partida *partida)
   }
   else
   {
-    partida->getPrimeiroJogador()->salvar(idNovaPartida);
-    partida->getSegundoJogador()->salvar(idNovaPartida);
+    int idNovoPrimeiroJogador = partida->getPrimeiroJogador()->salvar(idNovaPartida);
+    int idNovoPacotePecaPrimeiroJogador = partida->getPrimeiroJogador()->getPacotePecas()->salvar(idNovoPrimeiroJogador);
+
+    int idNovoSegundoJogador = partida->getSegundoJogador()->salvar(idNovaPartida);
+    int idNovoPacotePecaSegundoJogador = partida->getSegundoJogador()->getPacotePecas()->salvar(idNovoSegundoJogador);
 
     return true;
   }

@@ -3,9 +3,11 @@
 #include "../pecas/pecaBase/Peca.h"
 #include "../posicao/Posicao.h"
 #include "../tabuleiro/Tabuleiro.h"
+#include "./pacotePecasDAO/PacotePecasDAO.h"
 
 class Peca;
 class Tabuleiro;
+class PacotePecasDAO;
 
 class PecasPack
 {
@@ -19,6 +21,7 @@ private:
   Peca *rainha;
   Tabuleiro *tabuleiro;
   bool emXeque;
+  PacotePecasDAO *pacotePecasDAO;
 
 public:
   PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro);
@@ -80,4 +83,11 @@ public:
      * @return Lista com todas as peças do pacote
      */
   vector<Peca *> getTodasPecas();
+
+  /**
+   * Salva pacotePecas
+   * @param idJogador Jogador associado ao pacotePecas
+   * @return 0 caso tenha ocorrido erro ao salvar OU id do pacotePecas no banco
+  */
+  int salvar(int idJogador);
 };

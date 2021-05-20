@@ -90,5 +90,5 @@ int Jogador::salvar(int idPartida)
     return this->jogadorDAO->salvar(idPartida, this);
   }
 
-  return false;
+  return 0;
 }

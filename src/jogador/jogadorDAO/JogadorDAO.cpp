@@ -13,7 +13,7 @@ int JogadorDAO::salvar(int idPartida, Jogador *jogador)
 
   if (idNovoJogador == 0)
   {
-    return false;
+    return 0;
   }
   return idNovoJogador;
 }
