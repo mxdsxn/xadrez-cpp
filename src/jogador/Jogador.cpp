@@ -4,6 +4,7 @@ Jogador::Jogador(string nome, PecasPack *pecas)
 {
   this->nome = nome;
   this->pecas = pecas;
+  this->jogadorDAO = new JogadorDAO();
 }
 
 string Jogador::getNome()
@@ -80,4 +81,14 @@ bool Jogador::verificaXequeMate(Jogador *adversario, vector<vector<Posicao *>> *
   }
 
   return true;
+}
+
+int Jogador::salvar(int idPartida)
+{
+  if (this)
+  {
+    return this->jogadorDAO->salvar(idPartida, this);
+  }
+
+  return false;
 }

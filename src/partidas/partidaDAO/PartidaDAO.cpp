@@ -17,6 +17,9 @@ bool PartidaDAO::salvar(Partida *partida)
   }
   else
   {
-    // salvar outros dados da partida
+    partida->getPrimeiroJogador()->salvar(idNovaPartida);
+    partida->getSegundoJogador()->salvar(idNovaPartida);
+
+    return true;
   }
 }

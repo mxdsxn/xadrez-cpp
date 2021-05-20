@@ -1,15 +1,18 @@
 #pragma once
 #include <string>
 #include "../pacotePecas/PecasPack.h"
+#include "./jogadorDAO/JogadorDAO.h"
 
 using namespace std;
 
+class JogadorDAO;
 class Jogador
 {
 private:
   string nome;
   PecasPack *pecas;
   bool emXeque;
+  JogadorDAO *jogadorDAO;
 
 public:
   Jogador(string nome, PecasPack *pecas);
@@ -49,4 +52,11 @@ public:
      * @return Retorna TRUE quando o jogador atual finaliza a partida.
      */
   bool verificaXequeMate(Jogador *adversario, vector<vector<Posicao *>> *posicoesTabuleiro);
+
+  /**
+   * Salva jogador
+   * @param idPartida Partida associada ao jogador
+   * @return 0 caso tenha ocorrido erro ao salvar OU id do jogador no banco
+  */
+  int salvar(int idPartida);
 };
