@@ -9,5 +9,14 @@ PartidaDAO::~PartidaDAO() {}
 
 bool PartidaDAO::salvar(Partida *partida)
 {
-  return this->partidaSql->salvar(partida->getTurnoPrimeiroJogador(), partida->getCodigoTipo());
+  int idNovaPartida = this->partidaSql->salvar(partida->getTurnoPrimeiroJogador(), partida->getCodigoTipo());
+
+  if (partida == 0)
+  {
+    return false;
+  }
+  else
+  {
+    // salvar outros dados da partida
+  }
 }

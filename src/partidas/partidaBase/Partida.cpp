@@ -3,7 +3,7 @@
 Partida::Partida()
 {
   this->tabuleiro = new Tabuleiro();
-  //this->partidaDAO = new PartidaDAO();
+  this->partidaDAO = new PartidaDAO();
 }
 
 bool Partida::getTurnoPrimeiroJogador()

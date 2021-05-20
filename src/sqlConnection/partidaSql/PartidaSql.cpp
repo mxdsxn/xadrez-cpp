@@ -53,8 +53,8 @@ int PartidaSql::salvar(bool turnoPrimeiroJogador, int codigoTipo)
   }
   else
   {
-    int idNewPartida = sqlite3_last_insert_rowid(this->database);
-    return idNewPartida;
+    int idNovaPartida = sqlite3_last_insert_rowid(this->database);
+    return idNovaPartida;
   }
 
   return 0;
