@@ -3,11 +3,13 @@
 
 #include <string>
 #include <vector>
+#include "../pecaDAO/PecaDAO.h"
 #include "../../posicao/Posicao.h"
 
 using namespace std;
 
 class Posicao;
+class PecaDAO;
 
 class Peca
 {
@@ -18,6 +20,7 @@ protected:
   string simbolo;
   bool emXeque;
   int codigo;
+  PecaDAO *pecaDAO;
 
 public:
   Posicao *posicao;
@@ -102,6 +105,13 @@ public:
    * @return TRUE quando há jogada disponivel
    */
   bool verificaDisponibilidadeMovimentar(vector<vector<Posicao *>> *posicoesTabuleiro);
+
+  /**
+   * Salva uma peca e seus estados se
+   * @param idPacotePeca id do pacote de pecas associado
+   * @return 0 quando ocorrer um erro OU o id da peca
+  */
+  int salvar(int idPacotePeca);
 };
 
 #endif //_PECA_H

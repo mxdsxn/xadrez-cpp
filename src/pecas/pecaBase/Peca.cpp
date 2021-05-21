@@ -7,6 +7,7 @@ Peca::Peca(string estilo, bool sentidoPraFrente)
   this->primeiraJogada = true;
   this->sentidoPraFrente = sentidoPraFrente;
   this->emXeque = false;
+  this->pecaDAO = new PecaDAO();
 }
 
 Peca::~Peca() {}
@@ -150,5 +151,14 @@ bool Peca::verificaDisponibilidadeMovimentar(vector<vector<Posicao *>> *posicoes
     }
   }
 
+  return false;
+}
+
+int Peca::salvar(int idPacotePeca)
+{
+  if (this)
+  {
+    return this->pecaDAO->salvar(idPacotePeca, this);
+  }
   return false;
 }
