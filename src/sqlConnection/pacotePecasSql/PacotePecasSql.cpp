@@ -5,16 +5,6 @@
 
 using namespace std;
 
-static int callback(void *NotUsed, int argc, char **argv, char **azColName)
-{
-  int i;
-  for (i = 0; i < argc; i++)
-  {
-    cout << azColName[i] << " = " << (argv[i] ? argv[i] : "NULL") << "\n";
-  }
-  return 0;
-}
-
 PacotePecasSql::PacotePecasSql() : SqlConnection()
 {
   char *zErrMsg = 0;
@@ -26,11 +16,11 @@ PacotePecasSql::PacotePecasSql() : SqlConnection()
                                                              jogador_id integer not null,\
                                                              FOREIGN KEY (jogador_id) REFERENCES jogador_table(id))";
 
-  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callback, 0, &zErrMsg);
+  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callbackSql, 0, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {
-    cout << "SQL error: " << sqlite3_errmsg(this->database) << "\n";
+    //cout << "SQL error: " << sqlite3_errmsg(this->database) << "\n";
     sqlite3_free(zErrMsg);
   }
 }
@@ -47,7 +37,7 @@ int PacotePecasSql::salvar(int idJogador, bool emXeque, string estilo)
                     ", '" + estilo + "'" +
                     ", " + to_string(idJogador) + ") ";
 
-  rc = sqlite3_exec(this->database, addQuery.c_str(), callback, 0, &zErrMsg);
+  rc = sqlite3_exec(this->database, addQuery.c_str(), callbackSql, 0, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {

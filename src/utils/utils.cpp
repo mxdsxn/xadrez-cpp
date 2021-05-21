@@ -4,7 +4,7 @@
 void clear()
 {
 #if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
-  system("clear");
+  //system("clear");
 #endif
 
 #if defined(_WIN32) || defined(_WIN64)
@@ -37,4 +37,14 @@ CoordenadasStr posicaoToCoordStr(Posicao *posicao)
 std::string formataCoordenadas(CoordenadasStr coordenadas)
 {
   return "[" + coordenadas.x + ", " + coordenadas.y + "]";
+}
+
+static int callbackSql(void *NotUsed, int argc, char **argv, char **azColName)
+{
+  int i;
+  for (i = 0; i < argc; i++)
+  {
+    cout << azColName[i] << " = " << (argv[i] ? argv[i] : "NULL") << "\n";
+  }
+  return 0;
 }

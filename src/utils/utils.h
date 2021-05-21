@@ -30,3 +30,8 @@ CoordenadasStr posicaoToCoordStr(Posicao *posicao);
  * @return Retorna uma string no formato [A, 1].
  */
 std::string formataCoordenadas(CoordenadasStr coordenadas);
+
+/**
+ * função auxiliar para as consultas sql
+*/
+static int callbackSql(void *NotUsed, int argc, char **argv, char **azColName);

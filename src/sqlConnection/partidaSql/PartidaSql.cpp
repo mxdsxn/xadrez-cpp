@@ -5,16 +5,6 @@
 
 using namespace std;
 
-static int callback(void *NotUsed, int argc, char **argv, char **azColName)
-{
-  int i;
-  for (i = 0; i < argc; i++)
-  {
-    cout << azColName[i] << " = " << (argv[i] ? argv[i] : "NULL") << "\n";
-  }
-  return 0;
-}
-
 PartidaSql::PartidaSql() : SqlConnection()
 {
   char *zErrMsg = 0;
@@ -22,11 +12,11 @@ PartidaSql::PartidaSql() : SqlConnection()
 
   string createTableQuery = "create table partida_table(id integer primary key autoincrement, turnoPrimeiroJogador integer not null, codigoTipo integer not null)";
 
-  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callback, 0, &zErrMsg);
+  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callbackSql, 0, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {
-    cout << "SQL error: " << sqlite3_errmsg(this->database) << "\n";
+    //cout << "SQL error: " << sqlite3_errmsg(this->database) << "\n";
     sqlite3_free(zErrMsg);
   }
 }
@@ -42,7 +32,7 @@ int PartidaSql::salvar(bool turnoPrimeiroJogador, int codigoTipo)
       values(" + to_string(turnoPrimeiroJogador ? 1 : 0) +
                     ", " + to_string(codigoTipo) + ") ";
 
-  rc = sqlite3_exec(this->database, addQuery.c_str(), callback, 0, &zErrMsg);
+  rc = sqlite3_exec(this->database, addQuery.c_str(), callbackSql, 0, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {
