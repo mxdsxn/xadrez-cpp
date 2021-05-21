@@ -73,9 +73,6 @@ int PecaSql::salvar(
                     to_string(idPacotePecas) +
                     ") ";
 
-  cout << addQuery << endl;
-  cleanBuffer();
-
   rc = sqlite3_exec(this->database, addQuery.c_str(), callback, 0, &zErrMsg);
 
   if (rc != SQLITE_OK)
