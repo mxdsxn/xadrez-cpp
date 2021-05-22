@@ -13,6 +13,7 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
   this->estilo = estilo;
   this->tabuleiro = tabuleiro;
   this->pacotePecasDAO = new PacotePecasDAO();
+  this->sql_idPacotePeca = -1;
 
   // instancia os peoes
   for (int i = 1; i <= 8; i++)

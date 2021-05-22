@@ -21,11 +21,13 @@ protected:
   bool emXeque;
   int codigo;
   PecaDAO *pecaDAO;
+  int sql_idPeca;
 
 public:
   Posicao *posicao;
 
   Peca(string estilo, bool sentidoPraFrente);
+  Peca(int idPeca);
   ~Peca();
 
   /**

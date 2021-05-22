@@ -22,9 +22,11 @@ private:
   Tabuleiro *tabuleiro;
   bool emXeque;
   PacotePecasDAO *pacotePecasDAO;
+  int sql_idPacotePeca;
 
 public:
   PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro);
+  PecasPack(int idPacotePeca);
   ~PecasPack();
 
   /**

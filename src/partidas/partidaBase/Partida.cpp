@@ -4,7 +4,10 @@ Partida::Partida()
 {
   this->tabuleiro = new Tabuleiro();
   this->partidaDAO = new PartidaDAO();
+  this->sql_idPartida = -1;
 }
+
+Partida::~Partida() {}
 
 bool Partida::getTurnoPrimeiroJogador()
 {

@@ -19,9 +19,12 @@ protected:
   Jogador *primeiroJogador;
   Jogador *segundoJogador;
   int codigoTipo;
+  int sql_idPartida;
 
 public:
   Partida();
+  Partida(int idPartida);
+  ~Partida();
   virtual void iniciarPartida() = 0;
   virtual void salvarPartida() = 0;
   virtual void encerrarPartida() = 0;

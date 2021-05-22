@@ -8,6 +8,7 @@ Peca::Peca(string estilo, bool sentidoPraFrente)
   this->sentidoPraFrente = sentidoPraFrente;
   this->emXeque = false;
   this->pecaDAO = new PecaDAO();
+  this->sql_idPeca = -1;
 }
 
 Peca::~Peca() {}

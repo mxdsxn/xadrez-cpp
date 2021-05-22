@@ -13,9 +13,12 @@ private:
   PecasPack *pecas;
   bool emXeque;
   JogadorDAO *jogadorDAO;
+  int sql_idJogador;
 
 public:
   Jogador(string nome, PecasPack *pecas);
+  Jogador(int idJogador);
+  ~Jogador();
 
   /**
      * @return Retorna nome do jogador.

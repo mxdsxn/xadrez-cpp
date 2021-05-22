@@ -5,7 +5,10 @@ Jogador::Jogador(string nome, PecasPack *pecas)
   this->nome = nome;
   this->pecas = pecas;
   this->jogadorDAO = new JogadorDAO();
+  this->sql_idJogador = -1;
 }
+
+Jogador::~Jogador() {}
 
 string Jogador::getNome()
 {

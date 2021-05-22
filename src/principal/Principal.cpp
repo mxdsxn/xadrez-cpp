@@ -12,7 +12,7 @@ void Principal::iniciar()
 {
   int menuOption = 0;
 
-  cout << "  >>> Bem vindo ao MXadrez <<<"
+  cout << "  >>> M-Xadrez <<<"
        << endl
        << endl;
 
