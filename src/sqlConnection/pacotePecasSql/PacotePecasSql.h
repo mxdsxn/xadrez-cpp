@@ -1,9 +1,12 @@
 #pragma once
 
 #include <string>
+#include "../../pacotePecas/PecasPack.h"
 #include "../SqlConnection.h"
 
 using namespace std;
+
+class PecasPack;
 
 /**
  * Responsavel por fazer integração com o banco responsável pela persistencia dos dados, diretamente com a tabela responsavel pela entidade PacotePecas
@@ -22,4 +25,11 @@ public:
    * @return 0 em casa de erro OU o Id do pacote criada
   */
   int salvar(int idJogador, bool emXeque, string estilo);
+
+  /**
+   * Recuperar uma lista de PecasPack
+   * @param idJogador id do Jogador que o pacote de peca esta associado
+   * @return Lista de PecasPack
+  */
+  vector<PecasPack *> recuperar(int idJogador);
 };

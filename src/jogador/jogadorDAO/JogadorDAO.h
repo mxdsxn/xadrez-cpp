@@ -24,7 +24,7 @@ public:
    * @param idPartida id da Partida que os jogadores estão associado
    * @return Lista de Jogadores
   */
-  vector<Jogador *> recuperar(int idPartida);
+  vector<Jogador *> recuperar(int idPartida = -1);
 
 private:
   JogadorSql *jogadorSql;

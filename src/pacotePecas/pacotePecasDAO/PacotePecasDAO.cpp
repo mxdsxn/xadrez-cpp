@@ -17,3 +17,8 @@ int PacotePecasDAO::salvar(int idJogador, PecasPack *pacotePecas)
   }
   return PacotePecas;
 }
+
+vector<PecasPack *> PacotePecasDAO::recuperar(int idJogador)
+{
+  return this->pacotePecasSql->recuperar(idJogador);
+}

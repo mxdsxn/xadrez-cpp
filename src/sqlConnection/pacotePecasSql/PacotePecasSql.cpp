@@ -54,3 +54,40 @@ int PacotePecasSql::salvar(int idJogador, bool emXeque, string estilo)
 
   return 0;
 }
+
+int callbackSqlPacotePecas(void *NotUsed, int argc, char **argv, char **azColName)
+{
+  int i;
+  vector<PecasPack *> *result = (vector<PecasPack *> *)NotUsed;
+
+  int idPecasPack = argv[0] ? atoi(argv[0]) : -1;
+  bool emXeque = argv[1] ? argv[1] == "1" : false;
+  string estilo = argv[2] ? argv[2] : "[ERROR] - JOGADOR_NAME";
+
+  PecasPack *novoPacotePecas = new PecasPack(idPecasPack, emXeque, estilo);
+
+  result->push_back(novoPacotePecas);
+
+  return 0;
+}
+
+vector<PecasPack *> PacotePecasSql::recuperar(int idJogador)
+{
+  vector<PecasPack *> result;
+
+  char *zErrMsg = 0;
+  int rc;
+
+  string createTableQuery = ("select * from  pacote_pecas_table" + ((idJogador != -1) ? " where pacote_pecas_table.jogador_id = " + to_string(idJogador) : ""));
+
+  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callbackSqlPacotePecas, &result, &zErrMsg);
+
+  if (rc != SQLITE_OK)
+  {
+    //cout << "SQL error: " << sqlite3_errmsg(this->database) << "\n";
+    sqlite3_free(zErrMsg);
+    return result;
+  }
+
+  return result;
+}

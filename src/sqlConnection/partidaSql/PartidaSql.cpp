@@ -80,7 +80,6 @@ vector<Partida *> PartidaSql::recuperar(int idPartida)
 
   if (rc != SQLITE_OK)
   {
-
     //cout << "SQL error: " << sqlite3_errmsg(this->database) << "\n";
     sqlite3_free(zErrMsg);
     return result;

@@ -26,7 +26,7 @@ private:
 
 public:
   PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro);
-  PecasPack(int idPacotePeca);
+  PecasPack(int idPacotePeca, bool emXeque, string estilo);
   ~PecasPack();
 
   /**

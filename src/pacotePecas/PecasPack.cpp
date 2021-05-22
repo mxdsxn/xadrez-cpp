@@ -48,6 +48,16 @@ PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
   this->rainha = new Rainha(estilo, sentidoPraFrente);
 }
 
+PecasPack::PecasPack(int idPacotePeca, bool emXeque, string estilo)
+{
+  this->sql_idPacotePeca = idPacotePeca;
+  this->emXeque = emXeque;
+  this->estilo = estilo;
+
+  this->tabuleiro = nullptr;
+  this->pacotePecasDAO = new PacotePecasDAO();
+}
+
 PecasPack::~PecasPack() {}
 
 string PecasPack::getEstilo()

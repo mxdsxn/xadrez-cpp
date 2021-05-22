@@ -1,4 +1,5 @@
 #include "./Jogador.h"
+#include "../pacotePecas/pacotePecasDAO/PacotePecasDAO.h"
 
 Jogador::Jogador(string nome, PecasPack *pecas)
 {
@@ -12,7 +13,13 @@ Jogador::Jogador(int idJogador, bool emXeque, string nome)
 {
   this->sql_idJogador = idJogador;
   this->emXeque = emXeque;
+  this->jogadorDAO = new JogadorDAO();
   this->nome = nome;
+
+  PacotePecasDAO *pacotePecasDAO = new PacotePecasDAO();
+  vector<PecasPack *> listaPacotePecas = pacotePecasDAO->recuperar(idJogador);
+
+  this->pecas = listaPacotePecas[0];
 }
 
 Jogador::~Jogador() {}

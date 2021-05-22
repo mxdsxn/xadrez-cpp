@@ -4,6 +4,7 @@
 #include "../../sqlConnection/pacotePecasSql/PacotePecasSql.h"
 
 class PecasPack;
+class PacotePecasSql;
 class PacotePecasDAO
 {
 public:
@@ -17,6 +18,13 @@ public:
    * @return 0 caso tenha ocorrido erro ao salvar OU id do pacotePecas no banco
   */
   int salvar(int idJogador, PecasPack *pacotePecas);
+
+  /**
+   * Recuperar uma lista de PecasPack
+   * @param idJogador id do Jogador que o pacote de peca esta associado
+   * @return Lista de PecasPack
+  */
+  vector<PecasPack *> recuperar(int idJogador = -1);
 
 private:
   PacotePecasSql *pacotePecasSql;
