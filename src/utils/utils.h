@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include "../posicao/Posicao.h"
 
@@ -34,4 +36,4 @@ std::string formataCoordenadas(CoordenadasStr coordenadas);
 /**
  * função auxiliar para as consultas sql
 */
-static int callbackSql(void *NotUsed, int argc, char **argv, char **azColName);
+int callbackSql(void *NotUsed, int argc, char **argv, char **azColName);
