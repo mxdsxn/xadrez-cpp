@@ -23,7 +23,7 @@ protected:
 
 public:
   Partida();
-  Partida(int idPartida);
+  Partida(int idPartida, bool turnoPrimeiroJogador);
   ~Partida();
   virtual void iniciarPartida() = 0;
   virtual void salvarPartida() = 0;
@@ -33,4 +33,5 @@ public:
   Jogador *getPrimeiroJogador();
   Jogador *getSegundoJogador();
   int getCodigoTipo();
+  int getSqlIdPartida();
 };

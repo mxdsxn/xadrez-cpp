@@ -13,6 +13,14 @@ PartidaTradicional::PartidaTradicional(string nomePrimeiroJogador, string nomeSe
   this->codigoTipo = TipoPartida::Tradicional;
 }
 
+PartidaTradicional::PartidaTradicional(int idPartida, bool turnoPrimeiroJogador, int codigoTipo) : Partida(idPartida, turnoPrimeiroJogador)
+{
+  this->primeiroJogador = nullptr;
+  this->segundoJogador = nullptr;
+
+  this->codigoTipo = TipoPartida::Tradicional;
+}
+
 void PartidaTradicional::mostrarTabuleiro(bool turnoPrimeiroJogador)
 {
   if (this)

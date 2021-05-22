@@ -31,7 +31,7 @@ void Principal::iniciar()
       break;
 
     case 2:
-      //this->controle->recuperaJogo();
+      this->controleJogo->recuperaJogo();
       break;
 
     case 0:

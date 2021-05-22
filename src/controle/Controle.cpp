@@ -1,6 +1,10 @@
 #include "./Controle.h"
 #include "../utils/utils.h"
+#include "../partidas/partidaDAO/PartidaDAO.h"
 #include <iostream>
+#include <vector>
+
+using namespace std;
 
 Controle::Controle()
 {
@@ -10,10 +14,11 @@ Controle::Controle()
 
 void Controle::novoJogo()
 {
+  clear();
+
   int opcaoJogo = 0;
   string nomePrimeiroJogador, nomeSegundoJogador;
 
-  clear();
   opcaoJogo = this->mostrarMenuNovoJogo();
 
   cout << "Nome do primeiro jogador: ";
@@ -26,6 +31,43 @@ void Controle::novoJogo()
 
   this->partidaAtual = this->fabricaPartida->novaPartida(opcaoJogo, nomePrimeiroJogador, nomeSegundoJogador);
   this->partidaAtual->iniciarPartida();
+}
+
+void Controle::recuperaJogo()
+{
+  clear();
+
+  PartidaDAO *partidaDAO = new PartidaDAO();
+  vector<Partida *> listaPartidas = partidaDAO->recuperar();
+
+  int indiceSelecionado = this->monstraMenuRecuperaJogo(listaPartidas);
+
+  this->partidaAtual = listaPartidas[indiceSelecionado];
+  this->partidaAtual->iniciarPartida();
+}
+
+int Controle::monstraMenuRecuperaJogo(vector<Partida *> listaPartidas)
+{
+  int menuOption;
+
+  do
+  {
+    cout << "Selecione a partida desejada: " << endl
+         << endl;
+
+    for (int indice = 0; indice < listaPartidas.size(); indice++)
+    {
+      Partida *partidaAtual = listaPartidas[indice];
+      cout << indice << " - partidaID: " << partidaAtual->getSqlIdPartida() << endl;
+    }
+
+    cin >> menuOption;
+    cleanBuffer();
+    clear();
+
+  } while (!(menuOption >= 0 && menuOption < listaPartidas.size()));
+
+  return menuOption;
 }
 
 int Controle::mostrarMenuNovoJogo()

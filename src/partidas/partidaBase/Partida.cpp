@@ -7,6 +7,13 @@ Partida::Partida()
   this->sql_idPartida = -1;
 }
 
+Partida::Partida(int idPartida, bool turnoPrimeiroJogador)
+{
+  this->turnoPrimeiroJogador = turnoPrimeiroJogador;
+  this->sql_idPartida = idPartida;
+  this->partidaDAO = new PartidaDAO();
+}
+
 Partida::~Partida() {}
 
 bool Partida::getTurnoPrimeiroJogador()
@@ -52,4 +59,13 @@ int Partida::getCodigoTipo()
     return this->codigoTipo;
   }
   return 0;
+}
+
+int Partida::getSqlIdPartida()
+{
+  if (this)
+  {
+    return this->sql_idPartida;
+  }
+  return -1;
 }

@@ -1,10 +1,18 @@
 #pragma once
 
+#include "../../partidas/fabricaPartida/FabricaPartida.h"
+#include "../../partidas/partidaBase/Partida.h"
 #include "../SqlConnection.h"
+#include <vector>
+
+using namespace std;
 
 /**
  * Responsavel por fazer integração com o banco responsável pela persistencia dos dados, diretamente com a tabela responsavel pela entidade Partida
 */
+
+class Partida;
+class FabricaPartida;
 class PartidaSql : public SqlConnection
 {
 public:
@@ -18,4 +26,5 @@ public:
    * @return 0 em casa de erro OU o Id da partida criada
   */
   int salvar(bool turnoPrimeiroJogador, int codigoTipo);
+  vector<Partida *> recuperar(int idPartida = -1);
 };

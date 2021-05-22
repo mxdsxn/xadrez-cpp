@@ -22,3 +22,21 @@ Partida *FabricaPartida::novaPartida(int opcaoPartida, string nomePrimeiroJogado
   }
   return novaPartida;
 }
+
+Partida *FabricaPartida::recuperaPartida(int idPartida, bool turnoPrimeiroJogador, int codigoTipo)
+{
+  Partida *novaPartida;
+  switch (codigoTipo)
+  {
+  case TipoPartida::Tradicional:
+    novaPartida = new PartidaTradicional(idPartida, turnoPrimeiroJogador, codigoTipo);
+    break;
+  case 2:
+    novaPartida = new PartidaTradicional(idPartida, turnoPrimeiroJogador, codigoTipo);
+    break;
+  case 3:
+    novaPartida = new PartidaTradicional(idPartida, turnoPrimeiroJogador, codigoTipo);
+    break;
+  }
+  return novaPartida;
+}

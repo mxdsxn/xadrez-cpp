@@ -63,3 +63,8 @@ bool PartidaDAO::salvar(Partida *partida)
     return true;
   }
 }
+
+vector<Partida *> PartidaDAO::recuperar(int idPartida)
+{
+  return this->partidaSql->recuperar(idPartida);
+}

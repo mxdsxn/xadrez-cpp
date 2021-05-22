@@ -27,6 +27,7 @@ private:
 
 public:
   PartidaTradicional(string nomePrimeiroJogador, string nomeSegundoJogador);
+  PartidaTradicional(int idPartida, bool turnoPrimeiroJogador, int codigoTipo);
 
   /**
     * Inicia o jogo - gerencia os turnos da partida
