@@ -8,6 +8,13 @@ Jogador::Jogador(string nome, PecasPack *pecas)
   this->sql_idJogador = -1;
 }
 
+Jogador::Jogador(int idJogador, bool emXeque, string nome)
+{
+  this->sql_idJogador = idJogador;
+  this->emXeque = emXeque;
+  this->nome = nome;
+}
+
 Jogador::~Jogador() {}
 
 string Jogador::getNome()

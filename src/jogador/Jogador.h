@@ -17,7 +17,7 @@ private:
 
 public:
   Jogador(string nome, PecasPack *pecas);
-  Jogador(int idJogador);
+  Jogador(int idJogador, bool emXeque, string nome);
   ~Jogador();
 
   /**

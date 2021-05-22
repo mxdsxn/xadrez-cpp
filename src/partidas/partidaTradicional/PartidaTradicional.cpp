@@ -1,5 +1,6 @@
 #include <iostream>
 #include "./PartidaTradicional.h"
+#include "../../jogador/jogadorDAO/JogadorDAO.h"
 #include "../../utils/utils.h"
 
 PartidaTradicional::PartidaTradicional(string nomePrimeiroJogador, string nomeSegundoJogador) : Partida()
@@ -17,8 +18,24 @@ PartidaTradicional::PartidaTradicional(int idPartida, bool turnoPrimeiroJogador,
 {
   this->primeiroJogador = nullptr;
   this->segundoJogador = nullptr;
-
   this->codigoTipo = TipoPartida::Tradicional;
+
+  JogadorDAO *jogadorDAO = new JogadorDAO();
+  vector<Jogador *> listaJogadores = jogadorDAO->recuperar(idPartida);
+
+  if (listaJogadores[0]->getPacotePecas()->getEstilo() == "branco")
+  {
+    this->primeiroJogador = listaJogadores[0];
+    this->segundoJogador = listaJogadores[1];
+  }
+  else
+  {
+    this->primeiroJogador = listaJogadores[1];
+    this->segundoJogador = listaJogadores[0];
+  }
+
+  PecasPack *pacotePecasPrimeiroJogador = this->primeiroJogador->getPacotePecas();
+  PecasPack *pacotePecasSegundoJogador = this->segundoJogador->getPacotePecas();
 }
 
 void PartidaTradicional::mostrarTabuleiro(bool turnoPrimeiroJogador)

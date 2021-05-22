@@ -4,6 +4,7 @@
 #include "../../sqlConnection/jogadorSql/JogadorSql.h"
 
 class Jogador;
+class JogadorSql;
 class JogadorDAO
 {
 public:
@@ -17,6 +18,13 @@ public:
    * @return 0 caso tenha ocorrido erro ao salvar OU id do jogador no banco
   */
   int salvar(int idPartida, Jogador *jogador);
+
+  /**
+   * Recuperar uma lista de Jogadores
+   * @param idPartida id da Partida que os jogadores estão associado
+   * @return Lista de Jogadores
+  */
+  vector<Jogador *> recuperar(int idPartida);
 
 private:
   JogadorSql *jogadorSql;

@@ -54,3 +54,41 @@ int JogadorSql::salvar(int idPartida, bool emXeque, string nome)
 
   return 0;
 }
+
+int callbackSqlJogador(void *NotUsed, int argc, char **argv, char **azColName)
+{
+  int i;
+  vector<Jogador *> *result = (vector<Jogador *> *)NotUsed;
+
+  int idJogador = argv[0] ? atoi(argv[0]) : -1;
+  bool emXeque = argv[1] ? argv[1] == "1" : false;
+  string nome = argv[2] ? argv[2] : "[ERROR] - JOGADOR_NAME";
+
+  Jogador *novoJogador = new Jogador(idJogador, emXeque, nome);
+
+  result->push_back(novoJogador);
+
+  return 0;
+}
+
+vector<Jogador *> JogadorSql::recuperar(int idPartida)
+{
+  vector<Jogador *> result;
+
+  char *zErrMsg = 0;
+  int rc;
+
+  string createTableQuery = ("select * from  jogador_table" + ((idPartida != -1) ? " where jogador_table.partida_id = " + to_string(idPartida) : ""));
+
+  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callbackSqlJogador, &result, &zErrMsg);
+
+  if (rc != SQLITE_OK)
+  {
+
+    //cout << "SQL error: " << sqlite3_errmsg(this->database) << "\n";
+    sqlite3_free(zErrMsg);
+    return result;
+  }
+
+  return result;
+}

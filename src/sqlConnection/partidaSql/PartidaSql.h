@@ -26,5 +26,11 @@ public:
    * @return 0 em casa de erro OU o Id da partida criada
   */
   int salvar(bool turnoPrimeiroJogador, int codigoTipo);
+
+  /**
+   * Recuperar uma lista de Partidas
+   * @param idPartida caso essa partida seja a selecionada para jogar, nao obrigatoria caso queira recuperar todas as partidas disponiveis
+   * @return Lista de partidas
+  */
   vector<Partida *> recuperar(int idPartida = -1);
 };

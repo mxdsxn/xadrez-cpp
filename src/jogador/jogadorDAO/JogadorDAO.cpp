@@ -17,3 +17,8 @@ int JogadorDAO::salvar(int idPartida, Jogador *jogador)
   }
   return idNovoJogador;
 }
+
+vector<Jogador *> JogadorDAO::recuperar(int idPartida)
+{
+  return this->jogadorSql->recuperar(idPartida);
+}
