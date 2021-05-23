@@ -11,6 +11,12 @@ Peca::Peca(string estilo, bool sentidoPraFrente)
   this->sql_idPeca = -1;
 }
 
+Peca::Peca(int idPeca)
+{
+  this->sql_idPeca = idPeca;
+  this->pecaDAO = new PecaDAO();
+}
+
 Peca::~Peca() {}
 
 bool Peca::getXeque()
@@ -162,4 +168,13 @@ int Peca::salvar(int idPacotePeca)
     return this->pecaDAO->salvar(idPacotePeca, this);
   }
   return false;
+}
+
+int Peca::getSqlIdPeca()
+{
+  if (this)
+  {
+    return this->sql_idPeca;
+  }
+  return -1;
 }

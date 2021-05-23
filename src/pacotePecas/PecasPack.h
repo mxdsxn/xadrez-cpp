@@ -97,4 +97,9 @@ public:
    * @return 0 caso tenha ocorrido erro ao salvar OU id do pacotePecas no banco
   */
   int salvar(int idJogador);
+
+  /**
+   * @return Retorna sql_ID do pacote
+  */
+  int getSqlIdPacotePeca();
 };

@@ -9,7 +9,7 @@ JogadorDAO::~JogadorDAO() {}
 
 int JogadorDAO::salvar(int idPartida, Jogador *jogador)
 {
-  int idNovoJogador = this->jogadorSql->salvar(idPartida, jogador->getXeque(), jogador->getNome());
+  int idNovoJogador = this->jogadorSql->salvar(idPartida, jogador->getXeque(), jogador->getNome(), jogador->getSqlIdJogador());
 
   if (idNovoJogador == 0)
   {

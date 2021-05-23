@@ -39,7 +39,8 @@ int PecaSql::salvar(
     bool primeiraJogada,
     int coordenada_y,
     int coordenada_x,
-    int codigoTipo)
+    int codigoTipo,
+    int sql_idPeca)
 {
   char *zErrMsg = 0;
   int rc;
@@ -63,7 +64,17 @@ int PecaSql::salvar(
                     to_string(idPacotePecas) +
                     ") ";
 
-  rc = sqlite3_exec(this->database, addQuery.c_str(), callbackSql, 0, &zErrMsg);
+  string updateQuery = ("update peca_table set emXeque = " + to_string(emXeque ? 1 : 0) +
+                        ", sentidoPraFrente = " + to_string(sentidoPraFrente ? 1 : 0) +
+                        ", primeiraJogada = " + to_string(primeiraJogada ? 1 : 0) +
+                        ", codigoTipo = " + to_string(codigoTipo) +
+                        ", coordenada_y = " + to_string(coordenada_y) +
+                        ", coordenada_x = " + to_string(coordenada_x) +
+                        " where peca_table.id = " + to_string(sql_idPeca));
+
+  string query = sql_idPeca == -1 ? addQuery : updateQuery;
+
+  rc = sqlite3_exec(this->database, query.c_str(), callbackSql, 0, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {
@@ -116,9 +127,9 @@ vector<Peca *> PecaSql::recuperar(int idPacotePeca)
   char *zErrMsg = 0;
   int rc;
 
-  string createTableQuery = ("select * from  peca_table" + ((idPacotePeca != -1) ? " where peca_table.pacote_pecas_id = " + to_string(idPacotePeca) : ""));
+  string selectQuery = ("select * from  peca_table" + ((idPacotePeca != -1) ? " where peca_table.pacote_pecas_id = " + to_string(idPacotePeca) : ""));
 
-  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callbackSqlPeca, &result, &zErrMsg);
+  rc = sqlite3_exec(this->database, selectQuery.c_str(), callbackSqlPeca, &result, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {

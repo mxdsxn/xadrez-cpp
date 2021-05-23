@@ -62,4 +62,9 @@ public:
    * @return 0 caso tenha ocorrido erro ao salvar OU id do jogador no banco
   */
   int salvar(int idPartida);
+
+  /**
+   * @return Retorna sql_ID do jogador
+  */
+  int getSqlIdJogador();
 };

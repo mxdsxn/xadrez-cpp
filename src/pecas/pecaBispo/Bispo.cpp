@@ -10,14 +10,14 @@ Bispo::Bispo(string estilo, bool sentidoPraFrente) : Peca(estilo, sentidoPraFren
   this->simbolo = this->estilo == "preto" ? "♗" : "♝";
 }
 
-Bispo::Bispo(int idPeca, bool emXeque, bool sentidoPraFrente, bool primeiraJogada, int coordenada_x, int coordenada_y) : Peca(sentidoPraFrente ? "branco" : "preto", sentidoPraFrente)
+Bispo::Bispo(int idPeca, bool emXeque, bool sentidoPraFrente, bool primeiraJogada, int coordenada_x, int coordenada_y) : Peca(idPeca)
 {
   this->codigo = 4;
+  this->estilo = sentidoPraFrente ? "branco" : "preto";
   this->simbolo = this->estilo == "preto" ? "♗" : "♝";
   this->emXeque = emXeque;
   this->sentidoPraFrente = sentidoPraFrente;
   this->primeiraJogada = primeiraJogada;
-  this->sql_idPeca = sql_idPeca;
   this->posicao = new Posicao(coordenada_x, coordenada_y, false);
 }
 

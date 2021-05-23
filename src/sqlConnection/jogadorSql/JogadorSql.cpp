@@ -27,7 +27,7 @@ JogadorSql::JogadorSql() : SqlConnection()
 
 JogadorSql::~JogadorSql() {}
 
-int JogadorSql::salvar(int idPartida, bool emXeque, string nome)
+int JogadorSql::salvar(int idPartida, bool emXeque, string nome, int sql_idJogador)
 {
   char *zErrMsg = 0;
   int rc;
@@ -37,7 +37,13 @@ int JogadorSql::salvar(int idPartida, bool emXeque, string nome)
                     ", '" + nome + "'" +
                     ", " + to_string(idPartida) + ") ";
 
-  rc = sqlite3_exec(this->database, addQuery.c_str(), callbackSql, 0, &zErrMsg);
+  string updateQuery = ("update jogador_table set emXeque = " + to_string(emXeque ? 1 : 0) +
+                        ", nome = '" + nome + "'" +
+                        " where jogador_table.id = " + to_string(sql_idJogador));
+
+  string query = sql_idJogador == -1 ? addQuery : updateQuery;
+
+  rc = sqlite3_exec(this->database, query.c_str(), callbackSql, 0, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {
@@ -78,9 +84,9 @@ vector<Jogador *> JogadorSql::recuperar(int idPartida)
   char *zErrMsg = 0;
   int rc;
 
-  string createTableQuery = ("select * from  jogador_table" + ((idPartida != -1) ? " where jogador_table.partida_id = " + to_string(idPartida) : ""));
+  string selectQuery = ("select * from  jogador_table" + ((idPartida != -1) ? " where jogador_table.partida_id = " + to_string(idPartida) : ""));
 
-  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callbackSqlJogador, &result, &zErrMsg);
+  rc = sqlite3_exec(this->database, selectQuery.c_str(), callbackSqlJogador, &result, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {

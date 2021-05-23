@@ -20,7 +20,8 @@ bool PecaDAO::salvar(int idPacotePeca, Peca *peca)
                                          peca->getPrimeiraJogada(),
                                          coordenadaY,
                                          coordenadaX,
-                                         peca->getCodigo());
+                                         peca->getCodigo(),
+                                         peca->getSqlIdPeca());
 
   if (idNovaPeca == 0)
   {

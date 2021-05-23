@@ -113,4 +113,9 @@ public:
    * @return 0 quando ocorrer um erro OU o id da peca
   */
   int salvar(int idPacotePeca);
+
+  /**
+   * @return Retorna sql_ID da peca
+  */
+  int getSqlIdPeca();
 };

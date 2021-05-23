@@ -285,7 +285,10 @@ void PartidaTradicional::iniciarPartida()
 
 void PartidaTradicional::salvarPartida()
 {
+  cout << "Salvando partida..." << endl
+       << endl;
   this->partidaDAO->salvar(this);
+  clear();
 }
 
 void PartidaTradicional::encerrarPartida() {}

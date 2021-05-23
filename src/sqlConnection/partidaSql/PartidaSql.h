@@ -25,7 +25,7 @@ public:
    * @param codigoTipo Tipo da partida para a recuperação dos dados
    * @return 0 em casa de erro OU o Id da partida criada
   */
-  int salvar(bool turnoPrimeiroJogador, int codigoTipo);
+  int salvar(bool turnoPrimeiroJogador, int codigoTipo, int sql_idPartida);
 
   /**
    * Recuperar uma lista de Partidas

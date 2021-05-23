@@ -24,7 +24,7 @@ public:
    * @param nome Nome do jogador
    * @return 0 em casa de erro OU o Id da partida criada
   */
-  int salvar(int idPartida, bool emXeque, string nome);
+  int salvar(int idPartida, bool emXeque, string nome, int sql_idJogador);
 
   /**
    * Recuperar uma lista de Jogadores

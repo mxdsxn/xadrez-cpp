@@ -24,7 +24,7 @@ public:
    * @param estilo Estilo das peças do pacote
    * @return 0 em casa de erro OU o Id do pacote criada
   */
-  int salvar(int idJogador, bool emXeque, string estilo);
+  int salvar(int idJogador, bool emXeque, string estilo, int sql_idPacotePeca);
 
   /**
    * Recuperar uma lista de PecasPack

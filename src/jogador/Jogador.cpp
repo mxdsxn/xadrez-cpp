@@ -113,3 +113,12 @@ int Jogador::salvar(int idPartida)
 
   return 0;
 }
+
+int Jogador::getSqlIdJogador()
+{
+  if (this)
+  {
+    return this->sql_idJogador;
+  }
+  return -1;
+}

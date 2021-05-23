@@ -9,7 +9,7 @@ PacotePecasDAO::~PacotePecasDAO() {}
 
 int PacotePecasDAO::salvar(int idJogador, PecasPack *pacotePecas)
 {
-  int PacotePecas = this->pacotePecasSql->salvar(idJogador, pacotePecas->getXeque(), pacotePecas->getEstilo());
+  int PacotePecas = this->pacotePecasSql->salvar(idJogador, pacotePecas->getXeque(), pacotePecas->getEstilo(), pacotePecas->getSqlIdPacotePeca());
 
   if (PacotePecas == 0)
   {

@@ -27,7 +27,7 @@ PacotePecasSql::PacotePecasSql() : SqlConnection()
 
 PacotePecasSql::~PacotePecasSql() {}
 
-int PacotePecasSql::salvar(int idJogador, bool emXeque, string estilo)
+int PacotePecasSql::salvar(int idJogador, bool emXeque, string estilo, int sql_idPacotePeca)
 {
   char *zErrMsg = 0;
   int rc;
@@ -37,7 +37,13 @@ int PacotePecasSql::salvar(int idJogador, bool emXeque, string estilo)
                     ", '" + estilo + "'" +
                     ", " + to_string(idJogador) + ") ";
 
-  rc = sqlite3_exec(this->database, addQuery.c_str(), callbackSql, 0, &zErrMsg);
+  string updateQuery = ("update pacote_pecas_table set emXeque = " + to_string(emXeque ? 1 : 0) +
+                        ", estilo = '" + estilo + "'" +
+                        " where pacote_pecas_table.id = " + to_string(sql_idPacotePeca));
+
+  string query = sql_idPacotePeca == -1 ? addQuery : updateQuery;
+
+  rc = sqlite3_exec(this->database, query.c_str(), callbackSql, 0, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {
@@ -78,9 +84,9 @@ vector<PecasPack *> PacotePecasSql::recuperar(int idJogador)
   char *zErrMsg = 0;
   int rc;
 
-  string createTableQuery = ("select * from  pacote_pecas_table" + ((idJogador != -1) ? " where pacote_pecas_table.jogador_id = " + to_string(idJogador) : ""));
+  string selectQuery = ("select * from  pacote_pecas_table" + ((idJogador != -1) ? " where pacote_pecas_table.jogador_id = " + to_string(idJogador) : ""));
 
-  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callbackSqlPacotePecas, &result, &zErrMsg);
+  rc = sqlite3_exec(this->database, selectQuery.c_str(), callbackSqlPacotePecas, &result, &zErrMsg);
 
   if (rc != SQLITE_OK)
   {

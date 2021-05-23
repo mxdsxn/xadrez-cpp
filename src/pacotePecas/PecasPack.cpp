@@ -304,3 +304,12 @@ int PecasPack::salvar(int idJogador)
 
   return 0;
 }
+
+int PecasPack::getSqlIdPacotePeca()
+{
+  if (this)
+  {
+    return this->sql_idPacotePeca;
+  }
+  return -1;
+}

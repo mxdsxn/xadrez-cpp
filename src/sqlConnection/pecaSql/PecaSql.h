@@ -37,7 +37,8 @@ public:
       bool primeiraJogada,
       int coordenada_y,
       int coordenada_x,
-      int codigoTipo);
+      int codigoTipo,
+      int sql_idPeca);
 
   /**
    * Recuperar uma lista de Pecas
