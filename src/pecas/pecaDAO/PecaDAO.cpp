@@ -35,3 +35,8 @@ vector<Peca *> PecaDAO::recuperar(int idPacotePeca)
 {
   return this->pecaSql->recuperar(idPacotePeca);
 }
+
+void PecaDAO::deletar(Peca *peca)
+{
+  this->pecaSql->deletar(peca->getSqlIdPeca());
+}

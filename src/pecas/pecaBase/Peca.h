@@ -115,6 +115,11 @@ public:
   int salvar(int idPacotePeca);
 
   /**
+   * Deleta persistencia da peca
+  */
+  void deletar();
+
+  /**
    * @return Retorna sql_ID da peca
   */
   int getSqlIdPeca();

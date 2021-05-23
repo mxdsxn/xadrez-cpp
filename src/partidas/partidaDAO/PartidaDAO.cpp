@@ -78,3 +78,8 @@ vector<Partida *> PartidaDAO::recuperar(int idPartida)
 {
   return this->partidaSql->recuperar(idPartida);
 }
+
+void PartidaDAO::deletar(Partida *partida)
+{
+  this->partidaSql->deletar(partida->getSqlIdPartida());
+}

@@ -46,4 +46,10 @@ public:
    * @return Lista de Pecas
   */
   vector<Peca *> recuperar(int idPacotePeca = -1);
+
+  /**
+   * Deleta uma peca e todos os seus estados
+   * @param idPeca id da peca no banco
+  */
+  void deletar(int idPeca);
 };

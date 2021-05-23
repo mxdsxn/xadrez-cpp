@@ -33,4 +33,10 @@ public:
    * @return Lista de partidas
   */
   vector<Partida *> recuperar(int idPartida = -1);
+
+  /**
+   * Deleta uma partida e todos os seus estados
+   * @param idPartida id da partida no banco
+  */
+  void deletar(int idPartida);
 };

@@ -26,6 +26,12 @@ public:
   */
   vector<Jogador *> recuperar(int idPartida = -1);
 
+  /**
+   * Deleta um jogador e todos os seus estados
+   * @param jogador Ponteiro do jogador a ser deletar
+  */
+  void deletar(Jogador *jogador);
+
 private:
   JogadorSql *jogadorSql;
 };

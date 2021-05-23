@@ -25,6 +25,12 @@ public:
   */
   vector<Partida *> recuperar(int idPartida = -1);
 
+  /**
+   * Deleta uma partida e todos os seus estados
+   * @param partida Ponteiro da partida a ser deletar
+  */
+  void deletar(Partida *partida);
+
 private:
   PartidaSql *partidaSql;
 };

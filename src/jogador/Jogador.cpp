@@ -114,6 +114,16 @@ int Jogador::salvar(int idPartida)
   return 0;
 }
 
+void Jogador::deletar()
+{
+  if (this->sql_idJogador != -1)
+  {
+    this->pecas->deletar();
+
+    this->jogadorDAO->deletar(this);
+  }
+}
+
 int Jogador::getSqlIdJogador()
 {
   if (this)

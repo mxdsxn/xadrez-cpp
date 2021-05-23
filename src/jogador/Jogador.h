@@ -64,6 +64,11 @@ public:
   int salvar(int idPartida);
 
   /**
+   * Deleta persistencia do jogador
+  */
+  void deletar();
+
+  /**
    * @return Retorna sql_ID do jogador
   */
   int getSqlIdJogador();

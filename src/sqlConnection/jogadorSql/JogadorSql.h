@@ -32,4 +32,10 @@ public:
    * @return Lista de Jogadores
   */
   vector<Jogador *> recuperar(int idPartida);
+
+  /**
+   * Deleta um jogador e todos os seus estados
+   * @param idJogador id do jogador no banco
+  */
+  void deletar(int idJogador);
 };

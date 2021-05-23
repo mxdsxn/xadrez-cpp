@@ -305,6 +305,21 @@ int PecasPack::salvar(int idJogador)
   return 0;
 }
 
+void PecasPack::deletar()
+{
+  if (this->sql_idPacotePeca != -1)
+  {
+    vector<Peca *> listaPeca = this->getTodasPecas();
+
+    for (int indice = 0; indice < listaPeca.size(); indice++)
+    {
+      listaPeca[indice]->deletar();
+    }
+
+    this->pacotePecasDAO->deletar(this);
+  }
+}
+
 int PecasPack::getSqlIdPacotePeca()
 {
   if (this)

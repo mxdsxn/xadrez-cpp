@@ -280,6 +280,11 @@ void PartidaTradicional::iniciarPartida()
     {
       this->salvarPartida();
     }
+
+    if (jogoEncerrado)
+    {
+      this->encerrarPartida();
+    }
   }
 }
 
@@ -287,8 +292,24 @@ void PartidaTradicional::salvarPartida()
 {
   cout << "Salvando partida..." << endl
        << endl;
+
   this->partidaDAO->salvar(this);
+
   clear();
 }
 
-void PartidaTradicional::encerrarPartida() {}
+void PartidaTradicional::encerrarPartida()
+{
+  cout << "Encerrando partida..." << endl
+       << endl;
+
+  if (this->sql_idPartida != -1)
+  {
+    this->primeiroJogador->deletar();
+    this->segundoJogador->deletar();
+
+    this->partidaDAO->deletar(this);
+  }
+
+  clear();
+}

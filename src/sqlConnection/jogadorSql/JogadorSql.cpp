@@ -97,3 +97,21 @@ vector<Jogador *> JogadorSql::recuperar(int idPartida)
 
   return result;
 }
+
+void JogadorSql::deletar(int idJogador)
+{
+  char *zErrMsg = 0;
+  int rc;
+
+  string deleteQuery = "delete from jogador_table where jogador_table.id = " + to_string(idJogador);
+
+  rc = sqlite3_exec(this->database, deleteQuery.c_str(), callbackSql, 0, &zErrMsg);
+
+  if (rc != SQLITE_OK)
+  {
+    cout << zErrMsg << endl;
+    cout << *zErrMsg << endl;
+    cleanBuffer();
+    sqlite3_free(zErrMsg);
+  }
+}

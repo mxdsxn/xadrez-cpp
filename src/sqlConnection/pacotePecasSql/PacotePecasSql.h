@@ -32,4 +32,10 @@ public:
    * @return Lista de PecasPack
   */
   vector<PecasPack *> recuperar(int idJogador);
+
+  /**
+   * Deleta um pacote de pecas e todos os seus estados
+   * @param idPacotePeca id do pacote no banco
+  */
+  void deletar(int idPacotePeca);
 };

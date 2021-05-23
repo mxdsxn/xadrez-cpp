@@ -30,6 +30,12 @@ public:
   */
   vector<Peca *> recuperar(int idPacotePeca = -1);
 
+  /**
+   * Deleta uma peca e todos os seus estados
+   * @param peca Ponteiro da peca a ser deletar
+  */
+  void deletar(Peca *peca);
+
 private:
   PecaSql *pecaSql;
 };

@@ -26,6 +26,12 @@ public:
   */
   vector<PecasPack *> recuperar(int idJogador = -1);
 
+  /**
+   * Deleta pacote de pecas e todos os seus estados
+   * @param pacotePeca Ponteiro do pacote a ser deletar
+  */
+  void deletar(PecasPack *pacotePeca);
+
 private:
   PacotePecasSql *pacotePecasSql;
 };

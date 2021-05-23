@@ -97,3 +97,21 @@ vector<PecasPack *> PacotePecasSql::recuperar(int idJogador)
 
   return result;
 }
+
+void PacotePecasSql::deletar(int idPacotePeca)
+{
+  char *zErrMsg = 0;
+  int rc;
+
+  string deleteQuery = "delete from pacote_pecas_table where pacote_pecas_table.id = " + to_string(idPacotePeca);
+
+  rc = sqlite3_exec(this->database, deleteQuery.c_str(), callbackSql, 0, &zErrMsg);
+
+  if (rc != SQLITE_OK)
+  {
+    cout << zErrMsg << endl;
+    cout << *zErrMsg << endl;
+    cleanBuffer();
+    sqlite3_free(zErrMsg);
+  }
+}

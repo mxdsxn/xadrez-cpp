@@ -99,6 +99,11 @@ public:
   int salvar(int idJogador);
 
   /**
+   * Deleta persistencia do pacote de peca
+  */
+  void deletar();
+
+  /**
    * @return Retorna sql_ID do pacote
   */
   int getSqlIdPacotePeca();

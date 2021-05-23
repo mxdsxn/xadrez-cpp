@@ -170,6 +170,14 @@ int Peca::salvar(int idPacotePeca)
   return false;
 }
 
+void Peca::deletar()
+{
+  if (this->sql_idPeca != -1)
+  {
+    this->pecaDAO->deletar(this);
+  }
+}
+
 int Peca::getSqlIdPeca()
 {
   if (this)

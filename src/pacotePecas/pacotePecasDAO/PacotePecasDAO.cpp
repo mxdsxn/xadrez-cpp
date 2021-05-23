@@ -22,3 +22,8 @@ vector<PecasPack *> PacotePecasDAO::recuperar(int idJogador)
 {
   return this->pacotePecasSql->recuperar(idJogador);
 }
+
+void PacotePecasDAO::deletar(PecasPack *pacotePeca)
+{
+  this->pacotePecasSql->deletar(pacotePeca->getSqlIdPacotePeca());
+}

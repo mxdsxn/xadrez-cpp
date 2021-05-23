@@ -22,3 +22,8 @@ vector<Jogador *> JogadorDAO::recuperar(int idPartida)
 {
   return this->jogadorSql->recuperar(idPartida);
 }
+
+void JogadorDAO::deletar(Jogador *jogador)
+{
+  this->jogadorSql->deletar(jogador->getSqlIdJogador());
+}
