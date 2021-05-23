@@ -18,7 +18,7 @@ PartidaTradicional::PartidaTradicional(int idPartida, bool turnoPrimeiroJogador,
 {
   this->primeiroJogador = nullptr;
   this->segundoJogador = nullptr;
-  this->codigoTipo = TipoPartida::Tradicional;
+  this->codigoTipo = codigoTipo;
 
   JogadorDAO *jogadorDAO = new JogadorDAO();
   vector<Jogador *> listaJogadores = jogadorDAO->recuperar(idPartida);
@@ -36,6 +36,11 @@ PartidaTradicional::PartidaTradicional(int idPartida, bool turnoPrimeiroJogador,
 
   PecasPack *pacotePecasPrimeiroJogador = this->primeiroJogador->getPacotePecas();
   PecasPack *pacotePecasSegundoJogador = this->segundoJogador->getPacotePecas();
+
+  this->tabuleiro = new Tabuleiro(pacotePecasPrimeiroJogador, pacotePecasSegundoJogador);
+
+  pacotePecasPrimeiroJogador->setTabuleiro(this->tabuleiro);
+  pacotePecasSegundoJogador->setTabuleiro(this->tabuleiro);
 }
 
 void PartidaTradicional::mostrarTabuleiro(bool turnoPrimeiroJogador)

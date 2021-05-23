@@ -61,7 +61,7 @@ int callbackSqlPacotePecas(void *NotUsed, int argc, char **argv, char **azColNam
   vector<PecasPack *> *result = (vector<PecasPack *> *)NotUsed;
 
   int idPecasPack = argv[0] ? atoi(argv[0]) : -1;
-  bool emXeque = argv[1] ? argv[1] == "1" : false;
+  bool emXeque = argv[1] ? atoi(argv[1]) == 1 : false;
   string estilo = argv[2] ? argv[2] : "[ERROR] - JOGADOR_NAME";
 
   PecasPack *novoPacotePecas = new PecasPack(idPecasPack, emXeque, estilo);

@@ -80,3 +80,52 @@ int PecaSql::salvar(
 
   return 0;
 }
+
+int callbackSqlPeca(void *NotUsed, int argc, char **argv, char **azColName)
+{
+  int i;
+  FabricaPeca *fabricaPeca = new FabricaPeca();
+
+  vector<Peca *> *result = (vector<Peca *> *)NotUsed;
+
+  int idPeca = argv[0] ? atoi(argv[0]) : -1;
+  bool emXeque = argv[1] ? atoi(argv[1]) == 1 : false;
+  bool sentidoPraFrente = argv[2] ? atoi(argv[2]) == 1 : false;
+  bool primeiraJogada = argv[3] ? atoi(argv[3]) == 1 : false;
+  int codigoTipo = argv[4] ? atoi(argv[4]) : -1;
+  int coordenada_x = argv[5] ? atoi(argv[5]) : -1;
+  int coordenada_y = argv[6] ? atoi(argv[6]) : -1;
+
+  Peca *novaPeca = fabricaPeca->recuperaPeca(idPeca,
+                                             emXeque,
+                                             sentidoPraFrente,
+                                             primeiraJogada,
+                                             codigoTipo,
+                                             coordenada_x,
+                                             coordenada_y);
+
+  result->push_back(novaPeca);
+
+  return 0;
+}
+
+vector<Peca *> PecaSql::recuperar(int idPacotePeca)
+{
+  vector<Peca *> result;
+
+  char *zErrMsg = 0;
+  int rc;
+
+  string createTableQuery = ("select * from  peca_table" + ((idPacotePeca != -1) ? " where peca_table.pacote_pecas_id = " + to_string(idPacotePeca) : ""));
+
+  rc = sqlite3_exec(this->database, createTableQuery.c_str(), callbackSqlPeca, &result, &zErrMsg);
+
+  if (rc != SQLITE_OK)
+  {
+    //cout << "SQL error: " << sqlite3_errmsg(this->database) << "\n";
+    sqlite3_free(zErrMsg);
+    return result;
+  }
+
+  return result;
+}

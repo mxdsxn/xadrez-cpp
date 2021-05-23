@@ -58,6 +58,11 @@ public:
   void setXeque(bool emXeque);
 
   /**
+     * @param tabuleiro setta tabuleiro.
+     */
+  void setTabuleiro(Tabuleiro *tabuleiro);
+
+  /**
      * @return Booleano com estado atual de xeque do pacote
      */
   bool getXeque();

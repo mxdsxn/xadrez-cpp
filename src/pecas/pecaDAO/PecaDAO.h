@@ -2,8 +2,13 @@
 
 #include "../pecaBase/Peca.h"
 #include "../../sqlConnection/pecaSql/PecaSql.h"
+#include <vector>
+
+using namespace std;
 
 class Peca;
+class PecaSql;
+
 class PecaDAO
 {
 public:
@@ -17,6 +22,13 @@ public:
    * @return TRUE quando a peca é salva com sucesso
   */
   bool salvar(int idPacotePeca, Peca *peca);
+
+  /**
+   * Recuperar uma lista de Pecas
+   * @param idPacotePeca id do pacote que as pecas estão associado
+   * @return Lista de Pecas
+  */
+  vector<Peca *> recuperar(int idPacotePeca = -1);
 
 private:
   PecaSql *pecaSql;

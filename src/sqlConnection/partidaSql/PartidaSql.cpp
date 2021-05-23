@@ -58,7 +58,7 @@ int callbackSqlPartida(void *NotUsed, int argc, char **argv, char **azColName)
   vector<Partida *> *result = (vector<Partida *> *)NotUsed;
 
   int idPartida = argv[0] ? atoi(argv[0]) : -1;
-  bool turnoPrimeiroJogador = argv[1] ? argv[1] == "1" : false;
+  bool turnoPrimeiroJogador = argv[1] ? atoi(argv[1]) == 1 : false;
   int codigoTipo = argv[2] ? atoi(argv[2]) : -1;
 
   Partida *novaPartida = fabricaPartida->recuperaPartida(idPartida, turnoPrimeiroJogador, codigoTipo);

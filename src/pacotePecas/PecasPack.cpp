@@ -7,6 +7,7 @@
 #include "../pecas/pecaBispo/Bispo.h"
 #include "../pecas/pecaCavalo/Cavalo.h"
 #include "../utils/utils.h"
+#include "../pecas/pecaDAO/PecaDAO.h"
 
 PecasPack::PecasPack(string estilo, bool sentidoPraFrente, Tabuleiro *tabuleiro)
 {
@@ -53,9 +54,45 @@ PecasPack::PecasPack(int idPacotePeca, bool emXeque, string estilo)
   this->sql_idPacotePeca = idPacotePeca;
   this->emXeque = emXeque;
   this->estilo = estilo;
-
-  this->tabuleiro = nullptr;
   this->pacotePecasDAO = new PacotePecasDAO();
+
+  this->rei = nullptr;
+  this->rainha = nullptr;
+  this->tabuleiro = nullptr;
+
+  PecaDAO *pecaDAO = new PecaDAO();
+  vector<Peca *> listaPecas = pecaDAO->recuperar(idPacotePeca);
+
+  for (int indice = 0; indice < listaPecas.size(); indice++)
+  {
+    Peca *pecaAtual = listaPecas[indice];
+    switch (pecaAtual->getCodigo())
+    {
+    case 1:
+      if (this->rei == nullptr)
+        this->rei = pecaAtual;
+      break;
+    case 2:
+      if (this->rainha == nullptr)
+        this->rainha = pecaAtual;
+      break;
+    case 3:
+      this->cavalos.push_back(pecaAtual);
+      break;
+    case 4:
+      this->bispos.push_back(pecaAtual);
+      break;
+    case 5:
+      this->torres.push_back(pecaAtual);
+      break;
+    case 6:
+      this->peoes.push_back(pecaAtual);
+      break;
+    default:
+      this->peoes.push_back(pecaAtual);
+      break;
+    }
+  }
 }
 
 PecasPack::~PecasPack() {}
@@ -180,6 +217,14 @@ bool PecasPack::getXeque()
     return this->emXeque;
   }
   return false;
+}
+
+void PecasPack::setTabuleiro(Tabuleiro *tabuleiro)
+{
+  if (this)
+  {
+    this->tabuleiro = tabuleiro;
+  }
 }
 
 void PecasPack::setPosicaoInicialPeoes(vector<Posicao *> *linhaInicialPeoes)

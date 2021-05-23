@@ -7,6 +7,12 @@ class Bispo : public Peca
 {
 public:
   Bispo(string estilo, bool sentidoPraFrente);
+  Bispo(int idPeca,
+        bool emXeque,
+        bool sentidoPraFrente,
+        bool primeiraJogada,
+        int coordenada_x,
+        int coordenada_y);
   ~Bispo();
 
   /**

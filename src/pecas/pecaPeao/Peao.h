@@ -7,6 +7,12 @@ class Peao : public Peca
 {
 public:
   Peao(string estilo, bool sentidoPraFrente);
+  Peao(int idPeca,
+       bool emXeque,
+       bool sentidoPraFrente,
+       bool primeiraJogada,
+       int coordenada_x,
+       int coordenada_y);
   ~Peao();
 
   /**

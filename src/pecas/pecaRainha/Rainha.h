@@ -7,6 +7,12 @@ class Rainha : public Peca
 {
 public:
   Rainha(string estilo, bool sentidoPraFrente);
+  Rainha(int idPeca,
+         bool emXeque,
+         bool sentidoPraFrente,
+         bool primeiraJogada,
+         int coordenada_x,
+         int coordenada_y);
   ~Rainha();
 
   /**

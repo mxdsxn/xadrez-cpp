@@ -5,10 +5,22 @@ using namespace std;
 
 Bispo::Bispo(string estilo, bool sentidoPraFrente) : Peca(estilo, sentidoPraFrente)
 {
-  this->simbolo = this->estilo == "preto" ? "♗" : "♝";
   this->primeiraJogada = true;
   this->codigo = 4;
+  this->simbolo = this->estilo == "preto" ? "♗" : "♝";
 }
+
+Bispo::Bispo(int idPeca, bool emXeque, bool sentidoPraFrente, bool primeiraJogada, int coordenada_x, int coordenada_y) : Peca(sentidoPraFrente ? "branco" : "preto", sentidoPraFrente)
+{
+  this->codigo = 4;
+  this->simbolo = this->estilo == "preto" ? "♗" : "♝";
+  this->emXeque = emXeque;
+  this->sentidoPraFrente = sentidoPraFrente;
+  this->primeiraJogada = primeiraJogada;
+  this->sql_idPeca = sql_idPeca;
+  this->posicao = new Posicao(coordenada_x, coordenada_y, false);
+}
+
 Bispo::~Bispo() {}
 
 vector<Posicao *> Bispo::getTodasJogadasDisponiveis(vector<vector<Posicao *>> *posicoesTabuleiro)

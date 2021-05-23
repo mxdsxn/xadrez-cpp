@@ -1,5 +1,4 @@
-#ifndef _PECA_H
-#define _PECA_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -115,5 +114,3 @@ public:
   */
   int salvar(int idPacotePeca);
 };
-
-#endif //_PECA_H

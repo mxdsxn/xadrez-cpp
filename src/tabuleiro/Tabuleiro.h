@@ -20,6 +20,7 @@ private:
 
 public:
   Tabuleiro();
+  Tabuleiro(PecasPack *pecasBrancas, PecasPack *pecasPretas);
   ~Tabuleiro();
 
   /**

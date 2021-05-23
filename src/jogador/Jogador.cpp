@@ -1,5 +1,9 @@
 #include "./Jogador.h"
 #include "../pacotePecas/pacotePecasDAO/PacotePecasDAO.h"
+#include "../utils/utils.h"
+#include <iostream>
+
+using namespace std;
 
 Jogador::Jogador(string nome, PecasPack *pecas)
 {

@@ -61,7 +61,7 @@ int callbackSqlJogador(void *NotUsed, int argc, char **argv, char **azColName)
   vector<Jogador *> *result = (vector<Jogador *> *)NotUsed;
 
   int idJogador = argv[0] ? atoi(argv[0]) : -1;
-  bool emXeque = argv[1] ? argv[1] == "1" : false;
+  bool emXeque = argv[1] ? atoi(argv[1]) == 1 : false;
   string nome = argv[2] ? argv[2] : "[ERROR] - JOGADOR_NAME";
 
   Jogador *novoJogador = new Jogador(idJogador, emXeque, nome);

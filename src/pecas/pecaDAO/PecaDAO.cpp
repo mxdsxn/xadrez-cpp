@@ -29,3 +29,8 @@ bool PecaDAO::salvar(int idPacotePeca, Peca *peca)
 
   return true;
 }
+
+vector<Peca *> PecaDAO::recuperar(int idPacotePeca)
+{
+  return this->pecaSql->recuperar(idPacotePeca);
+}

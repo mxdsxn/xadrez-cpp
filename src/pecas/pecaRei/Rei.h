@@ -7,6 +7,12 @@ class Rei : public Peca
 {
 public:
   Rei(string estilo, bool sentidoPraFrente);
+  Rei(int idPeca,
+      bool emXeque,
+      bool sentidoPraFrente,
+      bool primeiraJogada,
+      int coordenada_x,
+      int coordenada_y);
   ~Rei();
 
   /**

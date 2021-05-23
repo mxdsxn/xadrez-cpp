@@ -61,6 +61,71 @@ Tabuleiro::Tabuleiro()
   this->pecasPretas->setPosicaoInicialPeoes(posicaoInicialPeoesSegundoJogador);
 }
 
+Tabuleiro::Tabuleiro(PecasPack *pecasBrancas, PecasPack *pecasPretas)
+{
+
+  this->pecasBrancas = pecasBrancas;
+  this->pecasPretas = pecasPretas;
+
+  bool posicaoPreta = false;
+
+  // instancia os posicoes do tabuleiro numa matriz
+  for (int y = 0; y < 8; y++)
+  {
+    vector<Posicao *> novaLinha;
+
+    for (int x = 0; x < 8; x++)
+    {
+      Posicao *novoPosicao = new Posicao(x, y, posicaoPreta);
+      novaLinha.push_back(novoPosicao);
+
+      posicaoPreta = !posicaoPreta;
+    }
+    posicaoPreta = !posicaoPreta;
+    this->matrizPosicoes.push_back(novaLinha);
+  }
+
+  vector<Peca *> todasPecasBrancas = this->pecasBrancas->getTodasPecas();
+  for (int indice = 0; indice < todasPecasBrancas.size(); indice++)
+  {
+    Peca *pecaAtual = todasPecasBrancas[indice];
+    Posicao *posicaoAtualPeca = pecaAtual->getPosicaoAtual();
+
+    int coordenadaX = posicaoAtualPeca->getX(), coordenadaY = posicaoAtualPeca->getY();
+    if ((coordenadaY >= 0 && coordenadaY < 8) && (coordenadaX >= 0 && coordenadaX < 8))
+    {
+      Posicao *novaPosicao = this->matrizPosicoes[coordenadaY][coordenadaX];
+
+      novaPosicao->setPeca(pecaAtual);
+      pecaAtual->setPosicao(novaPosicao);
+    }
+    else
+    {
+      pecaAtual->setPosicao(nullptr);
+    }
+  }
+
+  vector<Peca *> todasPecasPretas = this->pecasPretas->getTodasPecas();
+  for (int indice = 0; indice < todasPecasPretas.size(); indice++)
+  {
+    Peca *pecaAtual = todasPecasPretas[indice];
+    Posicao *posicaoAtualPeca = pecaAtual->getPosicaoAtual();
+
+    int coordenadaX = posicaoAtualPeca->getX(), coordenadaY = posicaoAtualPeca->getY();
+    if ((coordenadaY >= 0 && coordenadaY < 8) && (coordenadaX >= 0 && coordenadaX < 8))
+    {
+      Posicao *novaPosicao = this->matrizPosicoes[coordenadaY][coordenadaX];
+
+      novaPosicao->setPeca(pecaAtual);
+      pecaAtual->setPosicao(novaPosicao);
+    }
+    else
+    {
+      pecaAtual->setPosicao(nullptr);
+    }
+  }
+}
+
 Tabuleiro ::~Tabuleiro() {}
 
 void Tabuleiro::show(bool sentidoFrente, bool mostrarLegenda)

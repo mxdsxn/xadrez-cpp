@@ -7,6 +7,12 @@ class Torre : public Peca
 {
 public:
   Torre(string estilo, bool sentidoPraFrente);
+  Torre(int idPeca,
+        bool emXeque,
+        bool sentidoPraFrente,
+        bool primeiraJogada,
+        int coordenada_x,
+        int coordenada_y);
   ~Torre();
 
   /**

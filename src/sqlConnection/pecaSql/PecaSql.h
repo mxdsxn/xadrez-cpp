@@ -1,6 +1,14 @@
 #pragma once
 
+#include "../../pecas/pecaBase/Peca.h"
+#include "../../pecas/fabricaPeca/FabricaPeca.h"
 #include "../SqlConnection.h"
+#include <vector>
+
+using namespace std;
+
+class Peca;
+class FabricaPeca;
 
 /**
  * Responsavel por fazer integração com o banco responsável pela persistencia dos dados, diretamente com a tabela responsavel pela entidade peca
@@ -30,4 +38,11 @@ public:
       int coordenada_y,
       int coordenada_x,
       int codigoTipo);
+
+  /**
+   * Recuperar uma lista de Pecas
+   * @param idPacotePeca id do pacote que as pecas estão associado
+   * @return Lista de Pecas
+  */
+  vector<Peca *> recuperar(int idPacotePeca = -1);
 };
