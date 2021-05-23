@@ -2,16 +2,24 @@
 
 Projeto desenvolvido como avaliação para a disciplina `Tecnicas de programação` da UTFPR-CT.
 
-## Compilar
+## Dependencia
 
-Certifique-se de ter instalado na sua máquina o compilador `g++`
+Execute num ambiente linux e garanta que tenha instalado o `sqlite3`. Caso não tenha instalado, execute:
 
 ```
-  g++ ./src/**/*.cpp -lsqlite3 -o ./dist/main && ./dist/main
+sudo apt install sqlite3 libsqlite3-dev
+```
+
+## Compilar
+
+Certifique-se de ter instalado na sua máquina o compilador `g++`.
+
+```
+g++ ./**/*.cpp -lsqlite3 -o ./main
 ```
 
 ## Executar
 
 ```
-  ./dist/main
+./main
 ```
